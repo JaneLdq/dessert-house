@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="baseDao" class="edu.nju.dessert.dao.BaseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="userDao" class="edu.nju.dessert.dao.UserDaoImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
+	<bean id="staffDao" class="edu.nju.dessert.dao.StaffDaoImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
+	<bean id="cartDao" class="edu.nju.dessert.dao.CartDaoImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
+	<bean id="memberDao" class="edu.nju.dessert.dao.MemberDaoImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
+	<bean id="storeDao" class="edu.nju.dessert.dao.StoreDaoImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
+	<bean id="dessertDao" class="edu.nju.dessert.dao.DessertDaoImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
+	<bean id="planDao" class="edu.nju.dessert.dao.PlanDaoImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
+	<bean id="orderDao" class="edu.nju.dessert.dao.OrderDaoImpl">
+		<property name="baseDao" ref="baseDao"></property>
+		<property name="cartDao" ref="cartDao"></property>
+		<property name="memberDao" ref="memberDao"></property>
+		<property name="dessertDao" ref="dessertDao"></property>
+		<property name="planDao" ref="planDao"></property>
+	</bean>
+	
+	<bean id="adminController" class="edu.nju.dessert.controller.AdminController">
+		<property name="staffService" ref="staffService"></property>
+		<property name="storeService" ref="storeService"></property>
+	</bean>
+	
+	<bean id="userCenterController" class="edu.nju.dessert.controller.UserCenterController">
+		<property name="userService" ref="userService"></property>
+		<property name="memberService" ref="memberService"></property>
+		<property name="orderService" ref="orderService"></property>
+	</bean>
+		
+	<bean id="authController" class="edu.nju.dessert.controller.AuthController">
+		<property name="authService" ref="authService"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="memberService" ref="memberService"></property>
+	</bean>	
+	
+	<bean id="dessertController" class="edu.nju.dessert.controller.DessertController">
+		<property name="dessertService" ref="dessertService"></property>
+		<property name="storeService" ref="storeService"></property>
+	</bean>
+	
+	<bean id="cartController" class="edu.nju.dessert.controller.CartController">
+		<property name="tradeService" ref="tradeService"></property>
+		<property name="dessertService" ref="dessertService"></property>
+	</bean>
+	
+	<bean id="storeController" class="edu.nju.dessert.controller.StoreController">
+		<property name="storeService" ref="storeService"></property>
+		<property name="dessertService" ref="dessertService"></property>
+	</bean>
+	
+	<bean id="planController" class="edu.nju.dessert.controller.PlanController">
+		<property name="planService" ref="planService"></property>
+		<property name="storeService" ref="storeService"></property>
+		<property name="dessertService" ref="dessertService"></property>
+	</bean>
+	
+	<bean id="manageController" class="edu.nju.dessert.controller.ManageController">
+		<property name="planService" ref="planService"></property>
+		<property name="storeService" ref="storeService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<bean id="saleController" class="edu.nju.dessert.controller.SaleController">
+		<property name="staffService" ref="staffService"></property>
+		<property name="memberService" ref="memberService"></property>
+		<property name="tradeService" ref="tradeService"></property>
+		<property name="orderService" ref="orderService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<bean id="userService" class="edu.nju.dessert.service.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<bean id="staffService" class="edu.nju.dessert.service.StaffServiceImpl">
+		<property name="staffDao" ref="staffDao"></property>
+	</bean>
+	
+	<bean id="memberService" class="edu.nju.dessert.service.MemberServiceImpl">
+		<property name="memberDao" ref="memberDao"></property>
+	</bean>
+	
+	<bean id="authService" class="edu.nju.dessert.service.AuthServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+		<property name="staffDao" ref="staffDao"></property>
+	</bean>
+	
+	<bean id="tradeService" class="edu.nju.dessert.service.TradeServiceImpl">
+		<property name="cartDao" ref="cartDao"></property>
+		<property name="memberDao" ref="memberDao"></property>
+		<property name="orderDao" ref="orderDao"></property>		
+		<property name="dessertDao" ref="dessertDao"></property>
+	</bean>
+	
+	<bean id="storeService" class="edu.nju.dessert.service.StoreServiceImpl">
+		<property name="storeDao" ref="storeDao"></property>
+	</bean>
+	
+	<bean id="dessertService" class="edu.nju.dessert.service.DessertServiceImpl">
+		<property name="dessertDao" ref="dessertDao"></property>
+	</bean>
+	
+	<bean id="planService" class="edu.nju.dessert.service.PlanServiceImpl">
+		<property name="planDao" ref="planDao"></property>
+	</bean>
+	
+	<bean id="orderService" class="edu.nju.dessert.service.OrderServiceImpl">
+		<property name="orderDao" ref="orderDao"></property>
+		<property name="memberDao" ref="memberDao"></property>
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<!-- Quartz定时器配置 -->
+	<!-- 启动触发器的配置开始
+ 	<bean name="startQuertz" lazy-init="false" autowire="no"
+ 		 class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  	<property name="triggers">
+   		<list>
+    		<ref bean="cartJobTrigger" />
+   		</list>
+  	</property>
+ 	</bean>
+	 -->
+	<!-- quartz-2.x的配置
+	<bean id="cartJobTrigger"
+	  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="cartJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0/10 * * * * ?</value>
+		</property>
+	</bean>
+ 	-->
+	 <!-- job的配置开始 
+	<bean id="cartJobDetail"
+	  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject"><ref bean="cartCheckJob" /></property>
+	  	<property name="targetMethod"><value>overdueCheck</value></property>
+	</bean>
+	  -->
+	 <!-- 工作的bean
+	<bean id="cartCheckJob" class="edu.nju.dessert.timer.CartCheckJob">
+		<property name="tradeService" ref="tradeService"></property>
+	</bean>
+	-->
+</beans>
