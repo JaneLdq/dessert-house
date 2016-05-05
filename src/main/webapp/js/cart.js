@@ -13,14 +13,14 @@ $(document).ready(function(){
 				if(data['result'] == 0){
 					toaster("非常抱歉，下单失败了，请稍后再试");
 				} else if(data['result'] == 2){
-					$('#charge-msg-modal .modal-content').html("余额不足了哦，<a href='</DessertHouse/user/charge'>马上去充值~</a>");
+					$('#charge-msg-modal .modal-content').html("余额不足了哦，<a href='<" + urlPrefix + "/user/charge'>马上去充值~</a>");
 					$('#charge-msg-modal').modal();
 				} else {
-					$('#charge-msg-modal .modal-content').html("成功扫荡购物车！<a href='/DessertHouse/user/orders'>查看订单</a>");
+					$('#charge-msg-modal .modal-content').html("成功扫荡购物车！<a href='" + urlPrefix + "/user/orders'>查看订单</a>");
 					$('#charge-msg-modal').modal();
 					$('.js-cart-msg').hide();
 					$('.m-cart-panel').html('<div class="cart-list-empty"><p>肚子里空空的，伐开心，求投喂！</p>'
-							+ '<a href="/DessertHouse/dessert"/> 去觅食~Ψ(￣∀￣)Ψ</a></div>');
+							+ '<a href="' + urlPrefix + '/dessert"/> 去觅食~Ψ(￣∀￣)Ψ</a></div>');
 				}
 			},
 			error: function(){
@@ -205,7 +205,7 @@ function checkEmpty(){
 				$('.js-cart-msg').hide();
 				var html = '<div class="cart-list-empty">'
 					+ '<p>肚子里空空的，伐开心，求投喂！</p>'
-					+ '<a href="/DessertHouse/dessert"> 去觅食~Ψ(￣∀￣)Ψ</a>'
+					+ '<a href="/' + urlPrefix + '/dessert"> 去觅食~Ψ(￣∀￣)Ψ</a>'
 					+ '</div>';
 				$('.cart-list').html(html);
 				$('.js-cart-op').hide();

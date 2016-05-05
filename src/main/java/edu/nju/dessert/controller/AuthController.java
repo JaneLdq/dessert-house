@@ -199,7 +199,7 @@ public class AuthController {
 		req.getSession().removeAttribute("isAdmin");
 		req.getSession().removeAttribute("backURL");
 		try {
-			response.sendRedirect("/DessertHouse/index");
+			response.sendRedirect(req.getContextPath() + "/index");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

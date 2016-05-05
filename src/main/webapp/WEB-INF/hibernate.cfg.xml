@@ -18,7 +18,6 @@
     	<property name="hibernate.connection.url">
         	<![CDATA[jdbc:mysql://localhost:3306/dessert?useUnicode=true&characterEncoding=utf8]]>
 		</property>
-    	<mapping class="edu.nju.dessert.model.Dessert"/>
     	<mapping class="edu.nju.dessert.model.Member"/>
     	<mapping class="edu.nju.dessert.model.Store"/>
     	<mapping class="edu.nju.dessert.model.Plan"/>
@@ -30,5 +29,6 @@
     	<mapping class="edu.nju.dessert.model.OrderItem"/>
     	<mapping class="edu.nju.dessert.model.Staff"/>
     	<mapping class="edu.nju.dessert.model.Cart"/>
+    	<mapping class="edu.nju.dessert.model.Dessert"/>
     </session-factory>
 </hibernate-configuration>

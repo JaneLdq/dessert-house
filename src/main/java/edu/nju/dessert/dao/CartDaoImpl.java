@@ -57,7 +57,7 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public List<CartItemVO> getCartItem(int uid) {
 		this.checkOverdue();
-		String hql = "select new CartItemVO(c.id, c.user_id, c.dessert_id, d.name,"
+		String hql = "select new edu.nju.dessert.vo.CartItemVO(c.id, c.user_id, c.dessert_id, d.name,"
 				+ " s.id, s.name, c.date, c.quantity, d.price, pi.remain)"
 				+ " from Cart c, Dessert d, Store s , Plan p, PlanItem pi where user_id=" + uid
 				+ " and c.dessert_id = d.id and c.store_id = s.id and p.date=c.date "

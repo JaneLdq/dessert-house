@@ -33,7 +33,7 @@ window.detailEvents = {
 		var id = row.uid;
 		$('#js-order-modal-mid').html(row.mid);
 		$('#js-order-modal-name').html(row.name);
-		var url = "/DessertHouse/sale/memberOrder?id=" + id;
+		var url = urlPrefix + "/sale/memberOrder?id=" + id;
 		$('#js-order-table').bootstrapTable('refreshOptions', {
 	        url: url
 	    });

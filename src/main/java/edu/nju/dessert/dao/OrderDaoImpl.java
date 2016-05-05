@@ -138,7 +138,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<OrderItemVO> getOrderItemByOrderId(int id) {
-        String hql = "select new OrderItemVO(oi.id, oi.dessert_id, oi.quantity,"
+        String hql = "select new edu.nju.dessert.vo.OrderItemVO(oi.id, oi.dessert_id, oi.quantity,"
                 + "d.name,oi.price) from OrderItem oi, Dessert d where oi.dessert_id = d.id and oi.order_id=" + id;
         Query query = baseDao.getSession().createQuery(hql);
         List<OrderItemVO> result = query.list();

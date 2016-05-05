@@ -35,7 +35,7 @@ public class PlanDaoImpl implements PlanDao {
 
 	@Override
 	public List<PlanVO> getPlanByStoreId(int sid) {
-		String hql = "select new PlanVO(p.id, p.store_id, s.name, p.date, p.state)"
+		String hql = "select new edu.nju.dessert.vo.PlanVO(p.id, p.store_id, s.name, p.date, p.state)"
 				+ " from Plan p, Store s where p.store_id = s.id and s.id=" + sid + "order by p.date desc";
 		Query query = baseDao.getSession().createQuery(hql);
 		List<PlanVO> result = query.list();
@@ -44,7 +44,7 @@ public class PlanDaoImpl implements PlanDao {
 
 	@Override
 	public List<PlanVO> getAllPlan() {
-		String hql = "select new PlanVO(p.id, p.store_id, s.name, p.date, p.state)"
+		String hql = "select new edu.nju.dessert.vo.PlanVO(p.id, p.store_id, s.name, p.date, p.state)"
 				+ " from Plan p, Store s where p.store_id = s.id order by p.date desc";
 		Query query = baseDao.getSession().createQuery(hql);
 		List<PlanVO> list = query.list();
@@ -94,7 +94,7 @@ public class PlanDaoImpl implements PlanDao {
 
     @Override
     public PlanVO getPlanById(int pid) {
-        String hql = "select new PlanVO(p.id, p.store_id, s.name, p.date, p.state)"
+        String hql = "select new edu.nju.dessert.vo.PlanVO(p.id, p.store_id, s.name, p.date, p.state)"
                 + " from Plan p, Store s where p.store_id = s.id and p.id=" + pid;
         Query query = baseDao.getSession().createQuery(hql);
         PlanVO plan = (PlanVO) query.uniqueResult();
@@ -103,7 +103,7 @@ public class PlanDaoImpl implements PlanDao {
 
     @Override
     public List<PlanItemVO> getPlanItemByPlanId(int pid) {
-        String hql = "select new PlanItemVO(pi.id, pi.dessert_id, d.name, pi.quantity, pi.price)"
+        String hql = "select new edu.nju.dessert.vo.PlanItemVO(pi.id, pi.dessert_id, d.name, pi.quantity, pi.price)"
                 + " from PlanItem pi, Plan p, Dessert d where pi.plan_id = p.id and pi.dessert_id = d.id "
                 + " and p.id =" + pid;
         Query query = baseDao.getSession().createQuery(hql);

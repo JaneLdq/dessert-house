@@ -100,7 +100,7 @@ $(document).ready(function(){
 		}
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/user/modifypassword",
+			url: urlPrefix + "/user/modifypassword",
 			data: $('#js-user-pwd-form').serialize(),
 			success: function(data){
 				console.log(data);

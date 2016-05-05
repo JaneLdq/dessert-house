@@ -71,7 +71,7 @@ public class StaffDaoImpl implements StaffDao {
 
 	@Override
 	public StaffVO getStaffById(String id) {
-		String hql = "select new StaffVO(s.id, s.sid, s.name, s.tel, s.password, s.store_id, "
+		String hql = "select new edu.nju.dessert.vo.StaffVO(s.id, s.sid, s.name, s.tel, s.password, s.store_id, "
 		        + "s.position, st.name) from Staff s, Store st where sid='" + id + "' and s.store_id = st.id";
 		Query query = baseDao.getSession().createQuery(hql);
 		StaffVO result = (StaffVO) query.uniqueResult();

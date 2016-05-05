@@ -35,7 +35,7 @@ $(document).ready(function(){
 				});
 			}
 		} else {
-			window.location.href=urlPrefix + "/auth?backurl=/DessertHouse/dessert/d/"+id;
+			window.location.href=urlPrefix + "/auth?backurl=" + urlPrefix +"/dessert/d/"+id;
 		}
 	});
 	
