@@ -27,7 +27,7 @@ window.detailEvents = {
         var id = row.id;
         $.ajax({
         	type:"get",
-        	url: "/DessertHouse/sale/orderDetail",
+        	url: urlPrefix + "/sale/orderDetail",
         	data: {
         		id: id
         	},

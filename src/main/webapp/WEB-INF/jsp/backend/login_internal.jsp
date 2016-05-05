@@ -14,7 +14,7 @@
 				<li role="presentation"><a href="#">恬</a></li>
 			</ul>
 			<div class="right-nav-items">
-				<ul class='nav nav-pills'><li role='presentation'><a href='/DessertHouse/auth'>用户登录</a></li></ul>			
+				<ul class='nav nav-pills'><li role='presentation'><a href='<%=request.getContextPath()%>/auth'>用户登录</a></li></ul>			
 			</div>
 		</div>
 	</nav>

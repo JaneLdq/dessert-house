@@ -9,7 +9,7 @@ $(document).ready(function(){
 		if(Number(quantity) >= 1 && (dessertId != "")){
 			$.ajax({
 				type: "get",
-				url: "/DessertHouse/dessert/check",
+				url: urlPrefix + "/dessert/check",
 				data: {
 					id: dessertId,
 					storeId: storeId
@@ -31,7 +31,7 @@ $(document).ready(function(){
 		if(reg.test(id)){
 			$.ajax({
 				type: "get",
-				url: "/DessertHouse/user/getMember",
+				url: urlPrefix + "/user/getMember",
 				data: {
 					id: "V"+id
 				},
@@ -57,7 +57,7 @@ $(document).ready(function(){
 		console.log(order);
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/sale/create",
+			url: urlPrefix + "/sale/create",
 			datatype: "json",
 			data: order,
 			contentType: "application/json; charset=utf-8",
@@ -141,7 +141,7 @@ function updateSum(){
 	}
 	$.ajax({
 		type: "POST",
-		url: "/DessertHouse/sale/sum",
+		url: urlPrefix + "/sale/sum",
 		data: {
 			total: total,
 			mid: id

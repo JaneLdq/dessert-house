@@ -15,6 +15,8 @@ $(document).ready(function(){
 	
 });
 
+var urlPrefix = "/Tian";
+
 function updateCartMsg(){
 	var result = checkLogin();
 	console.log(window.location.href);
@@ -22,7 +24,7 @@ function updateCartMsg(){
 		console.log("getTotal" + window.location.href);
 		$.ajax({
 			type: "POST",
-			url: "/DessertHouse/cart/total",
+			url: urlPrefix + "/cart/total",
 			success: function(data){
 				if(data != 0)
 					$('.js-cart-msg').html(data).show();
@@ -38,7 +40,7 @@ function checkLogin(){
 	var result = 0;
 	$.ajax({
 		type: "GET",
-		url: "/DessertHouse/auth/check",
+		url: urlPrefix + "/auth/check",
 		async: false,
 		success: function(data){
 			result = data;

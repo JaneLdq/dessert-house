@@ -4,7 +4,7 @@ $(document).ready(function(){
 		var plan = getPlanUpdatorJson();
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/plan/modify",
+			url: urlPrefix + "/plan/modify",
 			datatype: "json",
 			data: plan,
 			contentType: "application/json; charset=utf-8",
@@ -27,7 +27,7 @@ $(document).ready(function(){
 
 function toPlan(){
 	var pid = $('#js-id').html();
-	var url = "/DessertHouse/plan/view/" + pid;
+	var url = urlPrefix + "/plan/view/" + pid;
 	window.history.pushState(null, "查看计划 - 恬", url);
 	window.location.href = url;
 }

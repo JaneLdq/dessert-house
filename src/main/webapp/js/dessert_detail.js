@@ -20,7 +20,7 @@ $(document).ready(function(){
 			if(num > 0){
 				$.ajax({
 					type: "POST",
-					url: "/DessertHouse/cart/add",
+					url: urlPrefix + "/cart/add",
 					data: {
 						dessertId: id,
 						quantity: num,
@@ -35,7 +35,7 @@ $(document).ready(function(){
 				});
 			}
 		} else {
-			window.location.href="/DessertHouse/auth?backurl=/DessertHouse/dessert/d/"+id;
+			window.location.href=urlPrefix + "/auth?backurl=/DessertHouse/dessert/d/"+id;
 		}
 	});
 	
@@ -47,7 +47,7 @@ function getQuantity(){
 	var date = $('#js-date').val();
 	$.ajax({
 		type: "POST",
-		url: "/DessertHouse/dessert/getQuantityByStoreDate",
+		url: urlPrefix + "/dessert/getQuantityByStoreDate",
 		data: {
 			id: did,
 			storeId: storeId,

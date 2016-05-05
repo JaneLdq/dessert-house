@@ -42,7 +42,7 @@
 						<input type="checkbox">
 					</li>
 					<li class="cell l-dessert">
-						<img class="left cart-cell-dessert-img" src="/DessertHouse/img/dessert/${item.dessertId}.jpg" alt="${item.dessertName})"/>
+						<img class="left cart-cell-dessert-img" src="<%=request.getContextPath()%>/img/dessert/${item.dessertId}.jpg" alt="${item.dessertName})"/>
 						<div class="left cart-cell-dessert-info">
 							<a class="name" href="<%=request.getContextPath() %>/dessert/d/${item.dessertId}" >${item.dessertName}</a>
 							<a class="store-address js-cell-dessert-store" href="<%=request.getContextPath() %>/store/${item.storeId}" cid="${item.id}" sid="${item.storeId}"><i class="fa fa-map-marker"></i>  ${item.storeName}</a>	

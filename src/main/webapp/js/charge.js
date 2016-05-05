@@ -14,7 +14,7 @@ $(document).ready(function(){
 			}else{
 				$.ajax({
 					type: "post",
-					url: "/DessertHouse/user/" + method ,
+					url: urlPrefix + "/user/" + method ,
 					data: $('#js-charge-form').serialize(),
 					success: function(data){
 						if(data['result']==1) {
@@ -27,7 +27,7 @@ $(document).ready(function(){
 								$('#js-info-validity').html(data['validity']);
 							}
 							$('#charge-msg-modal .modal-content').html("(≧∇≦)ﾉ  操作成功！" +
-									"<a href='/DessertHouse/user/payments'>查看缴费记录</a>");
+									"<a href='" + urlPrefix + "/user/payments'>查看缴费记录</a>");
 							$('#charge-msg-modal').modal();
 						} else {
 							$('#charge-msg-modal .modal-content').html("操作失败，请确认密码正确并检查网络状态");

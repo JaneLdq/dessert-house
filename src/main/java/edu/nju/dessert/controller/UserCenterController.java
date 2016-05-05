@@ -115,7 +115,7 @@ public class UserCenterController {
 			File targetFile = new File(path, filename);
 			try {
 				FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
-			    String url = "/DessertHouse/upload/";
+			    String url = req.getContextPath() + "/upload/";
 				boolean result = userService.updateAvatar(uid, url+filename);
 				if(result){
 					map.put("result", 1);

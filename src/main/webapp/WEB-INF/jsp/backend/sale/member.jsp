@@ -17,7 +17,7 @@
                 data-search="true"
                 data-show-columns="true"
                 data-minimum-count-columns="3"
-                data-url="/DessertHouse/sale/getMembers">
+                data-url="<%=request.getContextPath()%>/sale/getMembers">
             <thead>
                 <tr>
                     <th data-field="mid">会员卡</th>
@@ -54,7 +54,7 @@
                         <table id="js-payment-table"
                                data-toggle="table"
                                data-height="299"
-                               data-url="/DessertHouse/sale/payment?id=1">
+                               data-url="<%=request.getContextPath()%>/sale/payment?id=1">
                             <thead>
                             <tr>
                                 <th data-field="id">#</th>
@@ -86,7 +86,7 @@
                         <table id="js-order-table"
                                data-toggle="table"
                                data-height="299"
-                               data-url="/DessertHouse/sale/memberOrder?id=1">
+                               data-url="<%=request.getContextPath()%>/sale/memberOrder?id=1">
                             <thead>
                             <tr>
                                 <th data-field="id">#</th>

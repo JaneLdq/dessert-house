@@ -7,7 +7,7 @@ $(document).ready(function(){
 		if(current>1){
 			$.ajax({
 				type: "post",
-				url: "/DessertHouse/user/points/" + (current-1),
+				url: urlPrefix + "/user/points/" + (current-1),
 				success: function(data){
 					console.log(data);
 					var points = data['points'];
@@ -27,7 +27,7 @@ $(document).ready(function(){
 		if(current < Number($('#js-point-current').attr('max'))){
 			$.ajax({
 				type: "post",
-				url: "/DessertHouse/user/points/" + (current+1),
+				url: urlPrefix + "/user/points/" + (current+1),
 				success: function(data){
 					console.log(data);
 					var points = data['points'];
@@ -60,7 +60,7 @@ function initExchangeModal(){
 		if(value > 0){
 			$.ajax({
 				type: "post",
-				url: "/DessertHouse/user/exchange",
+				url: urlPrefix + "/user/exchange",
 				data: {
 					point: value
 				},

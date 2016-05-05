@@ -3,7 +3,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		type:"get",
-		url: "/DessertHouse/manage/getAges",
+		url: urlPrefix + "/manage/getAges",
 		success: function(data){
 			console.log(data);
 			initAgeChart(data);

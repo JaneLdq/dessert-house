@@ -4,9 +4,9 @@ $(document).ready(function(){
 		var id = $(this).attr('sid');
 		var url = "";
 		if(id == 0){
-			url = "/DessertHouse/plan/getPlanByStore";
+			url = urlPrefix + "/plan/getPlanByStore";
 		} else {
-			url = "/DessertHouse/plan/getPlanByStore?sid=" + id;
+			url = urlPrefix +  "/plan/getPlanByStore?sid=" + id;
 		}
 		$('#js-plan-table').bootstrapTable('refreshOptions', {
             url: url
@@ -20,7 +20,7 @@ $(document).ready(function(){
 function modifyFormatter(value, row, index) {
 	if(row.state==2){
 		return [
-		        '<a class="modify" href="/DessertHouse/plan/modify/' + row.id +'" title="Modify">',
+		        '<a class="modify" href="' + urlPrefix + '/plan/modify/' + row.id +'" title="Modify">',
 		        '<i class="glyphicon glyphicon-pencil"></i>',
 		        '</a>  '
 		    ].join('');
@@ -35,7 +35,7 @@ function modifyFormatter(value, row, index) {
 
 function viewFormatter(value, row, index) {
     return [
-		'<a href="/DessertHouse/plan/view/' + row.id + '" title="View">',
+		'<a href="' + urlPrefix + '/plan/view/' + row.id + '" title="View">',
 		'<i class="glyphicon glyphicon-eye-open"></i>',
 		'</a>'
     ].join('');

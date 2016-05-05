@@ -4,11 +4,12 @@ function toaster(msg){
 	setTimeout("$('.toaster').fadeOut()", 2000);
 }
 
+var urlPrefix = "/Tian";
 
 function passPlan(id, func){
 	$.ajax({
 		type: "post",
-		url: "/DessertHouse/manage/pass",
+		url: urlPrefix + "/manage/pass",
 		data: {
 			id: id
 		},
@@ -27,7 +28,7 @@ function passPlan(id, func){
 function rejectPlan(id, func){
 	$.ajax({
 		type: "post",
-		url: "/DessertHouse/manage/reject",
+		url: urlPrefix + "/manage/reject",
 		data: {
 			id: id
 		},

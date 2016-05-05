@@ -15,7 +15,7 @@ $(document).ready(function(){
 		}
 		$.ajax({
 			type:"post",
-			url: "/DessertHouse/admin/addStore",
+			url: urlPrefix + "/admin/addStore",
 			data: $('#js-store-add-form').serialize(),
 			success: function(data){
 				if(data['result']==1){
@@ -56,7 +56,7 @@ $(document).ready(function(){
 		var id = $('#js-delete-store').attr('sid');
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/admin/deleteStore",
+			url: urlPrefix + "/admin/deleteStore",
 			data: {
 				id: id
 			},
@@ -86,7 +86,7 @@ $(document).ready(function(){
 		}
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/admin/modifyStore",
+			url: urlPrefix + "/admin/modifyStore",
 			data: $('#js-store-edit-form').serialize(),
 			success: function(data){
 				console.log(data);

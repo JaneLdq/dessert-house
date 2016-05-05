@@ -22,7 +22,7 @@ window.detailEvents = {
 		var id = row.uid;
 		$('#js-payment-modal-mid').html(row.mid);
 		$('#js-payment-modal-name').html(row.name);
-		var url = "/DessertHouse/sale/payment?id=" + id;
+		var url = urlPrefix + "/sale/payment?id=" + id;
 		$('#js-payment-table').bootstrapTable('refreshOptions', {
             url: url
         });

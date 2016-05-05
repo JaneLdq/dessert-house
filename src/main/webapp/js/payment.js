@@ -4,7 +4,7 @@ $(document).ready(function(){
 		if(current>1){
 			$.ajax({
 				type: "post",
-				url: "/DessertHouse/user/payments/" + (current-1),
+				url: urlPrefix + "/user/payments/" + (current-1),
 				success: function(data){
 					console.log(data);
 					var payments = data['payments'];
@@ -24,7 +24,7 @@ $(document).ready(function(){
 		if(current < Number($('#js-payment-current').attr('max'))){
 			$.ajax({
 				type: "post",
-				url: "/DessertHouse/user/payments/" + (current+1),
+				url: urlPrefix + "/user/payments/" + (current+1),
 				success: function(data){
 					console.log(data);
 					var payments = data['payments'];

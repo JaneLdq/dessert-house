@@ -16,7 +16,7 @@ $(document).ready(function(){
 		var position = $('#js-position-selector').val();
 		$.ajax({
 			type:"post",
-			url: "/DessertHouse/admin/addStaff",
+			url: urlPrefix + "/admin/addStaff",
 			data: {
 				name: name,
 				tel: tel,
@@ -70,7 +70,7 @@ $(document).ready(function(){
 		var id = $('#js-delete-staff').attr('sid');
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/admin/deleteStaff",
+			url: urlPrefix + "/admin/deleteStaff",
 			data: {
 				id: id
 			},
@@ -104,7 +104,7 @@ $(document).ready(function(){
 		console.log(storeId);
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/admin/modifyStaff",
+			url: urlPrefix + "/admin/modifyStaff",
 			data: {
 				id: id,
 				name: name,

@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="plan-list-panel">
-        <table id="js-plan-table" data-toggle="table" data-row-style="rowStyle" data-url="/DessertHouse/plan/getPlanByStore">
+        <table id="js-plan-table" data-toggle="table" data-row-style="rowStyle" data-url="<%=request.getContextPath() %>/plan/getPlanByStore">
             <thead>
                 <tr>
                     <th rowspan="2" data-field="check" data-checkbox="true"></th>

@@ -29,7 +29,7 @@
 					  	<button type="button" class="btn btn-default">审核未通过</button>
 					</div>
 				</div>
-				<table id="js-plan-table" data-toggle="table" data-row-style="rowStyle" data-url="/DessertHouse/plan/getPlanByStore">
+				<table id="js-plan-table" data-toggle="table" data-row-style="rowStyle" data-url="<%=request.getContextPath()%>/plan/getPlanByStore">
 						<thead>
 							<tr>
                                 <th rowspan="2" data-field="id" data-valign="middle"  data-align="center" data-sortable="true">编号</th>

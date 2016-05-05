@@ -37,7 +37,7 @@ $(document).ready(function(){
 		if(!empty){
 			$.ajax({
 				type: "post",
-				url: "/DessertHouse/user/setting",
+				url: urlPrefix + "/user/setting",
 				data: info,
 				success: function(data){
 					console.log("修改成功！");
@@ -63,7 +63,7 @@ $(document).ready(function(){
 	    console.log(avatar);
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/user/uploadAvatar",
+			url: urlPrefix + "/user/uploadAvatar",
 			data: formData,
 			processData : false,
 			contentType: false,
@@ -121,7 +121,7 @@ $(document).ready(function(){
 
 
 function reLogin(){
-	window.location.href='/DessertHouse/auth';
+	window.location.href= urlPrefix + '/auth';
 }
 
 function showAvatar(){

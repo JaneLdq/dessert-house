@@ -72,11 +72,11 @@
 			</div>
 			<div class="tab-panel user-avatar-setting" style="display:none">
             <c:choose>
-                <c:when test="${user.avatar}">
+                <c:when test="${user.avatar != ''}">
                 <img class="avatar" id="js-avatar" src="${user.avatar}" alt="${user.nickname}">
                 </c:when>
                 <c:otherwise>
-                <img class="avatar" id="js-avatar" src="/DessertHouse/img/avatar.jpg" alt="${user.nickname}">
+                <img class="avatar" id="js-avatar" src="<%=request.getContextPath()%>/img/avatar.jpg" alt="${user.nickname}">
                 </c:otherwise>
                 </c:choose>
 				<form enctype="multipart/form-data" method="post" name="avatar" id="js-avatar-form">

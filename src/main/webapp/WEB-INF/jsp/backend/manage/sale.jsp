@@ -27,7 +27,7 @@
                     data-unique-id="id" 
                     data-pagination="true"
                     data-height="500"
-                    data-url="/DessertHouse/sale/getOrders?type=0">
+                    data-url="<%=request.getContextPath()%>/sale/getOrders?type=0">
                     <thead>
                     <tr>
                         <th class="col-md-2 col-sm-2" 
@@ -52,7 +52,7 @@
                     data-unique-id="id" 
                     data-pagination="true"
                     data-height="500"
-                    data-url="/DessertHouse/sale/getOrders?type=1">
+                    data-url="<%=request.getContextPath()%>/sale/getOrders?type=1">
                     <thead>
                     <tr>
                         <th class="col-md-2 col-sm-2" 

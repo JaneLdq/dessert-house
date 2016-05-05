@@ -6,7 +6,7 @@ $(document).ready(function(){
 		console.log(store);
 		$.ajax({
 			type: "get",
-			url: "/DessertHouse/plan/getLatestPlanDate",
+			url: urlPrefix + "/plan/getLatestPlanDate",
 			data:{
 				sid: store
 			},
@@ -45,7 +45,7 @@ $(document).ready(function(){
 		var plan = getPlanJson();
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/plan/create",
+			url: urlPrefix + "/plan/create",
 			datatype: "json",
 			data: plan,
 			contentType: "application/json; charset=utf-8",
@@ -88,7 +88,7 @@ function getPlanJson(){
 }
 
 function toPlanList(){
-	window.location.href="/DessertHouse/plan";
+	window.location.href=url: urlPrefix + "/plan";
 }
 
 function getDate(date,days){

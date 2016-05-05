@@ -7,7 +7,7 @@ $(document).ready(function(){
 	$('#js-cart-modal-submit').click(function(){
 		$.ajax({
 			type: "post",
-			url: "/DessertHouse/cart/book",
+			url: urlPrefix + "/cart/book",
 			success: function(data){
 				console.log(data);
 				if(data['result'] == 0){
@@ -47,7 +47,7 @@ function datePicker(){
 		var quantity = Number(quantityInput.val());
 		$.ajax({
 			type: "POST",
-			url: "/DessertHouse/dessert/getQuantityByStoreDate",
+			url: urlPrefix + "/dessert/getQuantityByStoreDate",
 			data: {
 				id: did,
 				storeId: storeId,
@@ -83,7 +83,7 @@ function numberPicker(){
 		if(quantity > 1){
 			$.ajax({
 				type: "POST",
-				url: "/DessertHouse/cart/remove",
+				url: urlPrefix + "/cart/remove",
 				data: {
 					id: cid,
 					quantity: 1
@@ -124,7 +124,7 @@ function updateCartItemByDate(cid, did, quantity, sid, date){
 	var value = $('.js-dessert-value[cid="'+cid+'"]');
 	$.ajax({
 		type: "POST",
-		url: "/DessertHouse/cart/update",
+		url: urlPrefix + "/cart/update",
 		data: {
 			id: cid,
 			dessertId: did,
@@ -158,7 +158,7 @@ function updateCartItem(cid, did, quantity, sid, date){
 	var value = $('.js-dessert-value[cid="'+cid+'"]');
 	$.ajax({
 		type: "POST",
-		url: "/DessertHouse/cart/update",
+		url: urlPrefix + "/cart/update",
 		data: {
 			id: cid,
 			dessertId: did,
@@ -186,7 +186,7 @@ function updateCartItem(cid, did, quantity, sid, date){
 function updateSum(){
 	$.ajax({
 		type: "POST",
-		url: "/DessertHouse/cart/sum",
+		url: urlPrefix + "/cart/sum",
 		success: function(data){
 			$('.js-sum').html('<i class="fa fa-rmb"></i>' + data.sum);
 			$('#js-discount').html('<i class="fa fa-rmb"></i>' + data.discount);
@@ -197,7 +197,7 @@ function updateSum(){
 function checkEmpty(){
 	$.ajax({
 		type: "POST",
-		url: "/DessertHouse/cart/total",
+		url: urlPrefix + "/cart/total",
 		success: function(data){
 			if(data != 0)
 				$('.js-cart-msg').html(data).show();
@@ -219,7 +219,7 @@ function deleteItem(){
 		var id = $(this).attr('cid');
 		$.ajax({
 			type: "POST",
-			url: "/DessertHouse/cart/delete",
+			url: urlPrefix + "/cart/delete",
 			data: {
 				id: id
 			},

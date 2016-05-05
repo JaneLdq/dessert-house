@@ -79,7 +79,7 @@
 			if(request.getSession().getAttribute("hasLogin") != null){
 				out.print("<ul class='nav nav-pills'>"
 					+ "<li role='presentation'>"
-					+ "<a href='/DessertHouse/auth/logout'>退出登录</a></li>"
+					+ "<a href='" + request.getContextPath() + "/auth/logout'>退出登录</a></li>"
 			  		+ "</ul>");
 			}else{
 				if(url.contains("login_internal")){
