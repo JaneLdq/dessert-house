@@ -39,6 +39,7 @@
 					<label class="label">支付密码：</label>
 					<input style="display:none">
 					<input class="password" name="paypassword" type="password" required autocomplete="off">
+                    <span class="required">*</span>
 					<p class="form-tip">6位数字，会员卡激活或充值前需进行支付验证</p>
 				</div>
 				<button class="btn" type="button" id="js-submit">我要成为会员！</button>

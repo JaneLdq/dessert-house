@@ -18,7 +18,9 @@
 				<div class="separator"></div>
 				<div class="point-info">
 					当前积分：<span class="highlight" id="js-point">${member.point}</span>
-					<a href="#exchange-modal" rel="modal:open">积分兑换</a>
+					<c:if test="${member.state!=3}">
+                        <a href="#exchange-modal" rel="modal:open">积分兑换</a>
+                    </c:if>
 				</div>
 				<div class="point-detail">积分明细</div>
 				<div class="point-record">

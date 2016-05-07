@@ -45,7 +45,7 @@
 								<li>恢复会员卡原等级激活态需要充值至少<span class="highlight"><i class="fa fa-rmb"></i> 200</span></li>
 							</ul>
 						</c:when>
-						<c:otherwise>
+						<c:when test="${member.state!=3}">
 							<ul>
 								<li>累计充值至少<span class="highlight"><i class="fa fa-rmb"></i> 600</span>
 								将升级为VIP1级，解锁<span class="highlight">9.5</span>折优惠</li>
@@ -55,10 +55,14 @@
 								将升级为VIP最高级，解锁<span class="highlight">7</span>折优惠，节假日更有特别大礼包赠送噢~</li>
 								<li>每次充值金额不得少于<span class="highlight"><i class="fa fa-rmb"></i> 50</span></li>
 							</ul>
-						</c:otherwise>
+                        </c:when>
+						<c:otherwise>
+                            <div>对不起，您的会员卡已停用，不可再进行充值服务！</div>
+                        </c:otherwise>
 					</c:choose>
 					
 				</div>
+                <c:if test="${member.state!=3}">
 				<div class="section">
 					<div class="sub-title">
 						<c:choose>
@@ -97,6 +101,7 @@
 					</div>
 					<div class="clear-fix"></div>
 				</div>
+                </c:if>
 			</div>
 		</div>
 	</div>

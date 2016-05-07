@@ -275,6 +275,14 @@ public class UserCenterController {
 	}
 	
 	@Auth(Role.USER)
+    @RequestMapping(value="/newcard")
+    public String newcard(HttpServletRequest req, ModelMap model){
+        int uid = (int) req.getSession().getAttribute("id");
+        getBasicInfo(model, uid);
+        return "/user/newcard";
+    }
+	
+	@Auth(Role.USER)
 	@RequestMapping(value="/points/{page}", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> getPoint(@PathVariable int page, HttpServletRequest req, ModelMap model){
 		Map<String, Object> map = new HashMap<String, Object>();

@@ -63,9 +63,14 @@
 				<div class="sub-title">其他操作</div>
 				<div class="sub-content">
 					<ul class="info-list">
-                        <c:if test="${member.state != 3}">
-						  <li><a class="gray" href="javascript:void(0)" id="js-cancel">取消会员</a></li>
-                        </c:if>
+                        <c:choose>
+                        <c:when test="${member.state != 3}">
+						    <li><a class="gray" href="javascript:void(0)" id="js-cancel">取消会员</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a class="gray" href="<%=request.getContextPath() %>/user/newcard">办理新会员卡</a></li>
+                        </c:otherwise>
+                        </c:choose>
 					</ul>
 				</div>
 				<div class="clear-fix"></div>

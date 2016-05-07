@@ -8,7 +8,8 @@
 	<div class="user-info">
 		<a href="<%=request.getContextPath()%>/user/setting">
             <c:choose>
-                <c:when test="${user.avatar != ''}">
+                <c:when test="${user.avatar != '' && user.avatar}">
+                
                     <img class="avatar js-left-info-avatar" src="${user.avatar}" alt="avator">
                 </c:when>
                 <c:otherwise>

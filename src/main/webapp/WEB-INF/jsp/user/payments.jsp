@@ -17,7 +17,9 @@
 				<div class="separator"></div>
 				<div class="payment-info">
 					会员卡余额：<span class="highlight"><i class="fa fa-rmb"></i>${member.balance}</span>
-					<a class="" href="<%= request.getContextPath()%>/user/charge">充值</a>
+					<c:if test="${member.state !=3}">
+                        <a class="" href="<%= request.getContextPath()%>/user/charge">充值</a>
+                    </c:if>
 				</div>
 				<div class="payment-detail">缴费明细</div>
 				<div class="payment-record">

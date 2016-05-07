@@ -1,5 +1,8 @@
 $(document).ready(function(){
-	
+	$('table').on('click-row.bs.table', function (e,row) {
+		var id = row.id;
+	    getOrderDetail(id);
+	});
 })
 
 
@@ -14,31 +17,20 @@ function showOrderDetail(order){
 	$('#js-order-detail-table').bootstrapTable('load',order['items']);
 }
 
-function detailFormatter(value, row, index) {
-	return [
-	        '<a class="detail" href="javascript:void(0)" title="Detail">',
-			row.id,
-			'</a>'
-	].join('');  
-}
-
-window.detailEvents = {
-	'click .detail': function (e, value, row, index) {
-        var id = row.id;
-        $.ajax({
-        	type:"get",
-        	url: urlPrefix + "/sale/orderDetail",
-        	data: {
-        		id: id
-        	},
-        	success:function(data){
-        		console.log(data);
-        		if(data['result']==1){
-        			showOrderDetail(data['order']);
-        		}else{
-        			toaster("获取详细数据的过程出了点小问题，请稍后再尝试！");
-        		}
-        	}
-        });
-    }
+function getOrderDetail(id){
+	$.ajax({
+    	type:"get",
+    	url: urlPrefix + "/sale/orderDetail",
+    	data: {
+    		id: id
+    	},
+    	success:function(data){
+    		console.log(data);
+    		if(data['result']==1){
+    			showOrderDetail(data['order']);
+    		}else{
+    			toaster("获取详细数据的过程出了点小问题，请稍后再尝试！");
+    		}
+    	}
+    });
 }

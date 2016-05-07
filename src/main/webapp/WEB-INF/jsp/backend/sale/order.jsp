@@ -53,9 +53,7 @@
                         <th class="col-md-2 col-sm-2" 
                             data-field="id" 
                             data-valign="middle"  
-                            data-align="center"
-                            data-formatter="detailFormatter"
-                            data-events="detailEvents">编号</th>
+                            data-align="center">编号</th>
                         <th class="col-md-3 col-sm-3" data-field="date" data-valign="middle"  data-align="center">时间</th>
                         <th class="col-md-2 col-sm-2" data-field="mid" data-valign="middle"  data-align="center">会员</th>
                         <th class="col-md-2 col-sm-2" data-field="discount" data-valign="middle"  data-align="center">折扣</th>
@@ -78,9 +76,7 @@
                         <th class="col-md-2 col-sm-2" 
                             data-field="id" 
                             data-valign="middle"  
-                            data-align="center"
-                            data-formatter="detailFormatter"
-                            data-events="detailEvents">编号</th>
+                            data-align="center">编号</th>
                         <th class="col-md-3 col-sm-3" data-field="date" data-valign="middle"  data-align="center">时间</th>
                         <th class="col-md-2 col-sm-2" data-field="mid" data-valign="middle"  data-align="center">会员</th>
                         <th class="col-md-2 col-sm-2" data-field="discount" data-valign="middle"  data-align="center">折扣</th>

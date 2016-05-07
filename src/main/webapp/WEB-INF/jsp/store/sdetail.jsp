@@ -13,7 +13,7 @@
 	<div class="wrapper">
 		<div class="m-store-detail-panel">
 			<div class="store-card">
-				<a class="store-img" href="<%=request.getContextPath()%>/store/1"><img src="<%=request.getContextPath() %>/img/store/1.jpg" alt="store"></a>
+				<a class="store-img" href="<%=request.getContextPath()%>/store/${store.id}"><img src="<%=request.getContextPath() %>/img/store/${store.id}.jpg" alt="store"></a>
 				<div class="store-desc">
 					<a class="store-name" href="<%=request.getContextPath()%>/store/${store.id}">${store.name }</a>
 					<p><i class="fa fa-phone"></i>${store.tel }</p>
