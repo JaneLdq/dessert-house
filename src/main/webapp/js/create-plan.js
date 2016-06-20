@@ -88,7 +88,7 @@ function getPlanJson(){
 }
 
 function toPlanList(){
-	window.location.href=url: urlPrefix + "/plan";
+	window.location.href= urlPrefix + "/plan";
 }
 
 function getDate(date,days){

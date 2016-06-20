@@ -117,6 +117,24 @@ function numberPicker(){
 			updateCartItem(cid, did, quantity+1, sid, date);
 		}
 	});
+	
+	$('.js-dessert-value').on('propertychange input', function(){
+		if($(this).val().length == 0){
+			$(this).val(1);
+		}
+		var picker = $(this).parent();
+		var quantity = $(this).val();
+		var cid = $(this).attr('cid');
+		var did = $(this).attr('did');
+		var sid = $('.js-cell-dessert-store[cid="' + cid + '"]').attr("sid");
+		var date = $('.js-cell-dessert-date[cid="' + cid + '"]').val();
+		var max = $(this).attr('max');
+		if(Number(quantity)>Number(max)){
+			quantity = max;
+			$(this).val(max);
+		}
+		updateCartItem(cid, did, quantity, sid, date);
+	});
 }
 
 function updateCartItemByDate(cid, did, quantity, sid, date){

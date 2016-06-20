@@ -1,5 +1,11 @@
 $(document).ready(function(){
 	
+	if($('#js-quantity').html() == 0){
+		$('#js-add-dessert').attr('disabled', true);
+	}else{
+		$('#js-dessert-value').val(1);
+	}
+	
 	initNumberPicker();
 	
 	$('#js-date').change(function(){
@@ -59,8 +65,10 @@ function getQuantity(){
 			$('#js-quantity').html(result);
 			if(result == 0){
 				$('#js-dessert-value').val(0);
+				$('#js-add-dessert').attr('disabled', true);
 			} else {
 				$('#js-dessert-value').val(1);
+				$('#js-add-dessert').attr('disabled', false);
 			}
 		},
 		error: function(){
@@ -88,6 +96,14 @@ function initNumberPicker(){
 		if(num < max){
 			++num;
 			$(value).val(num).attr('value', num);
+		}
+	});
+	
+	$('.js-dessert-value').on('propertychange input', function(){
+		var val = $('.js-dessert-value').val();
+		var max = $('#js-quantity').html();
+		if( Number(val) > Number(max) ){
+			$('.js-dessert-value').val(max);
 		}
 	});
 }

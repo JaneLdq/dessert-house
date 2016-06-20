@@ -583,7 +583,9 @@ input[type="date"] {
 	background-color: rgba(255,178,143,1);
 }
 
-
+.btn[disabled='disabled'] {
+	background-color: rgba(220,220,220,1); !important
+}
 
 /*------------------------------------*\
     $nav
@@ -926,6 +928,13 @@ ul.tab-list {
 	width: 30px;
 }
 
+.number-picker input::-webkit-outer-spin-button,
+.number-picker input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.number-picker input[type="number"]{
+  -moz-appearance: textfield;
+}
 
 
 /*------------------------------------*\
@@ -1524,6 +1533,10 @@ ul.tab-list {
 
 .m-dessert-detail .btn-submit:hover {
 	background-color: rgba(255,127,77,1);
+}
+
+.m-dessert-detail .btn-submit[disabled='disabled'] {
+	background-color: rgba(220,220,220,1);
 }
 
 
