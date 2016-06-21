@@ -387,6 +387,7 @@ CREATE TABLE `user` (
   `password` varchar(32) NOT NULL,
   `avatar` varchar(512) DEFAULT NULL,
   `vip_id` varchar(16) DEFAULT NULL,
+  `default_store` int(11) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `tel_UNIQUE` (`tel`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -398,7 +399,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'18066083162','Jane','Jane','1995-08-16',0,'qazwsx',NULL,NULL),(2,'18020135373','王振聪','vboar','1995-06-30',1,'1995630','/Tian/upload/2.png',NULL);
+INSERT INTO `user` VALUES (1,'18066083162','Jane','Jane','1995-08-16',0,'qazwsx',NULL,NULL,1),(2,'18020135373','王振聪','vboar','1995-06-30',1,'1995630','/Tian/upload/2.png',NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -411,4 +412,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-21 16:37:07
+-- Dump completed on 2016-06-21 16:48:26
