@@ -12,7 +12,7 @@
 	<div class="wrapper">
 		<jsp:include page="/WEB-INF/jsp/common/left_nav.jsp"></jsp:include>
 		<div class="right main">
-		<div class="panel order-panel">
+		<div class="panel m-user-panel order-panel">
 			<!-- ul class="tab-list">
 				<li class="tab-item active">待完成订单</li>
 				<li class="tab-item">已完成订单</li>

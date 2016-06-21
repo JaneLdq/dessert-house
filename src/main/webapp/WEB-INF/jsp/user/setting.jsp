@@ -12,7 +12,7 @@
 	<div class="wrapper">
 		<jsp:include page="/WEB-INF/jsp/common/left_nav.jsp"></jsp:include>
 		<div class="right main">
-		<div class="panel user-setting-panel">
+		<div class="panel m-user-panel user-setting-panel">
 			<ul class="tab-list">
 				<li class="tab-item active">个人信息</li>
 				<li class="tab-item">头像设置</li>

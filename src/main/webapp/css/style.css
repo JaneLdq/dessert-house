@@ -452,7 +452,6 @@ th {
 body {
     overflow-x: auto;
     overflow-y: auto;
-    min-width: 1000px;
 }
 
 body, input, label, select, option, textarea, button, fieldset, legend {
@@ -475,12 +474,25 @@ a:hover {
 }
 
 body {
-	background-color: #ffffe9;	
+	/* background-color: #ffffe9; */
+	background-image: url('../img/bgpattern.png');	
 }
 
 .wrapper {
 	width: 80%;
 	margin: 20px auto 40px auto;
+}
+
+@media screen and (max-width: 768px) {
+	.wrapper {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.wrapper {
+		width: 100%;
+	}
 }
 
 .left {
@@ -502,12 +514,6 @@ body {
 	clear: both;
 }
 
-input[type="date"] {
-	border-radius: 4px;
-	border: 1px solid transparent;
-}
-
-.panel input,
 .form-group input {
 	height: 24px;
 	line-height: 24px;
@@ -515,6 +521,11 @@ input[type="date"] {
 	border-radius: 4px;
 	font-size: 14px;
 	border: 1px solid rgba(64,32,0,0.2);
+}
+
+input[type="date"] {
+	border-radius: 4px;
+	border: 1px solid transparent;
 }
 
 .sider {
@@ -592,8 +603,9 @@ input[type="date"] {
 \*------------------------------------*/
 .navbar {
 	width: 100%;
-	height: 70px;
-	background-color: rgba(254,198,173,1);
+	height: 60px;
+	/*background-color: rgba(254,198,173,0.8);*/
+	background-color: rgba(123,101,86,0.7);
 }
 
 .navbar .nav-panel{
@@ -613,7 +625,7 @@ input[type="date"] {
 
 .nav-item {
 	display: inline-block;
-	padding: 20px 20px;
+	padding: 15px 20px;
 	height: 30px;
 	line-height:  30px;
 	font-size: 18px;
@@ -843,13 +855,11 @@ ul.tab-list {
 .row {
 	width: 102%;
 	margin: 25px -1%;
-	display: flex;
-	justify-content: space-between;
 }
 
 .row .col {
 	display: inline-block;
-	margin: 0 1%;
+	margin: 0 0.8%;
 	width: 30%;
 }
 
@@ -858,7 +868,7 @@ ul.tab-list {
 }
 
 .row .col.col-sm {
-	width: 24%;
+	width: 23%;
 }
 
 
@@ -901,6 +911,7 @@ ul.tab-list {
 	background-color: transparent;
 	border-radius: 2px;
 	width: 20px;
+	line-height: normal;
 	font-size: 14px;
 	text-align: center;
 	color: rgba(64,30,6,0.8)
@@ -1186,6 +1197,31 @@ ul.tab-list {
     left: auto;
 }
 
+.activity-tag {
+	width: 30px;
+	height: 120px;
+	padding: 20px;
+	background-color: #ffb28f;
+	opacity: 0.8;
+	position: absolute;
+	top: 80px;
+	right: 15%;
+	z-index: 999;
+}
+
+.activity-icon {
+	position: relative;
+	left: -75px;
+}
+
+.activity-title {
+	width: 80px;
+	line-height: 30px;
+	font-size: 28px;
+	color: #fff;
+}
+
+
 .activity-swiper {
 	position: relative;
     width: 100%;
@@ -1331,28 +1367,27 @@ ul.tab-list {
 
 .m-dessert-panel {
 	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
 	margin: 30px 0 15px 0;
 }
 
-.m-dessert-panel .col {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 334px;
-	border: 1px solid rgba(254,198,173,0.3);
+.m-dessert-panel .dessert {
+	width: 23%;
+	height: 280px;
+	margin: 0 1% 25px 1%;;
+	box-shadow: 0 0 0 1px rgba(254,198,173,0.3) inset;
 	border-radius: 6px;
-	background-color: transparent;
-}
-
-.m-dessert-panel .col.col-lg {
-	height: 396px;
+	background-color: rgba(255,255,255,0.5);
+	position: relative;
 }
 
 .dessert-img {
 	width: 100%;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
-	height: 260px;
+	height: 200px;
 	cursor: pointer;
 }
 
@@ -1361,16 +1396,22 @@ ul.tab-list {
 }
 
 .dessert-desc {
+	position: relative;
 	width: 100%;
-	height: 78px;
+	height: 68px;
 	padding: 6px 0;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
 	color: #444;
 }
 
+.dessert-desc a {
+	display: block;
+}
+
 .dessert-desc:hover {
-	height: 300px;
 	background-color: rgba(255,255,255,1);
-	box-shadow: 0 -4px rgba(64,30,6,0.3);
+	box-shadow: 0 -6px rgba(64,30,6,0.4);
 }
 
 .dessert-desc .dessert-name {
@@ -1381,7 +1422,7 @@ ul.tab-list {
 }
 
 .dessert-desc .dessert-name:hover {
-	color: rgba(64,30,6,0.6);
+	color: rgba(64,30,6,1);
 }
 
 .dessert-desc .dessert-price {
@@ -1436,13 +1477,66 @@ ul.tab-list {
 	opacity: 1;
 }
 
-
-.col-lg .dessert-img {
-	height: 300px;
+@media screen and (max-width: 1024px) {
+	.m-dessert-panel .dessert {
+		height: 250px;
+	}
+	
+	.dessert-img {
+		height: 140px;
+	}
+	
 }
 
-.m-dessert-panel .col-lg .dessert-desc {
-	height: 84px;
+@media screen and (max-width: 768px) {
+	.m-dessert-panel .dessert {
+		width: 31%;
+		height: 252px;
+		margin: 0 1% 25px 1%;;
+	}
+	
+	.dessert-img {
+		height: 180px;
+	}
+	
+	.dessert-desc {
+		height: 60px;
+	}
+	
+	.dessert-desc .dessert-name {
+		font-size: 18px;
+	}
+	
+	.dessert-desc .dessert-price {
+		font-size: 12px;
+	}
+	
+}
+
+@media screen and (max-width: 480px) {
+    .m-dessert-panel .dessert {
+		width: 46%;
+		height: 200px;
+		margin: 0 2% 25px 2%;;
+	}
+	
+	.dessert-img {
+		height: 140px;
+	}
+	
+	.dessert-desc {
+		height: 52px;
+	}
+	
+	.dessert-desc .dessert-name {
+		font-size: 15px;
+		padding: 2px 6px 4px 6px;
+	}
+	
+	.dessert-desc .dessert-price {
+		font-size: 12px;
+	}
+
 }
 
 
@@ -1606,7 +1700,7 @@ ul.cart-thead > li {
 	width: 12%;
 }
 
-@Media screen and (max-width: 1240px){
+@Media screen and (max-width: 1024px){
 	.cart-thead .t-dessert,
 	.cart-list-item .l-dessert {
 		width: 31%;
@@ -1703,7 +1797,7 @@ ul.cart-list-item > li {
 }
 
 
-@Media screen and (max-width: 980px){
+@Media screen and (max-width: 1024px){
 	.cart-list-item .cart-cell-dessert-img{
 		width: 36%;
 	}
@@ -1812,7 +1906,7 @@ ul.cart-list-item > li {
 /*------------------------------------*\
     $user
 \*------------------------------------*/
-.panel .sub-title {
+.m-user-panel .sub-title {
 	width: 17%;
 	margin: 15px 0;
 	color: rgba(64,32,0,0.6);
@@ -1820,39 +1914,39 @@ ul.cart-list-item > li {
 	float: left;
 }
 
-.panel .sub-content {
+.m-user-panel .sub-content {
 	width: 82%;
 	margin: 6px 0;
 	float: left;
 }
 
-.panel a {
+.m-user-panel a {
 	display: inline-block;
 }
 
-.panel .value {
+.m-user-panel .value {
 	color: #777;
 	margin-right: 20px;
 }
 
-.panel ul.info-list {
+.m-user-panel ul.info-list {
 	list-style: none;
 	margin: 0 auto;
 	padding: 0;
 }
 
-.panel ul.info-list > li {
+.m-user-panel ul.info-list > li {
 	margin: 6px 0;
 	line-height: 32px;
 }
 
-.panel .info-list > li label {
+.m-user-panel .info-list > li label {
 	display: inline-block;
 	width: 85px;
 	margin-right: 15px;
 }
 
-.panel .tips {
+.m-user-panel .tips {
 	margin: 15px 0;
 	padding: 5px;
 	border-radius: 6px;
@@ -1933,7 +2027,7 @@ ul.cart-list-item > li {
 	padding: 5px 0;
 }
 
-@Media screen and (max-width: 1080px){
+@Media screen and (max-width: 1024px){
 	.user-info ul.account-info {
 		width: 90%;
 	}
@@ -2226,6 +2320,10 @@ ul.cart-list-item > li {
 /*------------------------------------*\
     $store
 \*------------------------------------*/
+.m-store-detail-panel {
+	margin: 0 1%;
+}
+
 .store-card {
 	position: relative;
 	height: 160px;
@@ -2267,26 +2365,4 @@ ul.cart-list-item > li {
 
 .store-card .store-desc p i {
 	margin-right: 10px;
-}
-
-.m-store-detail-panel .store-card .store-img {
-	width: 20%;
-}
-
-.m-store-detail-panel .store-card .store-desc {
-	width: 75%;
-}
-
-.m-store-dessert-panel .col-sm .dessert-img {
-	height: 180px;
-}
-
-.m-store-dessert-panel .col {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 255px;
-	border: 1px solid rgba(254,198,173,0.3);
-	border-radius: 6px;
-	background-color: transparent;
 }

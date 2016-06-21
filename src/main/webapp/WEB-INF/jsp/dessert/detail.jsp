@@ -40,7 +40,7 @@
 					<div class="option"><label>数量：</label>
 						<div class="number-picker js-number-picker" id="1">
 							<input type="button" class="minus" value="-">
-							<input type="text" class="value js-dessert-value" id="js-dessert-value" id="1" value="0" max="${quantity}">
+							<input type="number" class="value js-dessert-value" id="js-dessert-value" id="1" value="0" max="${quantity}" min="0">
 							<input type="button" class="plus" value="+">
 						</div>
 						<span class="tip">（该店当日剩余库存：<span id="js-quantity">${quantity}</span>）</span>

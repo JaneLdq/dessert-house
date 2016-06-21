@@ -13,7 +13,7 @@
 	<div class="wrapper">
 		<jsp:include page="/WEB-INF/jsp/common/left_nav.jsp"></jsp:include>
 		<div class="right main">
-			<div class="panel charge-panel">
+			<div class="panel m-user-panel charge-panel">
 				<a class="right back" href="<%=request.getContextPath()%>/user/vip">返回</a>
 				<div class="panel-title">
 					<c:choose>

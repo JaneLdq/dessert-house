@@ -14,46 +14,55 @@
 <body>
 	<jsp:include page="/WEB-INF/jsp/common/nav.jsp"></jsp:include>
 	<div class="wrapper">
+	<!-- 
 	<div class="swiper-container m-dessert-swiper">
 	    <div class="swiper-wrapper">
 	        <div class="swiper-slide">
 	        	<a href="#"><img src="<%=imgPath %>/dessert/recommend/1.jpg"></a>
 			</div>
-	        <div class="swiper-slide">
-				<a href="#"><img src="<%=imgPath %>/dessert/recommend/2.jpg"></a>
-	        </div>
-	        <div class="swiper-slide">
-				<a href="#"><img src="<%=imgPath %>/dessert/recommend/3.jpg"></a>
-	        </div>
-	        <div class="swiper-slide">
-				<a href="#"><img src="<%=imgPath %>/dessert/recommend/4.jpg"></a>
-	        </div>
-	        <div class="swiper-slide">
-				<a href="#"><img src="<%=imgPath %>/dessert/recommend/5.jpg"></a>
-	        </div>
 	    </div>
 	    <div class="swiper-pagination"></div>	    
 	</div>
+	-->
+	<div class="filters">
+		<ul class="filter">
+			<li class="fitler-title">按品种分类</li>
+			<li><a href="javascript:void(0)">不限</a></li>
+			<li><a href="javascript:void(0)">蛋糕</a></li>
+			<li><a href="javascript:void(0)">曲奇</a></li>
+			<li><a href="javascript:void(0)">咖啡</a></li>
+			<li><a href="javascript:void(0)">果汁</a></li>
+		</ul>
+		<ul class="filter">
+			<li class="filter-title">按条件排序</li>
+			<li><a href="javascript:void(0)">不限</a></li>
+			<li><a href="javascript:void(0)">销量</a></li>
+			<li><a href="javascript:void(0)">评价</a></li>
+			<li><a href="javascript:void(0)">上架时间</a></li>
+		</ul>
+	</div>
+
 	<div class="panel m-dessert-panel">
 		<c:forEach items="${desserts}" var="d">
-			<% 	if(num % 3 == 0){
-					out.print("<div class='row'>");
-			} %>
-			<div class="col dessert">
+			<div class="dessert">
 				<a href="<%=request.getContextPath()%>/dessert/d/${d.id}">
 				<img class="dessert-img" src="<%=imgPath %>/dessert/${d.id}.jpg" alt="${d.name}"></a>
 				<div class="dessert-desc">
 					<a href="<%=request.getContextPath()%>/dessert/d/${d.id}" class="dessert-name">${d.name}</a>
 					<span class="dessert-price"><i class="fa fa-rmb"></i>${d.price}</span>
+					<div class="shop-cart">
+						<div class="number-picker js-number-picker" id="1">
+							<input type="button" class="minus" value="-">
+							<input type="number" class="value js-dessert-value" did="${d.id}" min="0">
+							<input type="button" class="plus" value="+">
+						</div>
+						<div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
+					</div>
 				</div>
 			</div>
-			<% 	if(num % 3 == 2){
-					out.print("</div>");
-				}
-				num++;
-			%>
 		</c:forEach>
 	</div>
+	
 	<nav>
 		<ul class="pagination">
    			<c:if test="${pre >=0 }">   

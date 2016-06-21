@@ -12,7 +12,7 @@
 	<div class="wrapper">
 		<jsp:include page="/WEB-INF/jsp/common/left_nav.jsp"></jsp:include>
 		<div class="right main">
-			<div class="panel">
+			<div class="panel m-user-panel">
 				<div class="panel-title">我的缴费记录</div>
 				<div class="separator"></div>
 				<div class="payment-info">

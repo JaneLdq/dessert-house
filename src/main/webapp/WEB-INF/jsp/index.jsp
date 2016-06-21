@@ -9,7 +9,11 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/common/nav.jsp"></jsp:include>
-	<div class="wrapper">
+	<div class="wrapper home-wrapper">
+	<div class="activity-tag">
+		<span class="activity-title">最新活动</span>
+		<img class="activity-icon" src="<%=imgPath%>/activity/a_icon.png">
+	</div>
 	<div class="swiper-container activity-swiper">
 	    <div class="swiper-wrapper">
 	        <div class="swiper-slide">

@@ -2,7 +2,7 @@ $(document).ready(function () {
 	var actSwiper = new Swiper ('.swiper-container.activity-swiper', {
 		pagination: '.swiper-pagination',
         paginationClickable: true,
-        autoplay: 15000,
+        autoplay: 5000,
         autoplayDisableOnInteraction: false,
         loop: true
 	  }); 

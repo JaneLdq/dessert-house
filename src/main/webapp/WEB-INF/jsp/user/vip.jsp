@@ -12,7 +12,7 @@
 	<div class="wrapper">
 		<jsp:include page="/WEB-INF/jsp/common/left_nav.jsp"></jsp:include>
 		<div class="right main">
-		<div class="panel vip-panel">
+		<div class="panel m-user-panel vip-panel">
 			<div class="panel-title">我的会员卡</div>
 			<div class="separator"></div>
 			<div class="section">

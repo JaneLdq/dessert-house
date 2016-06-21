@@ -58,7 +58,7 @@
 					<li class="cell l-quantity">
 						<div class="number-picker js-number-picker">
 							<input type="button" class="minus" value="-" cid="${item.id}">
-							<input type="text" class="value js-dessert-value" cid="${item.id}" did="${item.dessertId}" value="${item.quantity}" max="${item.max}" min=1>
+							<input type="number" class="value js-dessert-value" cid="${item.id}" did="${item.dessertId}" value="${item.quantity}" max="${item.max}" min=1>
 							<input type="button" class="plus" value="+" cid="${item.id}" did="${item.dessertId}">
 						</div>
 						<span class="quantity-remain">库存：<span class="js-dessert-remain" cid="${item.id}">${item.max}</span></span>

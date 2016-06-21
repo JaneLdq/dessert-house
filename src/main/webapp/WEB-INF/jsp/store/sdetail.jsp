@@ -21,13 +21,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="m-store-dessert-panel">
+		<div class="m-dessert-panel">
 		<c:forEach items="${desserts}" var="d">
-			<% 	if(num % 4 == 0){
-					out.print("<div class='row'>");
-				}
-			%>
-			<div class="col col-sm dessert">
+			<div class="dessert">
 				<a href="<%=request.getContextPath()%>/dessert/d/${d.id}/s/${store.id}">
 				<img class="dessert-img" src="<%=request.getContextPath() %>/img/dessert/${d.id}.jpg" alt="dessert"></a>
 				<div class="dessert-desc">
@@ -35,12 +31,6 @@
 					<span class="dessert-price"><i class="fa fa-rmb"></i>${d.price }</span>
 				</div>
 			</div>
-			<%
-				if(num % 4 == 3){
-					out.print("</div>");
-				}
-				++num;
-			%>
 		</c:forEach>
 		</div>
 	</div>
