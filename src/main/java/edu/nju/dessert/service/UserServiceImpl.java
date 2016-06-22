@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 		}
 		int defaultAddr = -1;
 		if(address != null){
-			defaultAddr = addrDao.addAddress(id, address, tel);
+			defaultAddr = addrDao.addAddress(id, address, tel, name);
 		}
 		userDao.updateUserInfo(id, name, defaultAddr);
 	}

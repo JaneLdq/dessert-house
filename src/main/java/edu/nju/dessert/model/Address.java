@@ -17,12 +17,15 @@ public class Address {
 	
 	private String tel;
 	
+	private String receiver;
+	
 	public Address(){}
 	
-	public Address(int uid, String address, String tel){
+	public Address(int uid, String address, String tel, String receiver){
 		this.uid = uid;
 		this.address = address;
 		this.tel = tel;
+		this.receiver = receiver;
 	}
 
 	public int getId() {
@@ -55,6 +58,14 @@ public class Address {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
 	}
 	
 }

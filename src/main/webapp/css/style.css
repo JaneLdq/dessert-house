@@ -584,9 +584,7 @@ body {
     $input
 \*------------------------------------*/
 input {
-	height: 24px;
 	line-height: 24px;
-	padding: 4px 8px;
 	border-radius: 4px;
 	font-size: 14px;
 	border: 1px solid rgba(64,32,0,0.2);
@@ -597,6 +595,11 @@ input[type="date"] {
 	border: 1px solid rgba(64,32,0,0.2);
 }
 
+.form-group input {
+	height: 24px;
+	padding: 4px 8px;
+}
+
 .form-group input.error {
 	border: 1px solid rgba(232,98,98,1);
 }
@@ -604,6 +607,7 @@ input[type="date"] {
 .form-group input.success {
 	border: 1px solid #73eb8a;
 }
+
 
 
 
@@ -635,6 +639,10 @@ input[type="date"] {
 	background-color: rgba(220,220,220,1); !important
 }
 
+
+
+
+
 /*------------------------------------*\
     $nav
 \*------------------------------------*/
@@ -662,6 +670,7 @@ input[type="date"] {
 
 .nav-item {
 	display: inline-block;
+	vertical-align:top;
 	padding: 15px 20px;
 	height: 30px;
 	line-height:  30px;
@@ -743,8 +752,152 @@ input[type="date"] {
 	width: 100%;
 }
 
+.nav-store-selector {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	padding: 15px 0;
+	margin-right: 10px;
+	height: 30px;
+	line-height:  30px;
+	font-size: 14px;
+	color: #fff;
+}
+
+.nav-store-selector i.lg {
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+.nav-store-selector .store-selected {
+	display: inline-block;
+	vertical-align:top;
+	width: 110px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.nav-store-selector i {
+	font-size: 14px;
+	margin: 0 0 0 6px;
+}
+
+.nav-store-selector .select {
+	position: absolute;
+	top: 32px;
+	right: 0;
+	padding: 0;
+	border-radius: 3px;
+	list-style: none;
+	background-color: rgba(64,32,0,0.5);
+	z-index: 111;
+}
+
+.nav-store-selector .select > li {
+	width: 118px;
+	height: 28px;
+	padding: 0 6px;
+	line-height: 28px;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 3px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	
+}
+
+.nav-store-selector .select > li:hover {
+	background-color: rgba(64,32,0,0.6);
+}
 
 
+
+
+
+
+/*------------------------------------*\
+    $dessert-stack-nav
+\*------------------------------------*/
+.dessert-stack-nav {
+	position: fixed;
+	top: 200px;
+	right: 4%;
+	width: 60px;
+	padding: 0;
+	list-style: none;
+}
+
+.dessert-stack-nav .stack-nav-item {
+	width: 60px;
+	margin: 10px 0;
+	padding: 5px 0;
+	border-radius: 6px;
+	background-color: rgba(123,101,86,0.7);
+	font-size: 16px;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.dessert-stack-nav .stack-nav-item:hover {
+	background-color: rgba(255,204,51,0.8);
+}
+
+.dessert-stack-nav .stack-nav-item.active {
+	background-color: rgba(255,204,51,0.8);
+}
+
+.dessert-stack-nav .stack-nav-item.nav-to-cart {
+	font-size: 24px;
+}
+
+.dessert-stack-nav .stack-nav-item.nav-to-top {
+	font-size: 40px;
+}
+
+.dessert-stack-nav .stack-nav-item.nav-to-cart:hover,
+.dessert-stack-nav .stack-nav-item.nav-to-top:hover {
+	background-color: rgba(255,178,143,0.8);
+}
+
+.stack-nav-item .nav-icon {
+	display: block;
+	width: 30px;
+	height: 30px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 0 auto;
+}
+
+.stack-nav-item .nav-icon.cake-icon {
+	background-image: url('../img/icon/cake.png');
+}
+
+.stack-nav-item .nav-icon.cookie-icon {
+	background-image: url('../img/icon/cookie.png');
+}
+
+.stack-nav-item .nav-icon.coffee-icon {
+	background-image: url('../img/icon/coffee.png');
+}
+
+.stack-nav-item .nav-icon.juice-icon {
+	background-image: url('../img/icon/juice.png');
+}
+
+
+
+
+
+
+/*------------------------------------*\
+    $tab-list
+\*------------------------------------*/
 ul.tab-list {
 	list-style: none;
 	padding: 0;
@@ -880,6 +1033,85 @@ ul.tab-list {
 	color: #fff;
 }
 */
+
+
+
+
+
+/*------------------------------------*\
+    $filter
+\*------------------------------------*/
+.filters {
+	position: relative;
+	width: 100%;
+	border-radius: 6px;
+	background-color: rgba(255,255,255,0.8);
+	clear: both;
+}
+
+.search {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background-color: #fff;
+}
+
+.search-input {
+	height: 30px;
+	padding: 0 15px;
+	border-radius: 20px;
+	font-size: 14px;
+	line-height: 30px;
+}
+
+.search-btn {
+	height: 30px;
+	width: 30px;
+	line-height: 30px;
+	border-radius: 50%;
+}
+
+.filter {
+	width: 60%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.filter-separator {
+	border-bottom: 1px dashed rgba(123,101,86,0.7);
+}
+
+.filter > li {
+	display: inline-block;
+	height: 36px;
+	margin-right: 10px;
+	line-height: 36px;
+	font-size: 14px;
+}
+
+.filter > li a {
+	color: #666;
+}
+
+.filter > li a.active {
+	color: #fcd0a5;
+}
+
+.filter .filter-title {
+	padding: 0 8px;
+	background-color: rgba(123,101,86,0.7);
+	color: #fff;
+}
+
+.filter .filter-title.ul {
+	border-top-left-radius: 6px;
+}
+
+.filter .filter-title.bl {
+	border-bottom-left-radius: 6px;
+}
+
 
 
 /*------------------------------------*\
@@ -1077,6 +1309,7 @@ ul.tab-list {
 \*------------------------------------*/
 .popup {
 	position: absolute;
+	right: 120px;
 	width: 120px;
 	margin-top: 4px;
     padding: 10px 0;
@@ -1443,9 +1676,9 @@ ul.tab-list {
 }
 
 .m-dessert-panel .dessert {
-	width: 23%;
-	height: 280px;
-	margin: 0 1% 25px 1%;;
+	width: 28.7%;
+	height: 300px;
+	margin: 0 2.3% 25px 2.3%;;
 	box-shadow: 0 0 0 1px rgba(254,198,173,0.3) inset;
 	border-radius: 6px;
 	background-color: rgba(255,255,255,0.5);
@@ -1456,7 +1689,7 @@ ul.tab-list {
 	width: 100%;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
-	height: 200px;
+	height: 220px;
 	cursor: pointer;
 }
 

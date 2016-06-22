@@ -15,8 +15,8 @@ public class AddressDaoImpl implements AddressDao {
 	}
 
 	@Override
-	public int addAddress(int uid, String address, String tel) {
-		Address addr = new Address(uid, address, tel);
+	public int addAddress(int uid, String address, String tel, String receiver) {
+		Address addr = new Address(uid, address, tel, receiver);
 		boolean result = baseDao.save(addr);
 		if(result){
 			return addr.getId();
@@ -36,8 +36,9 @@ public class AddressDaoImpl implements AddressDao {
 	}
 
 	@Override
-	public boolean updateAddress(int id, String address, String tel) {
-		String hql = "update Address set address='" + address  + "', tel='" + tel + "' where id='" + id + "'";
+	public boolean updateAddress(int id, String address, String tel, String receiver) {
+		String hql = "update Address set address='" + address  + "', tel='" + tel + "', receiver='"
+				+ receiver + "' where id='" + id + "'";
 		Query query = baseDao.getSession().createQuery(hql);
 		int result = query.executeUpdate();
 		if(result == 1)

@@ -26,20 +26,24 @@
 	-->
 	<div class="filters">
 		<ul class="filter">
-			<li class="fitler-title">按品种分类</li>
-			<li><a href="javascript:void(0)">不限</a></li>
+			<li class="filter-title ul">按品种分类</li>
+			<li><a class="active" href="javascript:void(0)">不限</a></li>
 			<li><a href="javascript:void(0)">蛋糕</a></li>
 			<li><a href="javascript:void(0)">曲奇</a></li>
 			<li><a href="javascript:void(0)">咖啡</a></li>
 			<li><a href="javascript:void(0)">果汁</a></li>
 		</ul>
+		<div class="filter-separator"></div>
 		<ul class="filter">
-			<li class="filter-title">按条件排序</li>
-			<li><a href="javascript:void(0)">不限</a></li>
+			<li class="filter-title bl">按条件排序</li>
+			<li><a class="active" href="javascript:void(0)">不限</a></li>
 			<li><a href="javascript:void(0)">销量</a></li>
-			<li><a href="javascript:void(0)">评价</a></li>
 			<li><a href="javascript:void(0)">上架时间</a></li>
 		</ul>
+		<div class="right search">
+			<input class="search-input" type="text" placeholder="搜索甜品">
+			<div class="btn search-btn right"><i class="fa fa-search"></i></div>
+		</div>
 	</div>
 
 	<div class="panel m-dessert-panel">
@@ -62,7 +66,16 @@
 			</div>
 		</c:forEach>
 	</div>
-	
+	<ul class="dessert-stack-nav">
+		<li class="stack-nav-item nav-to-cart">
+			<i class="fa fa-shopping-cart"></i>
+		</li>
+		<li class="stack-nav-item active"><i class="nav-icon cake-icon"></i></li>
+		<li class="stack-nav-item"><i class="nav-icon cookie-icon"></i></li>
+		<li class="stack-nav-item"><i class="nav-icon coffee-icon"></i></li>
+		<li class="stack-nav-item"><i class="nav-icon juice-icon"></i></li>
+		<li class="stack-nav-item nav-to-top"><i class="fa fa-angle-up"></i></li>
+	</ul>
 	<nav>
 		<ul class="pagination">
    			<c:if test="${pre >=0 }">   
