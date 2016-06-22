@@ -44,10 +44,8 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean updateUser(User user) {
 		String hql = "update User set name='" + user.getName() 
-				+ "', address='" + user.getAddress() 
 				+ "', nickname='" + user.getNickname()
-				+ "', sex=" + user.getSex() + ", birth='" + user.getBirth()
-				+ "', email='" + user.getEmail() + "' "
+				+ "', sex=" + user.getSex() + ", birth='" + user.getBirth() + "' "
 				+ " where id=" + user.getId();
 		Query query = baseDao.getSession().createQuery(hql);
 		int result = query.executeUpdate();
@@ -93,8 +91,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void updateUserInfo(int id, String name, String address) {
-		String hql = "update User set name='" + name + "', address='" + address + "' "
+	public void updateUserInfo(int id, String name, int addrId) {
+	
+		String hql = "update User set name='" + name + "', default_addr='" + addrId + "' "
 				+ " where id=" + id;
 		Query query = baseDao.getSession().createQuery(hql);
 		query.executeUpdate();
@@ -220,5 +219,22 @@ public class UserDaoImpl implements UserDao {
             return true;
         return false;
     }
+
+	@Override
+	public boolean checkUserExist(String tel) {
+		String hql = "select id from User where tel='" + tel +"'";
+		Session session = baseDao.getSession();
+		Query query = session.createQuery(hql);
+		@SuppressWarnings("rawtypes")
+		List result = query.list();
+		if(result.isEmpty())
+			return false;
+		return true;
+	}
+
+	@Override
+	public boolean setDefaultAddr(int uid, String address, String tel) {
+		return false;
+	}
 
 }

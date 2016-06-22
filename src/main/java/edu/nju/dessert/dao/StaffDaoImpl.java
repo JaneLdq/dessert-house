@@ -114,7 +114,6 @@ public class StaffDaoImpl implements StaffDao {
 
 	@Override
 	public boolean updateStaff(String id, String name, String tel, String password, int sid, int position) {
-	    System.out.println(id + " " + sid);
 		String hql = "update Staff set name='" + name  + "', tel='" + tel + "', password='" 
 				+ password + "', store_id=" + sid + ", position=" + position + " where id='" + id + "'";
 		Query query = baseDao.getSession().createQuery(hql);

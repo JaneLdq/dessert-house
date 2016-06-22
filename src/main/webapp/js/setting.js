@@ -31,16 +31,12 @@ $(document).ready(function(){
 		var birth = $('input[name="birth"]').val();
 		if(birth.length == 0)
 			empty = true;
-		var address = $('input[name="address"]').val();
-		if(address.length == 0)
-			empty = true;
 		if(!empty){
 			$.ajax({
 				type: "post",
 				url: urlPrefix + "/user/setting",
 				data: info,
 				success: function(data){
-					console.log("修改成功！");
 					if(data['result']==1){
 						toaster("修改成功！");
 						$('.js-left-info-nickname').html(nickname);
@@ -52,35 +48,54 @@ $(document).ready(function(){
 					console.log("用户设置AJAX错误！");
 				}
 			});
+			var formData = new FormData(document.getElementById("js-avatar-form"));
+			var avatar = document.getElementById('js-avatar-upload').files[0];
+			$.ajax({
+				type: "post",
+				url: urlPrefix + "/user/uploadAvatar",
+				data: formData,
+				processData : false,
+				contentType: false,
+				success: function(data){
+					if(data['result']==1){
+						toaster("头像修改成功~");
+						var random = parseInt(100*Math.random());
+						$('.js-left-info-avatar').attr('src', data['url']+"?" + random);
+					}
+				},
+				error: function(){
+					console.log("上传头像AJAX错误！");
+				}
+			});
 		} else {
 			toaster("有<span class='highlight'>*</span>标注的表格项都不能为空哦~");
 		}
 	});
 	
-	$('#js-avatar-submit').click(function(){
-		var formData = new FormData(document.getElementById("js-avatar-form"));
-		var avatar = document.getElementById('js-avatar-upload').files[0];
-	    console.log(avatar);
-		$.ajax({
-			type: "post",
-			url: urlPrefix + "/user/uploadAvatar",
-			data: formData,
-			processData : false,
-			contentType: false,
-			success: function(data){
-				console.log(data);
-				if(data['result']==1){
-					toaster("头像修改成功~");
-					var random = parseInt(100*Math.random());
-					$('.js-left-info-avatar').attr('src', data['url']+"?" + random);
-				}
-			},
-			error: function(){
-				console.log("上传头像AJAX错误！");
-			}
-		});
-		
-	});
+//	$('#js-avatar-submit').click(function(){
+//		var formData = new FormData(document.getElementById("js-avatar-form"));
+//		var avatar = document.getElementById('js-avatar-upload').files[0];
+//	    console.log(avatar);
+//		$.ajax({
+//			type: "post",
+//			url: urlPrefix + "/user/uploadAvatar",
+//			data: formData,
+//			processData : false,
+//			contentType: false,
+//			success: function(data){
+//				console.log(data);
+//				if(data['result']==1){
+//					toaster("头像修改成功~");
+//					var random = parseInt(100*Math.random());
+//					$('.js-left-info-avatar').attr('src', data['url']+"?" + random);
+//				}
+//			},
+//			error: function(){
+//				console.log("上传头像AJAX错误！");
+//			}
+//		});
+//		
+//	});
 	
 	$('#js-password-submit').click(function(){
 		var psw = $('input[name="password"]').val();

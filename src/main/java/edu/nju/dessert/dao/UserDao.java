@@ -11,6 +11,8 @@ public interface UserDao {
 	
 	public int addUser(User user);
 	
+	public boolean checkUserExist(String tel);
+	
 	public boolean deleteUser(String uid);
 	
 	public boolean updateUser(User user);
@@ -21,7 +23,7 @@ public interface UserDao {
 	
 	public int check(String id, String password);
 
-	public void updateUserInfo(int id, String name, String address);
+	public void updateUserInfo(int id, String name, int addrId);
 	
 	public List<Payment> getPayments(int uid, int page, int size);
 	
@@ -40,5 +42,7 @@ public interface UserDao {
     public Map<String, Long> getAgeStat(String beginYear);
 
     public boolean cancel(int uid);
+    
+    public boolean setDefaultAddr(int uid, String address, String tel);
 
 }

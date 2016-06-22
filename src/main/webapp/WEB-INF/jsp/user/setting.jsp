@@ -15,11 +15,31 @@
 		<div class="panel m-user-panel user-setting-panel">
 			<ul class="tab-list">
 				<li class="tab-item active">个人信息</li>
-				<li class="tab-item">头像设置</li>
+				<li class="tab-item">收货地址</li>
 				<li class="tab-item">修改密码</li>
 			</ul>
 			<div class="separator"></div>
 			<div class="tab-panel user-info-setting">
+				<div class="user-avatar-setting">
+					<label class="label left">当前头像：</label>
+	            	<c:choose>
+		                <c:when test="${user.avatar != ''}">
+		                <img class="avatar left" id="js-avatar" src="${user.avatar}" alt="${user.nickname}">
+		                </c:when>
+		                <c:otherwise>
+		                <img class="avatar left" id="js-avatar" src="<%=request.getContextPath()%>/img/avatar.jpg" alt="${user.nickname}">
+		                </c:otherwise>
+	                </c:choose>
+	                <div class="left operation">
+						<form enctype="multipart/form-data" method="post" name="avatar" id="js-avatar-form">
+							<input type="file" name="avatar" id="js-avatar-upload" style="display: none;" onchange="showAvatar()">
+						</form>
+						<a class="avatar-upload" onclick="document.getElementById('js-avatar-upload').click()">上传图片</a>
+						<p class="form-tip">支持.jpg, png, gif格式</p>
+						<!-- <div class="btn btn-avatar-save" id="js-avatar-submit">修改头像</div> -->
+					</div>
+					<div class="clear-fix"></div>
+				</div>
 				<form class="user-setting-form" id="js-user-setting-form">
 					<div class="form-group">
 						<label class="label">用户昵称：</label>
@@ -56,35 +76,63 @@
 						<input type="date" value="${user.birth}" name="birth">
 						<span class="required">*</span>
 					</div>
-					<div class="form-group">
-						<label class="label">地址：</label>
-						<input class="address" type="text" required value="${user.address}" name="address">
-						<span class="required">*</span>
-						<p class="form-tip">请详细填写您的地址（精确到门牌号）以确保订单能正确送到您手中</p>
-					</div>
-					<div class="form-group">
-						<label class="label">邮箱：</label>
-						<input class="email" type="email" value="${user.email}" name="email">
-						<p class="form-tip">我们将通过邮箱向您推送上市新品或最近优惠活动</p>
-					</div>
 					<button class="btn btn-submit" type="button" id="js-setting-submit">保存修改</button>
 				</form>
 			</div>
-			<div class="tab-panel user-avatar-setting" style="display:none">
-            <c:choose>
-                <c:when test="${user.avatar != ''}">
-                <img class="avatar" id="js-avatar" src="${user.avatar}" alt="${user.nickname}">
-                </c:when>
-                <c:otherwise>
-                <img class="avatar" id="js-avatar" src="<%=request.getContextPath()%>/img/avatar.jpg" alt="${user.nickname}">
-                </c:otherwise>
-                </c:choose>
-				<form enctype="multipart/form-data" method="post" name="avatar" id="js-avatar-form">
-					<input type="file" name="avatar" id="js-avatar-upload" style="display: none;" onchange="showAvatar()">
-				</form>
-				<a class="avatar-upload" onclick="document.getElementById('js-avatar-upload').click()">上传头像</a>
-				<p class="form-tip">支持.jpg, png, gif格式</p>
-				<div class="btn btn-avatar-save" id="js-avatar-submit">保存修改</div>
+			<div class="tab-panel user-account-setting">
+				<div class="user-address-setting">
+					<label class="label left">地址列表：</label>
+					<button class="btn left">新增收货地址</button>
+					<div class="clear-fix"></div>
+					<ul class="address-list">
+						<li class="address-item default">
+							<a class="right operation" href="javascript:void(0)"><i class="fa fa-close"></i>删除</a>
+							<a class="right operation" href="javascript:void(0)"><i class="fa fa-pencil"></i>修改</a>
+							<div class="address-detail">
+								<div class="address-detail-item">
+									<label class="label">收货人：</label>
+									<div class="left">ldq</div>
+									<div class="clear-fix"></div>
+								</div>
+								<div class="address-detail-item">
+									<label class="label">地址：</label>
+									<div class="left">中华人民共和国江苏省南京市鼓楼区汉口路22号南京大学鼓楼校区南苑5舍607中华人民共和国江苏省南京市鼓楼区汉口路22号南京大学鼓楼校区南苑5舍607</div>
+									<div class="clear-fix"></div>
+								</div>
+								<div class="address-detail-item">
+									<label class="label">电话：</label>
+									<div class="left">18066083162</div>
+									<div class="clear-fix"></div>
+								</div>
+							</div>
+							<div class="default-tag">默认地址</div>
+							<div class="clear-fix"></div>
+						</li>
+						<li class="address-item">
+							<a class="right operation" href="javascript:void(0)"><i class="fa fa-close"></i>删除</a>
+							<a class="right operation" href="javascript:void(0)"><i class="fa fa-pencil"></i>修改</a>
+							<a class="right operation highlight" href="javascript:void(0)"><i class="fa fa-thumb-tack"></i>设为默认地址</a>
+							<div class="address-detail">
+								<div class="address-detail-item">
+									<label class="label">收货人：</label>
+									<div class="left">ldq</div>
+									<div class="clear-fix"></div>
+								</div>
+								<div class="address-detail-item">
+									<label class="label">地址：</label>
+									<div class="left">中华人民共和国江苏省南京市鼓楼区汉口路22号</div>
+									<div class="clear-fix"></div>
+								</div>
+								<div class="address-detail-item">
+									<label class="label">电话：</label>
+									<div class="left">18066083162</div>
+									<div class="clear-fix"></div>
+								</div>
+							</div>
+							<div class="clear-fix"></div>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<div class="tab-panel user-pwd-setting" style="display:none">
 				<form class="user-pwd-form" id="js-user-pwd-form">

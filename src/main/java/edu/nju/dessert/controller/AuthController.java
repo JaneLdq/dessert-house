@@ -78,7 +78,6 @@ public class AuthController {
 		String name = req.getParameter("name");
 		String sex = req.getParameter("sex");
 		String birth = req.getParameter("birth");
-		String email = req.getParameter("email");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");                
 		Date birthDay = null;
 		try {
@@ -93,7 +92,6 @@ public class AuthController {
 		user.setSex(Integer.parseInt(sex));
 		user.setBirth(birthDay);
 		user.setPassword(password);
-		user.setEmail(email);
 		int result = authService.register(user);
 		if(result == 1){
 			int loginId = authService.login(tel, password);
@@ -102,11 +100,12 @@ public class AuthController {
 				session.setAttribute("hasLogin", true);
 				session.setAttribute("id", loginId);
 				session.setAttribute("isUser", true);
+				model.put("nickname", nickname);
 				return "member";
 			}
 			return "login";
 		}else{
-			model.put("msg", "注册失败，可能原因是该手机号已被注册！");
+			model.put("result", -1);
 			return "register";
 		}
 	}
@@ -121,7 +120,6 @@ public class AuthController {
 		String bankcard = req.getParameter("bankcard");
 		String paypassword = req.getParameter("paypassword");
 		memberService.addMember(id, bankcard, paypassword);
-		System.out.println("regMember" + paypassword);
 		response.sendRedirect(req.getContextPath() + "/user");
 	}
 	

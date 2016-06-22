@@ -22,7 +22,6 @@ public class MemberDaoImpl implements MemberDao{
 	
 	@Override
 	public Member getMemberByMid(String memberId) {
-	    System.out.println(memberId);
 		String hql = "from Member where mid='" + memberId + "'";
 		Query query = baseDao.getSession().createQuery(hql);
 		List<Member> members = query.list();

@@ -22,6 +22,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import edu.nju.dessert.interceptor.Auth;
 import edu.nju.dessert.interceptor.Role;
+import edu.nju.dessert.model.Address;
 import edu.nju.dessert.model.Member;
 import edu.nju.dessert.model.Payment;
 import edu.nju.dessert.model.Point;
@@ -59,6 +60,8 @@ public class UserCenterController {
 	public String setting(HttpServletRequest req, ModelMap model){
 		int uid = (int) req.getSession().getAttribute("id");
 		getBasicInfo(model, uid);
+		List<Address> addrlist = userService.getAddresses(uid);
+		model.put("address", addrlist);
 		return "/user/setting";
 	}
 	
@@ -70,15 +73,11 @@ public class UserCenterController {
 		String name = (String) req.getParameter("name");
 		int sex = Integer.parseInt(req.getParameter("sex"));
 		String birth = (String) req.getParameter("birth");
-		String address = (String) req.getParameter("address");
-		String email = (String) req.getParameter("email");
 		User user = userService.getUser(uid);
 		user.setNickname(nickname);
 		user.setName(name);
 		user.setSex(sex);
 		user.setBirth(DateTranslator.strToDate(birth));
-		user.setAddress(address);
-		user.setEmail(email);
 		boolean result = userService.updateUser(user);
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(result){

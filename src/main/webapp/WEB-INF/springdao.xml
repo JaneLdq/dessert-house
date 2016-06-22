@@ -11,6 +11,10 @@
 		<property name="baseDao" ref="baseDao"></property>
 	</bean>
 	
+	<bean id="addressDao" class="edu.nju.dessert.dao.AddressDaoImpl">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
 	<bean id="staffDao" class="edu.nju.dessert.dao.StaffDaoImpl">
 		<property name="baseDao" ref="baseDao"></property>
 	</bean>
@@ -97,6 +101,7 @@
 	
 	<bean id="userService" class="edu.nju.dessert.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
+		<property name="addressDao" ref="addressDao"></property>
 	</bean>
 	
 	<bean id="staffService" class="edu.nju.dessert.service.StaffServiceImpl">

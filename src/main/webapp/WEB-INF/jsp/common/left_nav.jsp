@@ -7,15 +7,7 @@
 <div class="left sider">
 	<div class="user-info">
 		<a href="<%=request.getContextPath()%>/user/setting">
-            <c:choose>
-                <c:when test="${user.avatar != '' && user.avatar}">
-                
-                    <img class="avatar js-left-info-avatar" src="${user.avatar}" alt="avator">
-                </c:when>
-                <c:otherwise>
-                    <img class="avatar js-left-info-avatar" src="<%=request.getContextPath()%>/img/avatar.jpg" alt="avator">
-                </c:otherwise>
-            </c:choose>
+            <img class="avatar js-left-info-avatar" src="${user.avatar}" alt="用户头像">
         </a>
 		<a class="nickname js-left-info-nickname" href="<%=request.getContextPath()%>/user/setting">${user.nickname}</a>
 		<div class="account">

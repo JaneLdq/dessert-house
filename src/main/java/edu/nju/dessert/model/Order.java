@@ -31,6 +31,14 @@ public class Order {
 	private Date created_at;
 	
 	private int store_id;
+	
+	private int send_type;
+	
+	private int address_id;
+	
+	private int state;
+	
+	private int saleman_id;
 
 	public Order(){}
 	
@@ -115,5 +123,38 @@ public class Order {
 	public String getSendDateStr(){
 	    return DateTranslator.dateToStr(send_date);
 	}
+
+	public int getSend_type() {
+		return send_type;
+	}
+
+	public void setSend_type(int send_type) {
+		this.send_type = send_type;
+	}
+
+	public int getAddress_id() {
+		return address_id;
+	}
+
+	public void setAddress_id(int address_id) {
+		this.address_id = address_id;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public int getSaleman_id() {
+		return saleman_id;
+	}
+
+	public void setSaleman_id(int saleman_id) {
+		this.saleman_id = saleman_id;
+	}
+	
 	
 }

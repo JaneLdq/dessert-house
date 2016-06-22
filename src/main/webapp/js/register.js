@@ -1,38 +1,40 @@
 $(document).ready(function(){
 	
-	var msg = $('#js-error-msg').html();
-	if(msg.length > 0){
-		$('#js-error-msg').show();
-	}
-	
 	$('#js-submit').click(function(){
 		var pass = true;
-		var msg = "";
 		var tel = $('input[name="tel"]').val();
 		if(!checkPhone(tel)){
-			msg += "· 手机号无效<br>";
+			$('input[name="tel"]').removeClass('success').addClass("error");
+			$('#js-tel-msg').removeClass('success').addClass("error").html('手机号格式不正确！').show();
 			pass = false;
+		}else{
+			$('input[name="tel"]').addClass("success");
+			$('#js-tel-msg').removeClass('error').addClass('success').html('<i class="fa fa-check-circle"></i>').show();
 		}
 		var psw = $('input[name="password"]').val();
 		if(!checkPsw(psw)){
-			msg += "· 密码格式错误<br>";
+			$('input[name="password"]').removeClass('success').addClass("error");
+			$('#js-psw-msg').removeClass('success').addClass("error").html('密码格式不正确！').show();
 			pass = false;
+		}else{
+			$('input[name="password"]').addClass("success");
+			$('#js-psw-msg').removeClass('error').addClass('success').html('<i class="fa fa-check-circle"></i>').show();
 		}
 		var nickname = $('input[name="nickname"]').val();
 		if(nickname.length == 0){
-			msg += "· 昵称不能为空哦~";
+			$('input[name="nickname"]').removeClass('success').addClass("error");
+			$('#js-nickname-msg').removeClass('success').addClass("error").html('昵称不能为空！').show();
 			pass = false;
-		}
-		if(!pass){
-			$('#js-error-msg').html(msg).show();
 		}else{
-			$('#js-error-msg').hide();
+			$('input[name="nickname"]').addClass("success");
+			$('#js-nickname-msg').removeClass('error').addClass('success').html('<i class="fa fa-check-circle"></i>').show();
+		}
+		if(pass){
 			$('#js-reg-form').submit();
 			return false;
 		}
 	});
-	
-	console.log(checkPayword("123456"));
+
 });
 
 function checkPayword(psw){

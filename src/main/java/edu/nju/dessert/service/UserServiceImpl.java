@@ -3,7 +3,9 @@ package edu.nju.dessert.service;
 import java.util.List;
 import java.util.Map;
 
+import edu.nju.dessert.dao.AddressDao;
 import edu.nju.dessert.dao.UserDao;
+import edu.nju.dessert.model.Address;
 import edu.nju.dessert.model.Payment;
 import edu.nju.dessert.model.Point;
 import edu.nju.dessert.model.User;
@@ -12,10 +14,16 @@ public class UserServiceImpl implements UserService {
 	
 	private UserDao userDao;
 	
+	private AddressDao addrDao;
+	
 	private int pageSize = 10;
 	
 	public void setUserDao(UserDao userDao){
 		this.userDao = userDao;
+	}
+	
+	public void setAddressDao(AddressDao addrDao){
+		this.addrDao = addrDao;
 	}
 
 	@Override
@@ -30,7 +38,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void updateUserInfo(int id, String name, String address) {
-		userDao.updateUserInfo(id, name, address);
+		User user = this.getUser(id);
+		String tel = "";
+		if(user != null){
+			tel = user.getTel();
+		}
+		int defaultAddr = -1;
+		if(address != null){
+			defaultAddr = addrDao.addAddress(id, address, tel);
+		}
+		userDao.updateUserInfo(id, name, defaultAddr);
 	}
 
 	@Override
@@ -82,5 +99,10 @@ public class UserServiceImpl implements UserService {
     public boolean cancel(int uid) {
         return userDao.cancel(uid);
     }
+
+	@Override
+	public List<Address> getAddresses(int uid) {
+		return addrDao.getUserAddresses(uid);
+	}
 
 }

@@ -514,20 +514,6 @@ body {
 	clear: both;
 }
 
-.form-group input {
-	height: 24px;
-	line-height: 24px;
-	padding: 4px 8px;
-	border-radius: 4px;
-	font-size: 14px;
-	border: 1px solid rgba(64,32,0,0.2);
-}
-
-input[type="date"] {
-	border-radius: 4px;
-	border: 1px solid transparent;
-}
-
 .sider {
 	width: 26%;
 	min-height: 500px;
@@ -539,9 +525,10 @@ input[type="date"] {
 }
 
 .main .panel {
-	min-height: 550px;
+	min-width: 600px;
+	min-height: 500px;
 	border-radius: 8px;
-	background-color: #fff;
+	background-color: rgba(255,255,255,0.8);
 	padding: 20px;
 }
 
@@ -568,6 +555,56 @@ input[type="date"] {
 	color: #ff8762;
 	font-weight: bold;
 }
+
+.msg {
+	padding: 0 8px;
+	font-size: 12px;
+	line-height: 34px;
+}
+
+.msg.error {
+	display: inline-block;
+	color: rgba(232,98,98,1);
+}
+
+.msg.success {
+	display: inline-block;
+	color: #73eb8a;
+}
+
+.msg i {
+	margin: 0 2px;
+	font-size: 24px;
+}
+
+
+
+
+/*------------------------------------*\
+    $input
+\*------------------------------------*/
+input {
+	height: 24px;
+	line-height: 24px;
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-size: 14px;
+	border: 1px solid rgba(64,32,0,0.2);
+}
+
+input[type="date"] {
+	border-radius: 4px;
+	border: 1px solid rgba(64,32,0,0.2);
+}
+
+.form-group input.error {
+	border: 1px solid rgba(232,98,98,1);
+}
+
+.form-group input.success {
+	border: 1px solid #73eb8a;
+}
+
 
 
 
@@ -720,8 +757,8 @@ ul.tab-list {
 	display: inline-block;
 	height: 36px;
 	border-radius: 4px;
-	margin: 0 10px;
-	padding: 0 8px;
+	margin: 0 5px 0 0;
+	padding: 0 18px;
 	line-height: 36px;
 	font-size: 16px;
 	color: #666;
@@ -1046,7 +1083,7 @@ ul.tab-list {
     background-color: rgba(64,32,0,0.4);
     border-radius: 3px;
     box-shadow: 0 0 1px rgba(64,32,0,0.5);
-    z-index: 99;
+    z-index: 101;
 }
 
 .popup .item {
@@ -1154,8 +1191,39 @@ ul.tab-list {
     $register
 \*------------------------------------*/
 .reg-panel {
-	width: 50%;
+	width: 420px;
+	padding: 15px 30px 30px 30px;
+	/*border-radius: 0 50% 50% 50%;*/
+	border-radius: 8px;
 	margin: 0 auto;
+	background-color: rgba(255,255,255,0.7);
+}
+
+.reg-panel.panel-lg {
+	width: 600px;
+}
+
+.reg-panel.panel-lg form {
+	padding: 6px 10px;
+	border-radius: 6px;
+	background-color: rgba(123,101,86,0.08);
+}
+
+
+.reg-panel .reg-user-name {
+	margin: 0 6px;
+	color: rgba(255,178,143,0.8);
+	font-size: 28px;
+}
+
+.reg-panel a {
+	display: inline-block;
+	margin: 0 6px;
+}
+
+.reg-panel .jump-link {
+	font-size: 12px;
+	color: rgba(123,101,86,1);
 }
 
 .reg-panel .reg-title {
@@ -1178,8 +1246,9 @@ ul.tab-list {
 }
 
 .reg-panel .btn {
+	display: inline-block;
 	width: 140px;
-	margin: 20px 85px;
+	margin: 20px 10px 20px 85px;
 }
 
 
@@ -1206,7 +1275,7 @@ ul.tab-list {
 	position: absolute;
 	top: 80px;
 	right: 15%;
-	z-index: 999;
+	z-index: 89;
 }
 
 .activity-icon {
@@ -1907,7 +1976,7 @@ ul.cart-list-item > li {
     $user
 \*------------------------------------*/
 .m-user-panel .sub-title {
-	width: 17%;
+	width: 14%;
 	margin: 15px 0;
 	color: rgba(64,32,0,0.6);
 	font-size: 18px;
@@ -1915,7 +1984,7 @@ ul.cart-list-item > li {
 }
 
 .m-user-panel .sub-content {
-	width: 82%;
+	width: 85%;
 	margin: 6px 0;
 	float: left;
 }
@@ -1957,7 +2026,7 @@ ul.cart-list-item > li {
 }
 
 .user-setting-panel .tab-list {
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 
@@ -2047,26 +2116,40 @@ ul.cart-list-item > li {
 }
 
 .user-info .avatar {
-	width: 50%;
-	max-height: 120px;
+	width: 100px;
+	height: 100px;
 	margin: 0 auto 20px auto;
 	border-radius: 50%;
 }
 
-.user-setting-form  {
-	width: 72%;
-	margin: 25px auto 15px auto;
+.user-info-setting {
+	padding: 25px 0 15px 0;
 }
 
-.user-pwd-form {
-	width: 55%;
-	margin: 25px auto 15px auto;
+.user-pwd-form,
+.user-account-form  {
+	margin: 20px 0 15px 0;
 }
 
-.user-setting-form .form-group .label{
-	font-size: 14px;
-	width: 80px;
+.user-setting-panel .label,
+.user-address-setting .label {
+	display: inline-block;
+	width: 98px;
+	margin-right: 10px;
 	text-align: right;
+	font-size: 16px;
+	line-height: 24px;
+	min-width: 60px;
+	color: rgba(64,32,0,0.6);
+}
+
+.user-setting-panel .btn-submit,
+.user-setting-panel .form-tip {
+	margin-left: 112px;
+}
+
+.user-setting-panel .btn-submit {
+	margin-top: 15px;
 }
 
 .user-setting-form .address,
@@ -2074,43 +2157,102 @@ ul.cart-list-item > li {
 	width: 300px;
 }
 
-.user-setting-form .btn-submit,
-.user-setting-form .form-tip {
-	margin-left: 84px;
+.user-address-setting {
+	padding: 20px 0;
 }
 
-.user-pwd-form .label {
-	width: 100px;
-	text-align: right;
+.user-address-setting .label {
+	line-height: 34px;
 }
 
-.user-pwd-form .btn-submit,
-.user-pwd-form .form-tip {
-	margin-left: 105px;
+.user-address-setting .address-list {
+	width: 100%;
+	padding: 0;
+	margin: 15px 0 0 0;
+	list-style: none;
+	font-size: 14px;
+	color: #666;
+	clear: both;
 }
 
-.user-avatar-setting {
-	text-align: center;
+.user-address-setting .address-item {
+	position: relative;
+	border: 1px solid rgba(64,32,0,0.1);
+	padding: 10px 13px;	
+	margin-bottom: 15px;
 }
 
-.user-avatar-setting .avatar-upload {
+.user-address-setting .address-item:hover {
+	border: 1px solid rgba(64,32,0,0.3);
+	background-color: #fff;
+}
+
+.user-address-setting .address-item .operation {
+	color: #999;
+	margin-right: 10px;
+}
+
+.user-address-setting .address-item .operation.highlight {
+	color: rgba(255,204,51,0.7);
+}
+
+
+.user-address-setting .address-item .operation i {
+	margin: 0 4px;
+}
+
+.user-address-setting .address-item .default-tag {
+	position: absolute;
+	bottom: 15px;
+	right: 13px;
+	width: 80px;
+	height: 28px;
+	border-radius: 20px;
+	background-color: rgba(255,204,51,0.55);
+	line-height: 28px;
+	font-size: 14px;
+	color: #fff;
+	text-align:center;
+}
+
+
+.user-address-setting .address-detail-item .label {
+	width: 50px;
+	font-size: 14px;
+	line-height: 28px;
+	float: left;
+	color: #666;
+}
+
+.user-address-setting .address-detail-item div {
+	max-width: 480px;
+	line-height: 28px;
+}
+
+
+.user-info-setting .avatar-upload {
 	font-size: 18px;
-	color: rgba(64,32,0,0.7);
 }
 
-.user-avatar-setting .avatar-upload:hover {
-	color: rgba(64,32,0,1);
-}
-
-.user-avatar-setting .avatar{
-	width: 240px;
-	height: 240px;
-	margin: 25px auto;
+.user-info-setting .avatar{
+	width: 120px;
+	height: 120px;
+	border: 1px dashed rgba(64,32,0,0.05);
+	margin-left: 4px;
+	margin-right: 15px;
 	border-radius: 10%;
 }
 
-.user-avatar-setting .btn-avatar-save {
-	margin: 20px auto 30px auto;
+.user-info-setting .operation .form-tip {
+	margin: 0;
+}
+
+.user-info-setting .btn-avatar-save {
+	margin: 20px 0;
+	width: 70px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 12px;
 }
 
 

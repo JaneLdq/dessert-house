@@ -28,13 +28,13 @@ public class User {
 	
 	private Integer sex;
 	
-	private String address;
-	
-	private String email;
-	
 	private String avatar;
 	
 	private String vip_id;
+	
+	private String default_store;
+	
+	private String default_addr;
 
 	public User(){
 		super();
@@ -96,22 +96,6 @@ public class User {
 		this.sex = sex;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getAvatar() {
 		return avatar;
 	}
@@ -126,6 +110,22 @@ public class User {
 
 	public void setVip_id(String vip_id) {
 		this.vip_id = vip_id;
+	}
+
+	public String getDefault_store() {
+		return default_store;
+	}
+
+	public void setDefault_store(String default_store) {
+		this.default_store = default_store;
+	}
+
+	public String getDefault_addr() {
+		return default_addr;
+	}
+
+	public void setDefault_addr(String default_addr) {
+		this.default_addr = default_addr;
 	}
 
 	

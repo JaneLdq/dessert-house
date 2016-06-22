@@ -29,6 +29,8 @@ public class AuthServiceImpl implements AuthService {
 	
 	@Override
 	public int register(User user) {
+		if(userDao.checkUserExist(user.getTel()))
+			return -1;
 		return userDao.addUser(user);
 	}
 

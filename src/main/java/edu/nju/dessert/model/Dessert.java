@@ -1,5 +1,8 @@
 package edu.nju.dessert.model;
 
+
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +24,8 @@ public class Dessert {
 	private String picture;
 	
 	private int type;
+	
+	private Date onshelf;
 	
 	public Dessert(){}
 
@@ -70,6 +75,14 @@ public class Dessert {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public Date getOnshelf() {
+		return onshelf;
+	}
+
+	public void setOnshelf(Date onshelf) {
+		this.onshelf = onshelf;
 	}
 	
 }

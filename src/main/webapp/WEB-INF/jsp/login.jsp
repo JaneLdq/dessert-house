@@ -24,7 +24,6 @@
 				<input type="password" placeholder="请输入密码" name="password">
 			</div>
 			<div class="form-group">
-				<input class="left" type="checkbox"><label class="label">记住我</label>
 				<a class="right" href="/forgetPassword">忘记密码?</a>
 			</div>
 			<button class="btn" type="submit" >登录</button>
