@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,10 +15,10 @@
 	<jsp:include page="/WEB-INF/jsp/common/nav.jsp"></jsp:include>
 	<div class="wrapper">
 		<div class="m-dessert-detail">
-			<div class="img-panel">
+			<div class="left img-panel">
 				<img class="img-lg" src="<%=request.getContextPath()%>/img/dessert/${dessert.id}.jpg">
 			</div>
-			<div class="info-panel">
+			<div class="right info-panel">
 				<h2 class="name">${dessert.name}</h2>
 				<input type="hidden" id="js-dessert-id" value="${dessert.id}">
 				<span class="price"><i class="fa fa-rmb"></i>${dessert.price}</span>
@@ -37,6 +40,14 @@
 							</c:forEach>
 						</select>
 					</div>
+					<div class="option"><label>尺寸：</label>
+						<ul class="cake-size-list">
+							<li class="size-item active">1.2磅</li>
+							<li class="size-item">2.2磅</li>
+							<li class="size-item">3.2磅</li>
+							<li class="size-item">6磅</li>
+						</ul>
+					</div>
 					<div class="option"><label>数量：</label>
 						<div class="number-picker js-number-picker" id="1">
 							<input type="button" class="minus" value="-">
@@ -48,6 +59,35 @@
 				</div>
 				<div class="btn btn-submit" id="js-add-dessert">加入购物车</div>
 			</div>
+			<div class="dessert-pre-next">
+				<div class="pre"><i class="fa fa-angle-left fa-lg"></i></div>
+				<div class="next"><i class="fa fa-angle-right fa-lg"></i></div>
+			</div>
+			<div class="clear-fix"></div>
+		</div>
+		<div class="m-dessert-recommend">
+			<div class="title">
+				<div class="left line"></div>
+				<div class="content">你可能还会喜欢</div>
+				<div class="right line"></div></div>
+			<ul class="dessert-thumbnail-list">
+				<li class="dessert-thumbnail-item">
+					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/2.jpg"></a>
+					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
+				</li><!-- 
+				--><li class="dessert-thumbnail-item">
+					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/11.jpg"></a>
+					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
+				</li><!-- 
+				--><li class="dessert-thumbnail-item">
+					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/5.jpg"></a>
+					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
+				</li><!-- 
+				--><li class="dessert-thumbnail-item">
+					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/8.jpg"></a>
+					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<div class="modal common-modal cart-modal" id="add-modal" style="display:none">

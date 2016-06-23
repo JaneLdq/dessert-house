@@ -54,6 +54,7 @@
 				<div class="dessert-desc">
 					<a href="<%=request.getContextPath()%>/dessert/d/${d.id}" class="dessert-name">${d.name}</a>
 					<span class="dessert-price"><i class="fa fa-rmb"></i>${d.price}</span>
+					<!-- 
 					<div class="shop-cart">
 						<div class="number-picker js-number-picker" id="1">
 							<input type="button" class="minus" value="-">
@@ -62,6 +63,7 @@
 						</div>
 						<div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
 					</div>
+					-->
 				</div>
 			</div>
 		</c:forEach>
@@ -76,7 +78,7 @@
 		<li class="stack-nav-item"><i class="nav-icon juice-icon"></i></li>
 		<li class="stack-nav-item nav-to-top"><i class="fa fa-angle-up"></i></li>
 	</ul>
-	<nav>
+	<!-- 	<nav>
 		<ul class="pagination">
    			<c:if test="${pre >=0 }">   
    				<li class="left pre"><a href="<%=request.getContextPath() %>/dessert/${pre}"><i class="fa fa-angle-left"></i>上一页</a></li>  
@@ -87,6 +89,7 @@
    			<div class="clear-fix"></div>
 		</ul>
 	</nav>
+	-->
 	</div>
 	<script src="//cdn.bootcss.com/Swiper/3.3.0/js/swiper.jquery.min.js"></script>
 	<script src="<%=request.getContextPath() %>/js/dessert_index.js"></script>

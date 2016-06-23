@@ -26,7 +26,7 @@
 			<div class="nav-store-selector">
 				<i class="fa fa-home lg"></i><span>当前门店：</span>
 				<div class="store-selected">南京新街口新街口店</div><i class="fa fa-caret-down"></i>
-				<ul class="select">
+				<ul class="select" style="display: none">
 					<li class="option">南京新街口店</li>
 					<li class="option">南京夫子庙店</li>
 					<li class="option">新街口店</li>

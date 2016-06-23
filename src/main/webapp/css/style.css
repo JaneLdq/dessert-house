@@ -470,7 +470,7 @@ a.gray {
 }
 
 a:hover {
-	opacity: 0.8;
+	opacity: 0.85;
 }
 
 body {
@@ -1096,6 +1096,7 @@ ul.tab-list {
 
 .filter > li a.active {
 	color: #fcd0a5;
+	font-weight: bold;
 }
 
 .filter .filter-title {
@@ -1693,10 +1694,6 @@ ul.tab-list {
 	cursor: pointer;
 }
 
-.dessert-img:hover {
-	opacity: 0.95;
-}
-
 .dessert-desc {
 	position: relative;
 	width: 100%;
@@ -1717,7 +1714,8 @@ ul.tab-list {
 }
 
 .dessert-desc .dessert-name {
-	width: 100%;
+	display: inline-block;
+	width: 80%;
 	padding: 2px 8px 6px 8px;
 	font-size: 21px;
 	color: #333;
@@ -1728,6 +1726,8 @@ ul.tab-list {
 }
 
 .dessert-desc .dessert-price {
+	display: inline-block;
+	width: 20%;
 	padding: 0 8px 4px 8px;
 	font-size: 14px;
 	color: #ff7f4d;
@@ -1744,7 +1744,7 @@ ul.tab-list {
 }
 
 .shop-cart i {
-	font-size: 30px;
+	font-size: 28px;
 }
 
 .shop-cart i:hover{
@@ -1846,9 +1846,9 @@ ul.tab-list {
 /*------------------------------------*\
     $dessert-detail
 \*------------------------------------*/
+
 .m-dessert-detail {
-	display: flex;
-	justify-content: space-between;
+	position: relative;
 }
 
 .m-dessert-detail .img-panel{
@@ -1863,6 +1863,7 @@ ul.tab-list {
 
 .m-dessert-detail .info-panel {
 	width: 51%;
+	height: 480px;
 	padding: 10px 2%;
 	border-top-right-radius: 6px;
 	border-bottom-right-radius: 6px;
@@ -1934,6 +1935,168 @@ ul.tab-list {
 .m-dessert-detail .btn-submit[disabled='disabled'] {
 	background-color: rgba(220,220,220,1);
 }
+
+.cake-size-list {
+	display: inline-block;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.cake-size-list > li.size-item {
+	display: inline-block;
+	height: 28px;
+	margin-right: 6px;
+	padding: 0 6px;
+	border-radius: 3px;
+	border: 1px solid rgba(64,32,0,0.4);
+	font-size: 14px;
+	text-align: center;
+	line-height: 28px;
+	cursor: pointer;
+}
+
+.cake-size-list > li.size-item:hover,
+.cake-size-list > li.size-item.active {
+	border: 1px solid transparent;
+	background-color: rgba(255,127,77,0.8);
+	color: #fff;
+}
+
+
+
+
+.m-dessert-detail .dessert-pre-next {
+	position: absolute;
+	top: 200px;
+	width: 100%;
+}
+
+.m-dessert-detail .dessert-pre-next i {
+	display: block;
+	font-size: 50px;
+	font-weight: bolder;
+	line-height: 40px;
+	color: rgba(64,32,0,0.5);
+}
+
+.m-dessert-detail .dessert-pre-next i:hover {
+	color: rgba(64,32,0,0.7);
+}
+
+.m-dessert-detail .dessert-pre-next .pre,
+.m-dessert-detail .dessert-pre-next .next {
+	position: absolute;
+	height: 40px;
+	cursor: pointer;
+}
+
+.m-dessert-detail .dessert-pre-next .pre {
+	left: -50px;
+}
+
+.m-dessert-detail .dessert-pre-next .next {
+	right: -50px;
+}
+
+.m-dessert-detail .dessert-pre-next .pre:hover {
+	left: -55px;
+}
+
+.m-dessert-detail .dessert-pre-next .next:hover {
+	right: -55px;
+}
+
+.m-dessert-recommend {
+	position: relative;
+	margin: 35px 0;
+}
+
+.m-dessert-recommend .title .content{
+	position: absolute;
+	top: -15px;
+	width: 20%;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 40%;
+	background-color: transparent;
+	border-radius: 6px;
+	font-size: 20px;
+	text-align: center;
+	color: rgba(64,32,0,0.7);
+}
+
+.m-dessert-recommend .title .line {
+	width: 40%;
+	height: 2px;
+	background-color: rgba(64,32,0,0.3);
+	line-height: 30px;
+}
+
+
+.m-dessert-recommend .dessert-thumbnail-list {
+	width: 100%;
+	padding: 25px 0 10px 0;
+	border-bottom: 2px solid rgba(64,32,0,0.3);
+	border-left: none;
+	border-right: none;
+	list-style: none;
+	overflow: hidden;
+}
+
+.dessert-thumbnail-list .dessert-thumbnail-item {
+	display: inline-block;
+	vertical-align: top;
+	width: 25%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.dessert-thumbnail-list .dessert-thumbnail-item:hover {
+	transform:rotate(5deg);
+		-ms-transform:rotate(5deg); 	/* IE 9 */
+		-moz-transform:rotate(5deg); 	/* Firefox */
+		-webkit-transform:rotate(5deg); /* Safari 和 Chrome */
+		-o-transform:rotate(5deg);
+}
+
+.dessert-thumbnail-list .dessert-thumbnail-item .img,
+.dessert-thumbnail-list .dessert-thumbnail-item .name {
+	width: 94%;
+	margin: 0 auto;
+}
+
+.dessert-thumbnail-list .dessert-thumbnail-item .img {
+	height: 200px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.dessert-thumbnail-list .dessert-thumbnail-item .img:hover {
+	opacity: 1;
+}
+
+.dessert-thumbnail-list .dessert-thumbnail-item .name:hover {
+	opacity: 1;
+	background-color: rgba(64,32,0,0.7);
+}
+
+.dessert-thumbnail-list .dessert-thumbnail-item .name {
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	padding: 5px 0;
+	line-height:  24px;
+	height: 24px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	background-color: rgba(64,32,0,0.4);
+}
+
+
+
+
 
 
 /*------------------------------------*\
