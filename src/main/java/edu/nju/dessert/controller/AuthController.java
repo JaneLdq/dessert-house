@@ -180,7 +180,7 @@ public class AuthController {
 		Boolean login = (Boolean) request.getSession().getAttribute("isUser");
 		try {
 			if(login != null){
-				      response.getWriter().write("1");
+				response.getWriter().write("1");
 			}else{
 				response.getWriter().write("0");
 			}

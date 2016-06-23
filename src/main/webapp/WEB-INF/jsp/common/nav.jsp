@@ -13,11 +13,11 @@
 					out.print("active");
 				}
 			%>" href="<%=path %>/index">初见</a><a class="nav-item <% 
-				if(url.contains("dessert/index")){
+				if(url.contains("dessert")){
 					out.print("active");
 				}
 			%>" href="<%=path %>/desserts">品尝· 食</a><a class="nav-item <% 
-				if(url.contains("store/index")){
+				if(url.contains("store")){
 					out.print("active");
 				}
 			%>" href="<%=path %>/stores">循迹 · 店</a>

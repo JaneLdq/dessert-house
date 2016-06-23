@@ -35,7 +35,5 @@ public interface UserService {
 	public Map<String, Long> getAgeStat(String beginYear);
 
     public boolean cancel(int uid);
-    
-    public List<Address> getAddresses(int uid);
 	
 }

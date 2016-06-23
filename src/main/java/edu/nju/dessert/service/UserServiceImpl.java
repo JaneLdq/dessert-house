@@ -5,7 +5,6 @@ import java.util.Map;
 
 import edu.nju.dessert.dao.AddressDao;
 import edu.nju.dessert.dao.UserDao;
-import edu.nju.dessert.model.Address;
 import edu.nju.dessert.model.Payment;
 import edu.nju.dessert.model.Point;
 import edu.nju.dessert.model.User;
@@ -13,7 +12,7 @@ import edu.nju.dessert.model.User;
 public class UserServiceImpl implements UserService {
 	
 	private UserDao userDao;
-	
+
 	private AddressDao addrDao;
 	
 	private int pageSize = 10;
@@ -21,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	public void setUserDao(UserDao userDao){
 		this.userDao = userDao;
 	}
-	
+
 	public void setAddressDao(AddressDao addrDao){
 		this.addrDao = addrDao;
 	}
@@ -99,10 +98,5 @@ public class UserServiceImpl implements UserService {
     public boolean cancel(int uid) {
         return userDao.cancel(uid);
     }
-
-	@Override
-	public List<Address> getAddresses(int uid) {
-		return addrDao.getUserAddresses(uid);
-	}
 
 }

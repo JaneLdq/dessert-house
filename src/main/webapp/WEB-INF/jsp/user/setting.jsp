@@ -85,52 +85,56 @@
 					<button class="btn left">新增收货地址</button>
 					<div class="clear-fix"></div>
 					<ul class="address-list">
-						<li class="address-item default">
+						<c:if test="${defaultAddress != null}">
+							<li class="address-item default" aid="${defaultAddress.id}">
+								<a class="right operation" href="javascript:void(0)"><i class="fa fa-close"></i>删除</a>
+								<a class="right operation" href="javascript:void(0)"><i class="fa fa-pencil"></i>修改</a>
+								<div class="address-detail">
+									<div class="address-detail-item">
+										<label class="label">收货人：</label>
+										<div class="left">${defaultAddress.receiver}</div>
+										<div class="clear-fix"></div>
+									</div>
+									<div class="address-detail-item">
+										<label class="label">地址：</label>
+										<div class="left">${defaultAddress.address}</div>
+										<div class="clear-fix"></div>
+									</div>
+									<div class="address-detail-item">
+										<label class="label">电话：</label>
+										<div class="left">${defaultAddress.tel}</div>
+										<div class="clear-fix"></div>
+									</div>
+								</div>
+								<div class="default-tag">默认地址</div>
+								<div class="clear-fix"></div>
+							</li>
+						</c:if>
+						<c:forEach items="${addrList}" var="addr">
+						<li class="address-item" aid="${addr.id}">
 							<a class="right operation" href="javascript:void(0)"><i class="fa fa-close"></i>删除</a>
 							<a class="right operation" href="javascript:void(0)"><i class="fa fa-pencil"></i>修改</a>
 							<div class="address-detail">
 								<div class="address-detail-item">
 									<label class="label">收货人：</label>
-									<div class="left">ldq</div>
+									<div class="left">${addr.receiver}</div>
 									<div class="clear-fix"></div>
 								</div>
 								<div class="address-detail-item">
 									<label class="label">地址：</label>
-									<div class="left">中华人民共和国江苏省南京市鼓楼区汉口路22号南京大学鼓楼校区南苑5舍607中华人民共和国江苏省南京市鼓楼区汉口路22号南京大学鼓楼校区南苑5舍607</div>
+									<div class="left">${addr.address}</div>
 									<div class="clear-fix"></div>
 								</div>
 								<div class="address-detail-item">
 									<label class="label">电话：</label>
-									<div class="left">18066083162</div>
+									<div class="left">${addr.tel}</div>
 									<div class="clear-fix"></div>
 								</div>
 							</div>
-							<div class="default-tag">默认地址</div>
+							<div class="default-tag" hidden>默认地址</div>
 							<div class="clear-fix"></div>
 						</li>
-						<li class="address-item">
-							<a class="right operation" href="javascript:void(0)"><i class="fa fa-close"></i>删除</a>
-							<a class="right operation" href="javascript:void(0)"><i class="fa fa-pencil"></i>修改</a>
-							<a class="right operation highlight" href="javascript:void(0)"><i class="fa fa-thumb-tack"></i>设为默认地址</a>
-							<div class="address-detail">
-								<div class="address-detail-item">
-									<label class="label">收货人：</label>
-									<div class="left">ldq</div>
-									<div class="clear-fix"></div>
-								</div>
-								<div class="address-detail-item">
-									<label class="label">地址：</label>
-									<div class="left">中华人民共和国江苏省南京市鼓楼区汉口路22号</div>
-									<div class="clear-fix"></div>
-								</div>
-								<div class="address-detail-item">
-									<label class="label">电话：</label>
-									<div class="left">18066083162</div>
-									<div class="clear-fix"></div>
-								</div>
-							</div>
-							<div class="clear-fix"></div>
-						</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>

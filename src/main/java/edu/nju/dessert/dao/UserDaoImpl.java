@@ -233,7 +233,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean setDefaultAddr(int uid, String address, String tel) {
+	public boolean setDefaultAddr(int uid, int aid) {
+		String hql = "update User set default_addr="+ aid + " where id="+uid;
+		Query query = baseDao.getSession().createQuery(hql);
+		int result = query.executeUpdate();
+		if (result > 0) return true;
 		return false;
 	}
 

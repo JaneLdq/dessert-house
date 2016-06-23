@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.nju.dessert.service.AddressService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -42,6 +43,8 @@ public class UserCenterController {
 	private MemberService memberService;
 	
 	private OrderService orderService;
+
+	private AddressService addressService;
 	
 	public void setOrderService(OrderService orderService) {
         this.orderService = orderService;
@@ -54,14 +57,20 @@ public class UserCenterController {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-	
+
+	public void setAddressService(AddressService addressService) {
+		this.addressService = addressService;
+	}
+
 	@Auth(Role.USER)
 	@RequestMapping(value="/setting")
 	public String setting(HttpServletRequest req, ModelMap model){
 		int uid = (int) req.getSession().getAttribute("id");
 		getBasicInfo(model, uid);
-		List<Address> addrlist = userService.getAddresses(uid);
-		model.put("address", addrlist);
+		Address defaultAddress = addressService.getDefaultAddress(uid);
+		List<Address> addrlist = addressService.getAddressesExceptDefault(uid);
+		model.put("defaultAddress", defaultAddress);
+		model.put("addrList", addrlist);
 		return "/user/setting";
 	}
 	

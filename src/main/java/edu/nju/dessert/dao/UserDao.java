@@ -43,6 +43,6 @@ public interface UserDao {
 
     public boolean cancel(int uid);
     
-    public boolean setDefaultAddr(int uid, String address, String tel);
+    public boolean setDefaultAddr(int uid, int aid);
 
 }

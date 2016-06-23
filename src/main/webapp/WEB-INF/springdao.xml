@@ -56,6 +56,7 @@
 		<property name="userService" ref="userService"></property>
 		<property name="memberService" ref="memberService"></property>
 		<property name="orderService" ref="orderService"></property>
+		<property name="addressService" ref="addressService"></property>
 	</bean>
 		
 	<bean id="authController" class="edu.nju.dessert.controller.AuthController">
@@ -140,6 +141,11 @@
 		<property name="orderDao" ref="orderDao"></property>
 		<property name="memberDao" ref="memberDao"></property>
 		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+	<bean id="addressService" class="edu.nju.dessert.service.AddressServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+		<property name="addressDao" ref="addressDao"></property>
 	</bean>
 	
 	<!-- Quartz定时器配置 -->

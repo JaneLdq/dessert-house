@@ -32,9 +32,9 @@ public class User {
 	
 	private String vip_id;
 	
-	private String default_store;
+	private Integer default_store;
 	
-	private String default_addr;
+	private Integer default_addr;
 
 	public User(){
 		super();
@@ -112,19 +112,19 @@ public class User {
 		this.vip_id = vip_id;
 	}
 
-	public String getDefault_store() {
+	public Integer getDefault_store() {
 		return default_store;
 	}
 
-	public void setDefault_store(String default_store) {
+	public void setDefault_store(Integer default_store) {
 		this.default_store = default_store;
 	}
 
-	public String getDefault_addr() {
+	public Integer getDefault_addr() {
 		return default_addr;
 	}
 
-	public void setDefault_addr(String default_addr) {
+	public void setDefault_addr(Integer default_addr) {
 		this.default_addr = default_addr;
 	}
 
