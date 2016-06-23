@@ -75,7 +75,7 @@
 						<a class="name" href="<%=request.getContextPath()%>/dessert/d/1">它的名字</a>
 						<p>这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍</p>
 					</div>
-					<a class="img" href="<%=request.getContextPath()%>/dessert/d/2"><img src="<%=imgPath%>/hot/5.png"></a>
+					<a class="img" href="<%=request.getContextPath()%>/dessert/d/2"><img src="<%=imgPath%>/hot/3.png"></a>
 				</div>
 			</div>
 		</div>
