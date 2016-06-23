@@ -27,8 +27,9 @@ CREATE TABLE `address` (
   `address` varchar(45) NOT NULL,
   `tel` varchar(45) NOT NULL,
   `uid` int(11) NOT NULL,
+  `receiver` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +38,7 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES (1,'南京大学','18066083162',1,'');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +60,7 @@ CREATE TABLE `cart` (
   UNIQUE KEY `cart_item` (`user_id`,`dessert_id`,`store_id`,`date`),
   KEY `store_id` (`store_id`),
   KEY `dessert_id` (`dessert_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +69,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1,1,1,27,1,'2016-06-24');
+INSERT INTO `cart` VALUES (1,1,1,2,1,'2016-06-24');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +89,7 @@ CREATE TABLE `dessert` (
   `type` int(11) NOT NULL DEFAULT '0',
   `onshelf` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +98,7 @@ CREATE TABLE `dessert` (
 
 LOCK TABLES `dessert` WRITE;
 /*!40000 ALTER TABLE `dessert` DISABLE KEYS */;
-INSERT INTO `dessert` VALUES (1,'黑森林','它融合了樱桃的酸、奶油的甜、樱桃酒的醇香。完美的黑森林蛋糕经得起各种口味的挑剔。',16,NULL,0,NULL),(2,'蜂蜜柚子茶','清爽的颜色，浓郁的茶香，它的回味,清新,悠远,不华丽,却让人不能忘记,是留在唇齿之间的那段绵绵回忆。',18,NULL,1,NULL),(3,'抹茶慕斯','清爽的颜色，浓郁的茶香，它的回味,清新,悠远,不华丽,却让人不能忘记,是留在唇齿之间的那段绵绵回忆。',18,NULL,0,NULL),(4,'甜品4','好吃',16,NULL,0,NULL),(5,'饮品2','好喝',20,NULL,1,NULL),(6,'甜品5','真的很好吃哦',20,NULL,0,NULL);
+INSERT INTO `dessert` VALUES (1,'黑森林','它融合了樱桃的酸、奶油的甜、樱桃酒的醇香。完美的黑森林蛋糕经得起各种口味的挑剔。',16,NULL,0,NULL),(2,'蜂蜜柚子茶','清爽的颜色，浓郁的茶香，它的回味,清新,悠远,不华丽,却让人不能忘记,是留在唇齿之间的那段绵绵回忆。',18,NULL,1,NULL),(3,'抹茶慕斯','清爽的颜色，浓郁的茶香，它的回味,清新,悠远,不华丽,却让人不能忘记,是留在唇齿之间的那段绵绵回忆。',18,NULL,0,NULL),(4,'甜品4','好吃',16,NULL,0,NULL),(5,'饮品2','好喝',20,NULL,1,NULL),(6,'甜品5','真的很好吃哦',20,NULL,0,NULL),(7,'甜品6','超级好吃',18,NULL,0,'2016-06-22'),(8,'甜品7','超级好吃',18,NULL,0,'2016-06-22'),(9,'甜品8','超级好吃',18,NULL,0,'2016-06-22'),(10,'甜品9','超级好吃',18,NULL,0,'2016-06-22'),(11,'甜品10','超级好吃',24,NULL,0,'2016-06-22'),(12,'甜品11','超级好吃',18,NULL,1,'2016-06-22'),(13,'甜品12','超级好吃',16,NULL,0,'2016-06-22'),(14,'甜品13','超级好吃',18,NULL,3,'2016-06-22'),(15,'甜品14','超级好吃',26,NULL,2,'2016-06-22');
 /*!40000 ALTER TABLE `dessert` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,15 +116,15 @@ CREATE TABLE `member` (
   `level` int(11) DEFAULT '0',
   `point` int(11) DEFAULT '0',
   `state` int(11) DEFAULT '0' COMMENT '0未激活，1正常，2暂停，3停止',
-  `payword` varchar(6) NOT NULL,
-  `bank_card` varchar(45) NOT NULL,
+  `payword` varchar(6) DEFAULT NULL,
+  `bank_card` varchar(45) DEFAULT NULL,
   `balance` double(10,1) DEFAULT '0.0',
   `suspend_time` datetime DEFAULT NULL,
   `active_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uid_idx` (`uid`),
   CONSTRAINT `uid` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +133,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'V000001',1,0,2,1,'123456','1234567822345678',152.0,NULL,'2016-05-05 10:57:03'),(2,'V000002',2,3,0,1,'950630','6222024301078685555',1099972.5,NULL,'2016-06-21 15:33:27');
+INSERT INTO `member` VALUES (1,'V000001',1,3,2,1,'123456','1234567822345678123',19964.0,NULL,'2016-06-22 15:48:28');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +153,7 @@ CREATE TABLE `order_item` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `sorder` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +162,7 @@ CREATE TABLE `order_item` (
 
 LOCK TABLES `order_item` WRITE;
 /*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
-INSERT INTO `order_item` VALUES (1,1,1,3,16.0),(2,2,1,1,16.0),(3,2,2,1,18.0);
+INSERT INTO `order_item` VALUES (1,1,1,3,16.0);
 /*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +179,7 @@ CREATE TABLE `payment` (
   `value` double(10,1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +188,7 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (1,1,200.0,'2016-05-05 02:57:03'),(2,2,99999.0,'2016-06-21 07:33:27'),(3,2,999999.0,'2016-06-21 07:50:05');
+INSERT INTO `payment` VALUES (1,1,200.0,'2016-05-05 02:57:03'),(2,2,99999.0,'2016-06-21 07:33:27'),(3,2,999999.0,'2016-06-21 07:50:05'),(4,1,20000.0,'2016-06-22 07:48:30');
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +249,7 @@ CREATE TABLE `plan_item` (
 
 LOCK TABLES `plan_item` WRITE;
 /*!40000 ALTER TABLE `plan_item` DISABLE KEYS */;
-INSERT INTO `plan_item` VALUES (1,1,1,1,36,16.00,33),(2,1,1,2,24,20.00,24),(3,1,1,3,30,18.00,30),(4,1,1,4,30,16.00,30),(5,2,1,1,30,16.00,30),(6,2,1,2,30,18.00,30),(7,2,1,3,30,18.00,30),(8,2,1,4,30,16.00,30),(9,3,1,1,30,16.00,30),(10,3,1,2,30,18.00,30),(11,3,1,3,30,18.00,30),(12,3,1,4,30,16.00,30),(13,4,1,1,30,16.00,30),(14,4,1,2,30,18.00,30),(15,4,1,3,30,18.00,30),(16,4,1,4,30,16.00,30),(17,5,1,1,30,16.00,30),(18,5,1,2,30,18.00,30),(19,5,1,3,30,18.00,30),(20,5,1,4,30,16.00,30),(21,6,1,1,30,16.00,30),(22,6,1,2,30,18.00,30),(23,6,1,3,30,18.00,30),(24,6,1,4,30,16.00,30),(25,7,1,1,30,16.00,30),(26,7,1,2,30,18.00,30),(27,7,1,3,30,18.00,30),(28,7,1,4,30,16.00,30),(29,8,1,1,30,16.00,30),(30,8,1,2,30,18.00,30),(31,8,1,3,30,18.00,30),(32,8,1,4,30,16.00,30),(33,9,1,1,30,16.00,30),(34,9,1,2,30,18.00,30),(35,9,1,3,30,18.00,30),(36,9,1,4,30,16.00,30),(37,10,1,1,30,16.00,30),(38,10,1,2,30,18.00,30),(39,10,1,3,30,18.00,30),(40,10,1,4,30,16.00,30),(41,11,1,1,30,16.00,30),(42,11,1,2,30,18.00,30),(43,11,1,3,30,18.00,30),(44,11,1,4,30,16.00,30),(45,12,1,1,30,16.00,30),(46,12,1,2,30,18.00,30),(47,12,1,3,30,18.00,30),(48,12,1,4,30,16.00,30),(49,13,1,1,30,16.00,30),(50,13,1,2,30,18.00,30),(51,13,1,3,30,18.00,30),(52,13,1,4,30,16.00,30),(53,14,1,1,30,16.00,30),(54,14,1,2,30,18.00,30),(55,14,1,3,30,18.00,30),(56,14,1,4,30,16.00,30),(57,15,1,1,30,16.00,30),(58,15,1,2,30,18.00,30),(59,15,1,3,30,18.00,30),(60,15,1,4,30,16.00,30),(61,16,1,1,30,16.00,30),(62,16,1,2,30,18.00,30),(63,16,1,3,30,18.00,30),(64,16,1,4,30,16.00,30),(65,17,1,1,30,16.00,30),(66,17,1,2,30,18.00,30),(67,17,1,3,30,18.00,30),(68,17,1,4,30,16.00,30),(69,18,1,1,30,16.00,30),(70,18,1,2,30,18.00,30),(71,18,1,3,30,18.00,30),(72,18,1,4,30,16.00,30),(73,19,1,1,30,16.00,30),(74,19,1,2,30,18.00,30),(75,19,1,3,30,18.00,30),(76,19,1,4,30,16.00,30),(77,20,1,1,30,16.00,30),(78,20,1,2,30,18.00,30),(79,20,1,3,30,18.00,30),(80,20,1,4,30,16.00,30),(81,21,1,1,30,16.00,30),(82,21,1,2,30,18.00,30),(83,21,1,3,30,18.00,30),(84,21,1,4,30,16.00,30),(85,22,1,1,30,16.00,30),(86,22,1,2,30,18.00,30),(87,22,1,3,30,18.00,30),(88,22,1,4,30,16.00,30),(89,23,1,1,30,16.00,30),(90,23,1,2,30,18.00,30),(91,23,1,3,30,18.00,30),(92,23,1,4,30,16.00,30),(93,24,1,1,30,16.00,29),(94,24,1,2,30,18.00,29),(95,24,1,3,30,18.00,30),(96,24,1,4,30,16.00,30),(97,25,1,1,30,16.00,30),(98,25,1,2,30,18.00,30),(99,25,1,3,30,18.00,30),(100,25,1,4,30,16.00,30),(101,26,1,1,30,16.00,30),(102,26,1,2,30,18.00,30),(103,26,1,3,30,18.00,30),(104,26,1,4,30,16.00,30),(105,27,1,1,30,16.00,30),(106,27,1,2,30,18.00,30),(107,27,1,3,30,18.00,30),(108,27,1,4,30,16.00,30),(109,28,1,1,30,16.00,30),(110,28,1,2,30,18.00,30),(111,28,1,3,30,18.00,30),(112,28,1,4,30,16.00,30);
+INSERT INTO `plan_item` VALUES (1,1,1,1,36,16.00,33),(2,1,1,2,24,20.00,24),(3,1,1,3,30,18.00,30),(4,1,1,4,30,16.00,30),(5,2,1,1,30,16.00,30),(6,2,1,2,30,18.00,30),(7,2,1,3,30,18.00,30),(8,2,1,4,30,16.00,30),(9,3,1,1,30,16.00,30),(10,3,1,2,30,18.00,30),(11,3,1,3,30,18.00,30),(12,3,1,4,30,16.00,30),(13,4,1,1,30,16.00,30),(14,4,1,2,30,18.00,30),(15,4,1,3,30,18.00,30),(16,4,1,4,30,16.00,30),(17,5,1,1,30,16.00,30),(18,5,1,2,30,18.00,30),(19,5,1,3,30,18.00,30),(20,5,1,4,30,16.00,30),(21,6,1,1,30,16.00,30),(22,6,1,2,30,18.00,30),(23,6,1,3,30,18.00,30),(24,6,1,4,30,16.00,30),(25,7,1,1,30,16.00,30),(26,7,1,2,30,18.00,30),(27,7,1,3,30,18.00,30),(28,7,1,4,30,16.00,30),(29,8,1,1,30,16.00,30),(30,8,1,2,30,18.00,30),(31,8,1,3,30,18.00,30),(32,8,1,4,30,16.00,30),(33,9,1,1,30,16.00,30),(34,9,1,2,30,18.00,30),(35,9,1,3,30,18.00,30),(36,9,1,4,30,16.00,30),(37,10,1,1,30,16.00,30),(38,10,1,2,30,18.00,30),(39,10,1,3,30,18.00,30),(40,10,1,4,30,16.00,30),(41,11,1,1,30,16.00,30),(42,11,1,2,30,18.00,30),(43,11,1,3,30,18.00,30),(44,11,1,4,30,16.00,30),(45,12,1,1,30,16.00,30),(46,12,1,2,30,18.00,30),(47,12,1,3,30,18.00,30),(48,12,1,4,30,16.00,30),(49,13,1,1,30,16.00,30),(50,13,1,2,30,18.00,30),(51,13,1,3,30,18.00,30),(52,13,1,4,30,16.00,30),(53,14,1,1,30,16.00,30),(54,14,1,2,30,18.00,30),(55,14,1,3,30,18.00,30),(56,14,1,4,30,16.00,30),(57,15,1,1,30,16.00,30),(58,15,1,2,30,18.00,30),(59,15,1,3,30,18.00,30),(60,15,1,4,30,16.00,30),(61,16,1,1,30,16.00,30),(62,16,1,2,30,18.00,30),(63,16,1,3,30,18.00,30),(64,16,1,4,30,16.00,30),(65,17,1,1,30,16.00,30),(66,17,1,2,30,18.00,30),(67,17,1,3,30,18.00,30),(68,17,1,4,30,16.00,30),(69,18,1,1,30,16.00,30),(70,18,1,2,30,18.00,30),(71,18,1,3,30,18.00,30),(72,18,1,4,30,16.00,30),(73,19,1,1,30,16.00,30),(74,19,1,2,30,18.00,30),(75,19,1,3,30,18.00,30),(76,19,1,4,30,16.00,30),(77,20,1,1,30,16.00,30),(78,20,1,2,30,18.00,30),(79,20,1,3,30,18.00,30),(80,20,1,4,30,16.00,30),(81,21,1,1,30,16.00,30),(82,21,1,2,30,18.00,30),(83,21,1,3,30,18.00,30),(84,21,1,4,30,16.00,30),(85,22,1,1,30,16.00,30),(86,22,1,2,30,18.00,30),(87,22,1,3,30,18.00,30),(88,22,1,4,30,16.00,30),(89,23,1,1,30,16.00,30),(90,23,1,2,30,18.00,30),(91,23,1,3,30,18.00,30),(92,23,1,4,30,16.00,30),(93,24,1,1,30,16.00,29),(94,24,1,2,30,18.00,29),(95,24,1,3,30,18.00,30),(96,24,1,4,30,16.00,30),(97,25,1,1,30,16.00,27),(98,25,1,2,30,18.00,30),(99,25,1,3,30,18.00,30),(100,25,1,4,30,16.00,30),(101,26,1,1,30,16.00,30),(102,26,1,2,30,18.00,30),(103,26,1,3,30,18.00,30),(104,26,1,4,30,16.00,30),(105,27,1,1,30,16.00,30),(106,27,1,2,30,18.00,30),(107,27,1,3,30,18.00,30),(108,27,1,4,30,16.00,30),(109,28,1,1,30,16.00,30),(110,28,1,2,30,18.00,30),(111,28,1,3,30,18.00,30),(112,28,1,4,30,16.00,30);
 /*!40000 ALTER TABLE `plan_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +269,7 @@ CREATE TABLE `point` (
   PRIMARY KEY (`id`),
   KEY `user` (`uid`),
   CONSTRAINT `user` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +278,7 @@ CREATE TABLE `point` (
 
 LOCK TABLES `point` WRITE;
 /*!40000 ALTER TABLE `point` DISABLE KEYS */;
-INSERT INTO `point` VALUES (1,1,2.0,0,'2016-05-05 10:59:57'),(2,2,1.0,0,'2016-06-21 15:45:21'),(3,2,1.0,1,'2016-06-21 15:49:19');
+INSERT INTO `point` VALUES (1,1,2.0,0,'2016-06-22 15:49:36');
 /*!40000 ALTER TABLE `point` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,7 +303,7 @@ CREATE TABLE `sorder` (
   `state` int(11) DEFAULT NULL COMMENT '等待配送/配送中/完成之类',
   `saleman_id` int(11) DEFAULT NULL COMMENT '销售员id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,7 +312,7 @@ CREATE TABLE `sorder` (
 
 LOCK TABLES `sorder` WRITE;
 /*!40000 ALTER TABLE `sorder` DISABLE KEYS */;
-INSERT INTO `sorder` VALUES (1,1,1,'2016-05-06',48.0,0.0,'2016-05-05 10:59:56',1,NULL,NULL,NULL,NULL),(2,2,1,'2016-06-22',25.5,8.5,'2016-06-21 15:45:20',1,NULL,NULL,NULL,NULL);
+INSERT INTO `sorder` VALUES (1,1,1,'2016-06-23',36.0,12.0,'2016-06-22 15:49:34',1,0,0,0,0);
 /*!40000 ALTER TABLE `sorder` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,12 +387,13 @@ CREATE TABLE `user` (
   `birth` date DEFAULT NULL,
   `sex` int(11) DEFAULT '0',
   `password` varchar(32) NOT NULL,
-  `avatar` varchar(512) DEFAULT NULL,
+  `avatar` varchar(512) DEFAULT '/Tian/img/avatar.jpg',
   `vip_id` varchar(16) DEFAULT NULL,
   `default_store` int(11) DEFAULT '1',
+  `default_addr` int(11) DEFAULT NULL COMMENT '默认地址',
   PRIMARY KEY (`id`),
   UNIQUE KEY `tel_UNIQUE` (`tel`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -399,7 +402,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'18066083162','Jane','Jane','1995-08-16',0,'qazwsx',NULL,NULL,1),(2,'18020135373','王振聪','vboar','1995-06-30',1,'1995630','/Tian/upload/2.png',NULL,1);
+INSERT INTO `user` VALUES (1,'18066083162','LDQ','Jane','1970-01-01',0,'123456','/Tian/upload/1.jpg',NULL,NULL,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -412,4 +415,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-21 16:48:26
+-- Dump completed on 2016-06-24  0:26:06
