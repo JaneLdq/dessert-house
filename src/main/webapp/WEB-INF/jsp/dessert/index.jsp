@@ -74,10 +74,12 @@
 		<li class="stack-nav-item nav-to-cart">
 			<i class="fa fa-shopping-cart"></i>
 		</li>
-		<li class="stack-nav-item active"><i class="nav-icon cake-icon"></i></li>
-		<li class="stack-nav-item"><i class="nav-icon cookie-icon"></i></li>
-		<li class="stack-nav-item"><i class="nav-icon coffee-icon"></i></li>
-		<li class="stack-nav-item"><i class="nav-icon juice-icon"></i></li>
+		<li class="stack-nav-item active js-type-filter" value="0"><i class="nav-icon cake-icon"></i><span>蛋糕</span></li>
+		<li class="stack-nav-item js-type-filter" value="1"><i class="nav-icon bread-icon"></i><span>面包</span></li>
+		<li class="stack-nav-item js-type-filter" value="2"><i class="nav-icon cookie-icon"></i><span>甜点</span></li>
+		<li class="stack-nav-item js-type-filter" value="3"><i class="nav-icon coffee-icon"></i><span>咖啡</span></li>
+		<li class="stack-nav-item js-type-filter" value="4"><i class="nav-icon tea-icon"></i><span>茶饮</span></li>
+		<li class="stack-nav-item js-type-fitler" value="5"><i class="nav-icon juice-icon"></i><span>果汁</span></li>
 		<li class="stack-nav-item nav-to-top"><i class="fa fa-angle-up"></i></li>
 	</ul>
 	<!-- 

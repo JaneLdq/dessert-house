@@ -53,6 +53,7 @@ var order = 0;
 var type = -1;
 var more = true;
 var loading = false;
+var storeId = 1;
 
 
 function getDesserts(type, order){
@@ -63,7 +64,8 @@ function getDesserts(type, order){
 			page: page,
 			num: num,
 			type: type,
-			order: order
+			order: order,
+			storeId: storeId
 		},
 		success: function(data){
 			var result = data['result'];
@@ -90,7 +92,8 @@ function moreDesserts(){
 			page: page,
 			num: num,
 			type: type,
-			order: order
+			order: order,
+			storeId: storeId
 		},
 		success: function(data){
 			console.log(data);

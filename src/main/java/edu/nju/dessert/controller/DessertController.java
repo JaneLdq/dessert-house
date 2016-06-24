@@ -54,9 +54,10 @@ public class DessertController {
 	
 	@RequestMapping(value="/getDessert", method=RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getDessertByPageType(ModelMap model, @RequestParam(value="type", defaultValue="-1", required=false) int type, 
-			@RequestParam("page") int page, @RequestParam("num") int num, @RequestParam(value="order", defaultValue="0", required=false) int order ){
+			@RequestParam("page") int page, @RequestParam("num") int num, @RequestParam(value="order", defaultValue="0", required=false) int order,
+			@RequestParam("storeId") int store){
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Dessert> result = dessertService.getDessertByType(type, page, num, order);
+		List<Dessert> result = dessertService.getDessertByType(type, page, num, order, store);
 		map.put("result", result);
 		return map;
 	}

@@ -823,7 +823,7 @@ input[type="date"] {
 \*------------------------------------*/
 .dessert-stack-nav {
 	position: fixed;
-	top: 200px;
+	top: 120px;
 	right: 4%;
 	width: 60px;
 	padding: 0;
@@ -852,6 +852,16 @@ input[type="date"] {
 	background-color: rgba(255,204,51,0.8);
 }
 
+.dessert-stack-nav .stack-nav-item span {
+	display: block;
+	width: 100%;
+	height: 12px;
+	padding: 0;
+	line-height: 12px;
+	font-size: 12px;
+	text-align: center;
+}
+
 .dessert-stack-nav .stack-nav-item.nav-to-cart {
 	font-size: 24px;
 }
@@ -867,8 +877,8 @@ input[type="date"] {
 
 .stack-nav-item .nav-icon {
 	display: block;
-	width: 30px;
-	height: 30px;
+	width: 28px;
+	height: 28px;
 	background-repeat: no-repeat;
 	background-size: 100%;
 	margin: 0 auto;
@@ -878,12 +888,20 @@ input[type="date"] {
 	background-image: url('../img/icon/cake.png');
 }
 
+.stack-nav-item .nav-icon.bread-icon {
+	background-image: url('../img/icon/bread.png');
+}
+
 .stack-nav-item .nav-icon.cookie-icon {
 	background-image: url('../img/icon/cookie.png');
 }
 
 .stack-nav-item .nav-icon.coffee-icon {
 	background-image: url('../img/icon/coffee.png');
+}
+
+.stack-nav-item .nav-icon.tea-icon {
+	background-image: url('../img/icon/tea.png');
 }
 
 .stack-nav-item .nav-icon.juice-icon {

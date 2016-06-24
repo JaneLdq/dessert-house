@@ -24,6 +24,6 @@ public interface DessertService {
      * @param order 0-不限， 1-销量， 2-上架时间
      * @return
      */
-    public List<Dessert> getDessertByType(int type, int page, int num, int order);
+    public List<Dessert> getDessertByType(int type, int page, int num, int order, int store);
 	
 }

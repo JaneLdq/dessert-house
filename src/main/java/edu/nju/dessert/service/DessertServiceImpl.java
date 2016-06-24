@@ -43,8 +43,8 @@ public class DessertServiceImpl implements DessertService {
     }
 
 	@Override
-	public List<Dessert> getDessertByType(int type, int page, int num, int order) {
-		return dessertDao.getDessertByType(type, page, num, order);
+	public List<Dessert> getDessertByType(int type, int page, int num, int order, int store) {
+		return dessertDao.getDessertByType(type, page, num, order, store);
 	}
 
 

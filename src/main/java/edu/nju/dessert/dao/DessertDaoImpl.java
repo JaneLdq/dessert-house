@@ -89,8 +89,8 @@ public class DessertDaoImpl implements DessertDao {
     }
 
 	@Override
-	public List<Dessert> getDessertByType(int type, int page, int num, int order) {
-		// TODO 
+	public List<Dessert> getDessertByType(int type, int page, int num, int order, int store) {
+		// TODO 根据排毒和类型筛选甜品 
 		String hql = "from Dessert";
 		if(type >=0 ){
 			hql += " where type=" + type;
