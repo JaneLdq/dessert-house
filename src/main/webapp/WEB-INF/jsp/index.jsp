@@ -23,11 +23,11 @@
 	        	<div class="activity-panel"></div>
 			</div>
 	        <div class="swiper-slide">
-				<img src="<%=imgPath %>/activity/2.jpg">
+				<img src="<%=imgPath %>/activity/1.jpg">
 				<div class="activity-panel"></div>
 	        </div>
 	        <div class="swiper-slide">
-				<img src="<%=imgPath %>/activity/3.jpg">
+				<img src="<%=imgPath %>/activity/1.jpg">
 	        	<div class="activity-panel"></div>
 	        </div>
 	    </div>
@@ -86,11 +86,12 @@
 			<div class="left line"></div>
 			<div class="content">人气推荐</div>
 			<div class="right line"></div>
+			<div class="more"><i class="fa fa-ellipsis-h"></i></div>
 		</div>
 		<div class="section-content recommend">
 			<ul class="dessert-thumbnail-list">
 				<li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/2.jpg"></a>
+					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/3.jpg"></a>
 					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
 				</li><!-- 
 				--><li class="dessert-thumbnail-item">
@@ -98,18 +99,18 @@
 					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
 				</li><!-- 
 				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/5.jpg"></a>
+					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/7.jpg"></a>
 					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
 				</li><!-- 
 				--><li class="dessert-thumbnail-item">
 					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/8.jpg"></a>
 					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
 				</li><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/2.jpg"></a>
+					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/12.jpg"></a>
 					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
 				</li><!-- 
 				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/11.jpg"></a>
+					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/6.jpg"></a>
 					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
 				</li><!-- 
 				--><li class="dessert-thumbnail-item">
@@ -117,7 +118,7 @@
 					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
 				</li><!-- 
 				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/8.jpg"></a>
+					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/9.jpg"></a>
 					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
 				</li>
 			</ul>

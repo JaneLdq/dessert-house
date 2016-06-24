@@ -88,5 +88,23 @@ public class DessertDaoImpl implements DessertDao {
         return result;
     }
 
+	@Override
+	public List<Dessert> getDessertByType(int type, int page, int num, int order) {
+		// TODO 
+		String hql = "from Dessert";
+		if(type >=0 ){
+			hql += " where type=" + type;
+		}
+		if(order == 1){
+			hql += " order by sale_volume desc";
+		}else if(order == 2){
+			hql += " order by onshelf desc";
+		}
+		Query query = baseDao.getSession().createQuery(hql);
+		query.setFirstResult(page * num).setMaxResults(num);
+		List<Dessert> result = query.list();
+		return result;
+	}
+
 }
 

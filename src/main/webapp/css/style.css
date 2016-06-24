@@ -1218,6 +1218,9 @@ ul.tab-list {
 }
 
 
+
+
+
 /*------------------------------------*\
     $modal
 \*------------------------------------*/
@@ -1305,6 +1308,8 @@ ul.tab-list {
 
 
 
+
+
 /*------------------------------------*\
     $popup
 \*------------------------------------*/
@@ -1350,6 +1355,9 @@ ul.tab-list {
 	font-size: 12px;
 	text-align: center;
 }
+
+
+
 
 
 /*------------------------------------*\
@@ -1418,6 +1426,9 @@ ul.tab-list {
 	color: #fff;
 	background-color: rgba(64,32,0,0.3);
 }
+
+
+
 
 
 
@@ -1586,15 +1597,15 @@ ul.tab-list {
 
 .index-section .section-title .more {
 	position: absolute;
-	top: 0;
+	top: 5px;
 	right: 0;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
 	border-radius: 50%;
-	background-color: rgba(255,204,51,1);
+	background-color: rgba(254,216,106,1);
 	color: #fff;
-	font-size: 20px;
+	font-size: 18px;
 	text-align: center;
 	cursor: pointer;
 }
@@ -1609,6 +1620,10 @@ ul.tab-list {
 
 .index-section .section-title.brown .line {
 	border-top: 2px solid rgba(64,32,0,0.5);
+}
+
+.index-section .section-title.brown .more {
+	background-color: rgba(159,140,121,1);
 }
 
 .index-section .section-title .content {
@@ -2014,7 +2029,7 @@ ul.tab-list {
 	display: flex;
 	align-items: center;
 	width: 45%;
-	height: 500px;
+	height: 520px;
 	border-top-left-radius: 6px;
 	border-bottom-left-radius: 6px;
 	background-color: rgba(252,168,102,0.15);
@@ -2022,7 +2037,7 @@ ul.tab-list {
 
 .m-dessert-detail .info-panel {
 	width: 51%;
-	height: 480px;
+	height: 500px;
 	padding: 10px 2%;
 	border-top-right-radius: 6px;
 	border-bottom-right-radius: 6px;
@@ -2031,7 +2046,7 @@ ul.tab-list {
 
 .m-dessert-detail .img-panel .img-lg {
 	width: 100%;
-	max-height: 500px;
+	max-height: 520px;
 	overflow: hidden;
 }
 
@@ -2108,7 +2123,7 @@ ul.tab-list {
 	margin-right: 6px;
 	padding: 0 6px;
 	border-radius: 3px;
-	border: 1px solid rgba(64,32,0,0.4);
+	border: 1px solid rgba(64,32,0,0.2);
 	font-size: 14px;
 	text-align: center;
 	line-height: 28px;
@@ -2166,9 +2181,60 @@ ul.tab-list {
 	right: -55px;
 }
 
+
+
+.m-dessert-size {
+	position: relative;
+	margin: 40px 0 30px 0;
+	padding: 15px;
+	border-radius: 6px;
+	background-color: rgba(64,32,0,0.1);
+}
+
+.m-dessert-size .title {
+	position: absolute;
+	width: 20%;
+	left: 40%;
+	top: -15px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 30px;
+	background-color: rgba(196,181,168,1);
+	text-align: center;
+	color: #fff;
+}
+
+.m-dessert-size ul {
+	list-style: none;
+	padding: 0;
+	margin: 15px 0;
+	color: #666;
+}
+
+.m-dessert-size ul > li {
+	width: 100%;
+	margin: 10px 0;
+}
+
+.m-dessert-size ul > li label {
+	display: inline-block;
+	width: 18%;
+	text-align: center;
+}
+
+.m-dessert-size ul > li span {
+	display: inline-block;
+	width: 18%;
+	margin: 0 1%;
+	text-align: center;
+}
+
+
+
+
 .m-dessert-recommend {
 	position: relative;
-	margin: 35px 0;
+	margin: 50px 0;
 }
 
 .m-dessert-recommend .title .content{
@@ -2194,7 +2260,6 @@ ul.tab-list {
 
 .m-dessert-recommend .dessert-thumbnail-list {
 	padding: 25px 0 10px 0;
-	border-bottom: 2px solid rgba(64,32,0,0.3);
 }
 
 

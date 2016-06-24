@@ -38,7 +38,7 @@ public class StoreController {
 	@RequestMapping(value="/{id}")
 	public String store(@PathVariable int id, ModelMap model){
 		Store store = storeService.getStore(id);
-		List<Dessert> desserts = dessertService.getDessertList(0);
+		List<Dessert> desserts = dessertService.getDessertList(0,6);
 		model.put("desserts", desserts);
 		model.put("store", store);
 		return "/store/sdetail";

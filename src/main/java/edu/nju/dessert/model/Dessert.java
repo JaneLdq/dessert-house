@@ -27,6 +27,8 @@ public class Dessert {
 	
 	private Date onshelf;
 	
+	private int sale_volume;
+	
 	public Dessert(){}
 
 	public int getId() {
@@ -83,6 +85,14 @@ public class Dessert {
 
 	public void setOnshelf(Date onshelf) {
 		this.onshelf = onshelf;
+	}
+
+	public int getSale_volume() {
+		return sale_volume;
+	}
+
+	public void setSale_volume(int sale_volume) {
+		this.sale_volume = sale_volume;
 	}
 	
 }

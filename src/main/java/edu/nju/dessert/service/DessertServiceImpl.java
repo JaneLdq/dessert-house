@@ -15,8 +15,8 @@ public class DessertServiceImpl implements DessertService {
 	}
 	
 	@Override
-	public List<Dessert> getDessertList(int page) {
-		return dessertDao.getDessertList(page, 12);
+	public List<Dessert> getDessertList(int page, int num) {
+		return dessertDao.getDessertList(page, num);
 	}
 
 	@Override
@@ -41,6 +41,11 @@ public class DessertServiceImpl implements DessertService {
     public Dessert checkDessert(int id, int storeId) {
         return dessertDao.checkDessert(id, storeId);
     }
+
+	@Override
+	public List<Dessert> getDessertByType(int type, int page, int num, int order) {
+		return dessertDao.getDessertByType(type, page, num, order);
+	}
 
 
 	

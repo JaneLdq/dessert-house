@@ -18,4 +18,13 @@ public interface DessertDao {
 
     public Dessert checkDessert(int id, int storeId);
 	
+    /**
+     * 分页获取某类型的甜品
+     * @param type 类型 0-蛋糕， 1-面包，2-甜点，3-咖啡，4-茶饮，5-果汁
+     * @param page 
+     * @param num
+     * @param order 0-不限， 1-销量， 2-上架时间
+     * @return
+     */
+    public List<Dessert> getDessertByType(int type, int page, int num, int order);
 }

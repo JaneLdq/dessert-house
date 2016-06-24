@@ -40,7 +40,7 @@ public class DessertController {
 	
 	@RequestMapping(value="")
 	public String index(ModelMap model){
-		List<Dessert> desserts = dessertService.getDessertList(0);
+		List<Dessert> desserts = dessertService.getDessertList(0,6);
 		model.put("desserts", desserts);
 		int maxPage = dessertService.getTotalPage();
 		model.put("pre", -1);
@@ -52,9 +52,24 @@ public class DessertController {
 		return "/dessert/index";
 	}
 	
+	@RequestMapping(value="/getDessert", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object> getDessertByPageType(ModelMap model, @RequestParam(value="type", defaultValue="-1", required=false) int type, 
+			@RequestParam("page") int page, @RequestParam("num") int num, @RequestParam(value="order", defaultValue="0", required=false) int order ){
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Dessert> result = dessertService.getDessertByType(type, page, num, order);
+		map.put("result", result);
+		return map;
+	}
+	
+	/**
+	 * 获取所有甜品
+	 * @param model
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping(value="/{page}")
 	public String getByPage(ModelMap model, @PathVariable int page){
-		List<Dessert> desserts = dessertService.getDessertList(page);
+		List<Dessert> desserts = dessertService.getDessertList(page, 6);
 		model.put("desserts", desserts);
 		model.put("pre", page-1);
 		int maxPage = dessertService.getTotalPage();
@@ -66,6 +81,12 @@ public class DessertController {
 		return "/dessert/index";
 	}
 	
+	/**
+	 * 获取甜品详情
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/d/{id}", method=RequestMethod.GET)
 	public String detail(@PathVariable int id, ModelMap model){
 		Dessert dessert = dessertService.getDessert(id);
@@ -84,6 +105,13 @@ public class DessertController {
 		return "/dessert/detail";
 	}
 	
+	/**
+	 * 获取某个店里的某个甜品
+	 * @param id
+	 * @param storeId
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/d/{id}/s/{storeId}", method=RequestMethod.GET)
 	public String detailWithStore(@PathVariable int id, @PathVariable int storeId, ModelMap model){
 		Dessert dessert = dessertService.getDessert(id);

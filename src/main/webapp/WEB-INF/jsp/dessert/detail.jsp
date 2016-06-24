@@ -40,14 +40,33 @@
 							</c:forEach>
 						</select>
 					</div>
-					<div class="option"><label>尺寸：</label>
-						<ul class="cake-size-list">
-							<li class="size-item active">1.2磅</li>
-							<li class="size-item">2.2磅</li>
-							<li class="size-item">3.2磅</li>
-							<li class="size-item">6磅</li>
-						</ul>
+					<div class="option"><label>规格：</label>
+						<c:choose>
+						<c:when test="${dessert.type == 0}">
+							<ul class="cake-size-list">
+								<li class="size-item active">1.2磅</li>
+								<li class="size-item">2.2磅</li>
+								<li class="size-item">3.2磅</li>
+								<li class="size-item">6磅</li>
+							</ul>
+						</c:when>
+						<c:when test="${dessert.type > 2}">
+							<ul class="cake-size-list">
+								<li class="size-item">大杯（800ml）</li>
+								<li class="size-item">中杯（500ml）</li>
+							</ul>
+						</c:when>
+						</c:choose>
 					</div>
+					<c:if test="${dessert.type > 2}">
+						<div class="option"><label>温度：</label>
+							<ul class="cake-size-list">
+								<li class="size-item">热</li>
+								<li class="size-item">冰</li>
+								<li class="size-item">去冰</li>
+							</ul>
+						</div>
+					</c:if>
 					<div class="option"><label>数量：</label>
 						<div class="number-picker js-number-picker" id="1">
 							<input type="button" class="minus" value="-">
@@ -65,6 +84,16 @@
 			</div>
 			<div class="clear-fix"></div>
 		</div>
+		<c:if test="${dessert.type == 0 }">
+			<div class="m-dessert-size">
+				<div class="title">关于规格</div>
+				<ul>
+				  	<li><label>规格</label><span>1.2磅</span><span>2.2磅</span><span>3.2磅</span><span>6磅</span></li>
+				  	<li><label>推荐使用人数</label><span>4-5人</span><span>7-8人</span><span>10-12人</span><span>15-20人</span></li>
+				 	<li><label>标准餐具配备</label><span>免费配送5套餐具</span><span>免费配送10套餐具</span><span>免费配送15套餐具</span><span>免费配送20套餐具</span></li>
+				</ul>
+			</div>
+		</c:if>
 		<div class="m-dessert-recommend">
 			<div class="title">
 				<div class="left line"></div>

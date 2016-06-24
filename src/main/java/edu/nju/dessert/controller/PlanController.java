@@ -65,7 +65,7 @@ public class PlanController {
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public String create(ModelMap model){
 		List<Store> stores = storeService.getAllStore();
-		List<Dessert> desserts = dessertService.getDessertList(0);
+		List<Dessert> desserts = dessertService.getDessertList(0,6);
 		Date date = planService.getLatestDate(1);
 		if(date==null)
             date = new Date();

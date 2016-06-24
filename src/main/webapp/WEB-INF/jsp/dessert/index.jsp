@@ -27,18 +27,20 @@
 	<div class="filters">
 		<ul class="filter">
 			<li class="filter-title ul">按品种分类</li>
-			<li><a class="active" href="javascript:void(0)">不限</a></li>
-			<li><a href="javascript:void(0)">蛋糕</a></li>
-			<li><a href="javascript:void(0)">曲奇</a></li>
-			<li><a href="javascript:void(0)">咖啡</a></li>
-			<li><a href="javascript:void(0)">果汁</a></li>
+			<li><a class="active js-type-filter" href="javascript:void(0)" value="-1">不限</a></li>
+			<li><a class="js-type-filter" href="javascript:void(0)" value="0">蛋糕</a></li>
+			<li><a class="js-type-filter" href="javascript:void(0)" value="1">面包</a></li>
+			<li><a class="js-type-filter" href="javascript:void(0)" value="2">甜点</a></li>
+			<li><a class="js-type-filter" href="javascript:void(0)" value="3">咖啡</a></li>
+			<li><a class="js-type-filter" href="javascript:void(0)" value="4">茶饮</a></li>
+			<li><a class="js-type-filter" href="javascript:void(0)" value="5">果汁</a></li>
 		</ul>
 		<div class="filter-separator"></div>
 		<ul class="filter">
 			<li class="filter-title bl">按条件排序</li>
-			<li><a class="active" href="javascript:void(0)">不限</a></li>
-			<li><a href="javascript:void(0)">销量</a></li>
-			<li><a href="javascript:void(0)">上架时间</a></li>
+			<li><a class="active js-order-filter" href="javascript:void(0)" value="0">不限</a></li>
+			<li><a class="js-order-filter" href="javascript:void(0)" value="1">销量</a></li>
+			<li><a class="js-order-filter" href="javascript:void(0)" value="2">上架时间</a></li>
 		</ul>
 		<div class="right search">
 			<input class="search-input" type="text" placeholder="搜索甜品">
@@ -46,7 +48,7 @@
 		</div>
 	</div>
 
-	<div class="panel m-dessert-panel">
+	<div class="panel m-dessert-panel" id="js-dessert-panel">
 		<c:forEach items="${desserts}" var="d">
 			<div class="dessert">
 				<a href="<%=request.getContextPath()%>/dessert/d/${d.id}">
@@ -78,7 +80,8 @@
 		<li class="stack-nav-item"><i class="nav-icon juice-icon"></i></li>
 		<li class="stack-nav-item nav-to-top"><i class="fa fa-angle-up"></i></li>
 	</ul>
-	<!-- 	<nav>
+	<!-- 
+	<nav>
 		<ul class="pagination">
    			<c:if test="${pre >=0 }">   
    				<li class="left pre"><a href="<%=request.getContextPath() %>/dessert/${pre}"><i class="fa fa-angle-left"></i>上一页</a></li>  
