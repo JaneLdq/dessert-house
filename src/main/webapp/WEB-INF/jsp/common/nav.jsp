@@ -23,16 +23,24 @@
 			%>" href="<%=path %>/stores">循迹 · 店</a>
 		</div>
 		<div class="right-nav-items">
+		<c:if test="${navStores != null}">
 			<div class="nav-store-selector">
 				<i class="fa fa-home lg"></i><span>当前门店：</span>
-				<div class="store-selected">南京新街口新街口店</div><i class="fa fa-caret-down"></i>
-				<ul class="select" style="display: none">
-					<li class="option">南京新街口店</li>
-					<li class="option">南京夫子庙店</li>
-					<li class="option">新街口店</li>
-					<li class="option">南京测试夫子庙店南京测试夫子庙店</li>
+				<c:choose>
+					<c:when test="${defaultStore != null }">
+						<div class="store-selected js-nav-current-store" sid="${defaultStore.id}">${defaultStore.name}<i class="fa fa-caret-down"></i></div>
+					</c:when>
+					<c:otherwise>
+						<div class="store-selected js-nav-current-store" sid="${navStores[0].id}">${navStores[0].name}<i class="fa fa-caret-down"></i></div>
+					</c:otherwise>
+				</c:choose>
+				<ul class="select js-nav-store-popup" style="display: none">
+					<c:forEach items="${navStores}" var="s">
+						<li class="option js-nav-store-option" sid="${s.id}">${s.name}</li>
+					</c:forEach>
 				</ul>
 			</div>
+		</c:if>
 		<%
 			if(request.getSession().getAttribute("isUser") != null){
 				out.print("<a class='nav-item nav-item-cart' href='" + path + "/cart'>"

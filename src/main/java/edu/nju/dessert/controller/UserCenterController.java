@@ -334,6 +334,23 @@ public class UserCenterController {
 	    return map;
 	}
 	
+	@RequestMapping(value="/setDefaultStore", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> updateDefaultStore(HttpServletRequest req, @RequestParam("storeId") int store){
+		Integer uid = (Integer) req.getSession().getAttribute("id");
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(uid != null){
+			boolean result  = userService.setDefaultStore(uid, store);
+			if(result){
+				map.put("result", 1);
+			}else{
+				map.put("result", 0);
+			}
+		}else{
+			map.put("result", 0);
+		}
+		return map;
+	}
+	
 	
 	private void getBasicInfo(ModelMap model, int uid){
 		User user = userService.getUser(uid);

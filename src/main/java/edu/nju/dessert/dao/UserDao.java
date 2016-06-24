@@ -5,6 +5,7 @@ import java.util.Map;
 
 import edu.nju.dessert.model.Payment;
 import edu.nju.dessert.model.Point;
+import edu.nju.dessert.model.Store;
 import edu.nju.dessert.model.User;
 
 public interface UserDao {
@@ -44,5 +45,9 @@ public interface UserDao {
     public boolean cancel(int uid);
     
     public boolean setDefaultAddr(int uid, int aid);
+
+	public boolean setDefaultStore(int uid, int storeId);
+
+	public int getDefaultStore(int uid);
 
 }

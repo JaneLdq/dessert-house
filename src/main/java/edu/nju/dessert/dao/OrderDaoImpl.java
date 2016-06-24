@@ -46,7 +46,7 @@ public class OrderDaoImpl implements OrderDao {
 	
 	@Override
 	public List<Order> getOrders(int uid) {
-		// TODO Auto-generated method stub
+		// TODO getOrders
 		return null;
 	}
 

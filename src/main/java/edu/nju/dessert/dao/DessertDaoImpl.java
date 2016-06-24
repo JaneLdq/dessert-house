@@ -90,20 +90,35 @@ public class DessertDaoImpl implements DessertDao {
 
 	@Override
 	public List<Dessert> getDessertByType(int type, int page, int num, int order, int store) {
-		// TODO 根据排毒和类型筛选甜品 
+		// TODO 根据排序和类型筛选甜品 
 		String hql = "from Dessert";
 		if(type >=0 ){
 			hql += " where type=" + type;
 		}
-		if(order == 1){
-			hql += " order by sale_volume desc";
-		}else if(order == 2){
+		if(order == 2){
 			hql += " order by onshelf desc";
 		}
 		Query query = baseDao.getSession().createQuery(hql);
 		query.setFirstResult(page * num).setMaxResults(num);
 		List<Dessert> result = query.list();
 		return result;
+	}
+
+	@Override
+	public List<Dessert> search(String key, int type) {
+		String hql = "from Dessert where name like '%" + key + "%'";
+		if(type >=0 && type <=5){
+			hql += " and type=" + type;
+		}
+		Query query = baseDao.getSession().createQuery(hql);
+		List<Dessert> result = query.list();
+		return result;
+	}
+
+	@Override
+	public List<Dessert> getHotDessert() {
+		// TODO getHotDessert
+		return null;
 	}
 
 }

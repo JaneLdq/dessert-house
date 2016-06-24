@@ -25,5 +25,18 @@ public interface DessertService {
      * @return
      */
     public List<Dessert> getDessertByType(int type, int page, int num, int order, int store);
+    
+    /**
+     * 根据甜品名称搜索
+     * @param key 关键字
+     * @return
+     */
+    public List<Dessert> search(String key, int type);
+    
+    /**
+     * 获取人气推荐甜品
+     * @return
+     */
+    public List<Dessert> getHotDessert();
 	
 }

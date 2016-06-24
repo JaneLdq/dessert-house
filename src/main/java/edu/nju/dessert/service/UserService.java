@@ -3,9 +3,9 @@ package edu.nju.dessert.service;
 import java.util.List;
 import java.util.Map;
 
-import edu.nju.dessert.model.Address;
 import edu.nju.dessert.model.Payment;
 import edu.nju.dessert.model.Point;
+import edu.nju.dessert.model.Store;
 import edu.nju.dessert.model.User;
 
 public interface UserService {
@@ -35,5 +35,9 @@ public interface UserService {
 	public Map<String, Long> getAgeStat(String beginYear);
 
     public boolean cancel(int uid);
+    
+    public boolean setDefaultStore(int uid, int storeId);
+    
+    public Store getDefaultStore(int uid);
 	
 }

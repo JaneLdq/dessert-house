@@ -37,7 +37,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean deleteUser(String uid) {
-		// TODO Auto-generated method stub
+		// deleteUser
 		return false;
 	}
 
@@ -67,7 +67,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<User> getAllUser() {
-		// TODO Auto-generated method stub
+		// TODO getAllUser
 		return null;
 	}
 
@@ -239,6 +239,25 @@ public class UserDaoImpl implements UserDao {
 		int result = query.executeUpdate();
 		if (result > 0) return true;
 		return false;
+	}
+
+	@Override
+	public boolean setDefaultStore(int uid, int storeId) {
+		String hql = "update User set default_store="+ storeId + " where id="+uid;
+		Query query = baseDao.getSession().createQuery(hql);
+		int result = query.executeUpdate();
+		if (result > 0) return true;
+		return false;
+	}
+
+	@Override
+	public int getDefaultStore(int uid) {
+		String hql = "select default_store from User where id=" + uid;
+		Query query = baseDao.getSession().createQuery(hql);
+		List<Integer> stores = query.list();
+		if(stores.size() > 0)
+			return stores.get(0);
+		return -1;
 	}
 
 }

@@ -39,7 +39,7 @@
 			<div class="left line"></div>
 			<div class="content">夏日新品</div>
 			<div class="right line"></div>
-			<div class="more"><i class="fa fa-ellipsis-h"></i></div>
+			<a class="more" href="<%=request.getContextPath()%>/desserts"><i class="fa fa-ellipsis-h"></i></a>
 		</div>
 		<div class="section-content new">
 			<div class="new-item up-item">
@@ -86,7 +86,7 @@
 			<div class="left line"></div>
 			<div class="content">人气推荐</div>
 			<div class="right line"></div>
-			<div class="more"><i class="fa fa-ellipsis-h"></i></div>
+			<a class="more" href="<%=request.getContextPath()%>/desserts"><i class="fa fa-ellipsis-h"></i></a>
 		</div>
 		<div class="section-content recommend">
 			<ul class="dessert-thumbnail-list">

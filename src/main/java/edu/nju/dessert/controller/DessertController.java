@@ -1,10 +1,13 @@
 package edu.nju.dessert.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,6 +23,7 @@ import edu.nju.dessert.model.Dessert;
 import edu.nju.dessert.model.Store;
 import edu.nju.dessert.service.DessertService;
 import edu.nju.dessert.service.StoreService;
+import edu.nju.dessert.service.UserService;
 
 @Controller
 @RequestMapping(value={"/dessert","/desserts"})
@@ -29,6 +33,8 @@ public class DessertController {
 	
 	private StoreService storeService;
 	
+	private UserService userService;
+	
 	public void setDessertService(DessertService dessertService) {
 		this.dessertService = dessertService;
 	}
@@ -37,11 +43,21 @@ public class DessertController {
 		this.storeService = storeService;
 	}
 	
+	public void setUserService(UserService userService){
+		this.userService = userService;
+	}
 	
 	@RequestMapping(value="")
-	public String index(ModelMap model){
+	public String index(HttpServletRequest req, ModelMap model){
+		Integer uid = (Integer) req.getSession().getAttribute("id");
 		List<Dessert> desserts = dessertService.getDessertList(0,6);
+		List<Store> stores = storeService.getAllStore();
+		if(uid != null){
+			Store defaultStore = userService.getDefaultStore(uid);
+			model.put("defaultStore", defaultStore);
+		}
 		model.put("desserts", desserts);
+		model.put("navStores", stores);
 		int maxPage = dessertService.getTotalPage();
 		model.put("pre", -1);
         if(1<maxPage){
@@ -52,7 +68,7 @@ public class DessertController {
 		return "/dessert/index";
 	}
 	
-	@RequestMapping(value="/getDessert", method=RequestMethod.GET)
+	@RequestMapping(value="/getDessert", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> getDessertByPageType(ModelMap model, @RequestParam(value="type", defaultValue="-1", required=false) int type, 
 			@RequestParam("page") int page, @RequestParam("num") int num, @RequestParam(value="order", defaultValue="0", required=false) int order,
 			@RequestParam("storeId") int store){
@@ -69,9 +85,16 @@ public class DessertController {
 	 * @return
 	 */
 	@RequestMapping(value="/{page}")
-	public String getByPage(ModelMap model, @PathVariable int page){
+	public String getByPage(HttpServletRequest req, ModelMap model, @PathVariable int page){
+		Integer uid = (Integer) req.getSession().getAttribute("id");
 		List<Dessert> desserts = dessertService.getDessertList(page, 6);
+		List<Store> stores = storeService.getAllStore();
+		if(uid != null){
+			Store defaultStore = userService.getDefaultStore(uid);
+			model.put("defaultStore", defaultStore);
+		}
 		model.put("desserts", desserts);
+		model.put("navStores", stores);
 		model.put("pre", page-1);
 		int maxPage = dessertService.getTotalPage();
 		if((page+1)<maxPage){
@@ -140,6 +163,28 @@ public class DessertController {
 		return map;
 	}
 	
+	@RequestMapping(value="/search", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> search(@RequestParam("key") String key, @RequestParam("type") int type){
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Dessert> result = dessertService.search(key, type);
+		map.put("result", result);
+		return map;
+	}
+	
+	@RequestMapping(value="/search", method=RequestMethod.GET)
+	public String searchDessert(ModelMap model, @RequestParam("key") String key, 
+			@RequestParam(value="type", defaultValue="-1", required=false) int type){
+		try {
+			String keyword = java.net.URLDecoder.decode(key,"utf-8");
+			List<Dessert> result = dessertService.search(keyword, type);
+			model.put("desserts", result);
+			model.put("key", keyword);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return "/dessert/search";
+	}
+	
 	@Auth(Role.SALESMAN)
 	@RequestMapping(value="/check")
 	public @ResponseBody Map<String, Object> checkRightId(@RequestParam int id, @RequestParam int storeId){
@@ -154,4 +199,5 @@ public class DessertController {
         return map;
 	}
 
+	
 }

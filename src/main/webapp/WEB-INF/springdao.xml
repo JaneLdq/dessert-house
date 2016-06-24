@@ -68,6 +68,7 @@
 	<bean id="dessertController" class="edu.nju.dessert.controller.DessertController">
 		<property name="dessertService" ref="dessertService"></property>
 		<property name="storeService" ref="storeService"></property>
+		<property name="userService" ref="userService"></property>
 	</bean>
 	
 	<bean id="cartController" class="edu.nju.dessert.controller.CartController">
@@ -103,6 +104,7 @@
 	<bean id="userService" class="edu.nju.dessert.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 		<property name="addressDao" ref="addressDao"></property>
+		<property name="storeDao" ref="storeDao"></property>
 	</bean>
 	
 	<bean id="staffService" class="edu.nju.dessert.service.StaffServiceImpl">

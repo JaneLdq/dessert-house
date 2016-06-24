@@ -14,7 +14,6 @@ public class IndexController {
 	
 	@RequestMapping(value="/index/staff")
 	public String indexStaff(){
-		// TODO 后台管理首页
 		return "index";
 	}
 	

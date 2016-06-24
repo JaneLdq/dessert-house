@@ -28,4 +28,18 @@ public interface DessertDao {
      * @return
      */
     public List<Dessert> getDessertByType(int type, int page, int num, int order, int store);
+
+    /**
+     * 根据关键字搜索某个类型的甜品
+     * @param key 关键字
+     * @param type 类型 0-蛋糕， 1-面包，2-甜点，3-咖啡，4-茶饮，5-果汁
+     * @return
+     */
+	public List<Dessert> search(String key, int type);
+
+	/**
+	 * 获取人气推荐甜品
+	 * @return
+	 */
+	public List<Dessert> getHotDessert();
 }

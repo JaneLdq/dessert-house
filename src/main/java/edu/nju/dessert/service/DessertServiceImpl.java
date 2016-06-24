@@ -47,6 +47,16 @@ public class DessertServiceImpl implements DessertService {
 		return dessertDao.getDessertByType(type, page, num, order, store);
 	}
 
+	@Override
+	public List<Dessert> search(String key, int type) {
+		return dessertDao.search(key, type);
+	}
+
+	@Override
+	public List<Dessert> getHotDessert() {
+		return dessertDao.getHotDessert();
+	}
+
 
 	
 }

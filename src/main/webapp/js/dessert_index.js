@@ -45,6 +45,20 @@ $(document).ready(function () {
 		}
 	});
 	
+	$('#js-search').on('click', function(){
+		doSearch();
+	});
+	
+	$('.js-search-input').bind('keypress', function(event){
+		if(event.keyCode == 13) {
+			doSearch();
+        }
+	});
+	
+	$('.js-to-top').click(function() {
+        $('body,html').animate({ scrollTop: 0 }, 500);
+    });
+	
 });
 
 var page = 1;
@@ -58,7 +72,7 @@ var storeId = 1;
 
 function getDesserts(type, order){
 	$.ajax({
-		type: "get",
+		type: "post",
 		url: urlPrefix + "/dessert/getDessert",
 		data: {
 			page: page,
@@ -86,7 +100,7 @@ function getDesserts(type, order){
 
 function moreDesserts(){
 	$.ajax({
-		type: "get",
+		type: "post",
 		url: urlPrefix + "/dessert/getDessert",
 		data: {
 			page: page,
@@ -112,20 +126,20 @@ function moreDesserts(){
 	});
 }
 
-function getDessertHtml(data){
-	var html = "";
-	if(data == null){
-		return html;
-	}
-	for(var i=0; i<data.length; i++){
-		var d = data[i];
-		html += '<div class="dessert">' + 
-				'<a href="<' + urlPrefix + '/dessert/d/' + d.id + '">' +
-				'<img class="dessert-img" src="' + urlPrefix + '/img/dessert/' + d.id + '.jpg" alt="' + d.name + '"></a>' + 
-				'<div class="dessert-desc">' +
-					'<a href="' + urlPrefix + '/dessert/d/' + d.id + '" class="dessert-name">' + d.name + '</a>' +
-					'<span class="dessert-price"><i class="fa fa-rmb"></i>' + d.price + '</span></div></div>';
-	}
-	return html;
+function jumpToDessertDetail(element){
+	var did = $(element).attr('did');
+	var sid = $('.js-nav-current-store').attr('sid');
+	var url = urlPrefix + "/dessert/d/" + did + "/s/" + sid;
+	window.location.href = url;
+	return false;
+}
+
+function doSearch(){
+	var key = $('.js-search-input').val();
+	if(key.length == 0)
+		return;
+	key = encodeURIComponent(key);
+	window.location.href = "http://" + window.location.host + urlPrefix + "/dessert/search?key=" + key;
+	return false;
 }
 

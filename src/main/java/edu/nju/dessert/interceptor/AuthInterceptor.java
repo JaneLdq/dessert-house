@@ -18,8 +18,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 				return true;
 			} else {
 				HttpSession session = request.getSession();
-				// TODO 
-				System.out.println(request.getMethod()+request.getServletPath().toString());
 				if(request.getMethod().equals("GET")){
 					String url = "/DessertHouse" + request.getServletPath().toString();
 					String params = "";

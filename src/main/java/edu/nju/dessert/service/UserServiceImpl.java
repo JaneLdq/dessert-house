@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import edu.nju.dessert.dao.AddressDao;
+import edu.nju.dessert.dao.StoreDao;
 import edu.nju.dessert.dao.UserDao;
 import edu.nju.dessert.model.Payment;
 import edu.nju.dessert.model.Point;
+import edu.nju.dessert.model.Store;
 import edu.nju.dessert.model.User;
 
 public class UserServiceImpl implements UserService {
@@ -14,6 +16,8 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	private AddressDao addrDao;
+	
+	private StoreDao storeDao;
 	
 	private int pageSize = 10;
 	
@@ -23,6 +27,10 @@ public class UserServiceImpl implements UserService {
 
 	public void setAddressDao(AddressDao addrDao){
 		this.addrDao = addrDao;
+	}
+	
+	public void setStoreDao(StoreDao storeDao){
+		this.storeDao = storeDao;
 	}
 
 	@Override
@@ -98,5 +106,19 @@ public class UserServiceImpl implements UserService {
     public boolean cancel(int uid) {
         return userDao.cancel(uid);
     }
+
+	@Override
+	public boolean setDefaultStore(int uid, int storeId) {
+		return userDao.setDefaultStore(uid, storeId);
+	}
+
+	@Override
+	public Store getDefaultStore(int uid) {
+		int sid = userDao.getDefaultStore(uid);
+		if(sid == -1){
+			sid = 1;
+		}
+		return storeDao.getStore(sid);
+	}
 
 }
