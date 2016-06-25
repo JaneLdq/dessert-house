@@ -98,6 +98,16 @@ public class DessertDaoImpl implements DessertDao {
 		if(order == 2){
 			hql += " order by onshelf desc";
 		}
+        if(order ==1){
+            hql = "select dessert.* from dessert left join(\n" +
+                    "select dessert_id,sum(quantity) s1 from order_item where order_id in(\n" +
+                    "select id from sorder where sorder.store_id = '1'\n" +
+                    ")\n" +
+                    "group by dessert_id\n" +
+                    ") a2 on dessert.id = a2.dessert_id\n" +
+                    "where type=\"0\"\n" +
+                    "order by s1 desc,id\n";
+        }
 		Query query = baseDao.getSession().createQuery(hql);
 		query.setFirstResult(page * num).setMaxResults(num);
 		List<Dessert> result = query.list();
