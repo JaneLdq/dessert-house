@@ -64,7 +64,12 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public boolean deleteAddress(int aid) {
+    public boolean deleteAddress(int uid, int aid) {
+        Address address = getDefaultAddress(uid);
+        // 不允许删除默认收获地址
+        if (aid == address.getId()) {
+            return false;
+        }
         return addressDao.deleteAddress(aid);
     }
 

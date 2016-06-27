@@ -20,7 +20,7 @@ public interface AddressService {
 
     public boolean updateAddress(int aid, String address, String tel, String receiver);
 
-    public boolean deleteAddress(int aid);
+    public boolean deleteAddress(int uid, int aid);
 
     public Address getAddress(int aid);
 

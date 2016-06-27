@@ -255,7 +255,7 @@ public class UserDaoImpl implements UserDao {
 		String hql = "select default_store from User where id=" + uid;
 		Query query = baseDao.getSession().createQuery(hql);
 		List<Integer> stores = query.list();
-		if(stores.size() > 0)
+		if(stores.size() > 0 && stores.get(0) != null)
 			return stores.get(0);
 		return -1;
 	}
