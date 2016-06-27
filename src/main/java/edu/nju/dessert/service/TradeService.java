@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import edu.nju.dessert.vo.AdditionItemVO;
 import edu.nju.dessert.vo.CartItemVO;
 import edu.nju.dessert.vo.OrderItemVO;
 
@@ -21,7 +22,7 @@ public interface TradeService {
 
 	public Double updateCartItem(int cid, int uid, int dessertId, int quantity, int storeId, Date date);
 	
-	public boolean addCartItem(int uid, int dessertId, int quantity, int storeId, Date date);
+	public boolean addCartItem(int uid, int dessertId, int quantity, int storeId, Date date, List<AdditionItemVO> additions);
 
 	public int book(int uid);
 	

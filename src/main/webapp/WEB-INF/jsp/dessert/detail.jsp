@@ -21,6 +21,7 @@
 			<div class="right info-panel">
 				<h2 class="name">${dessert.name}</h2>
 				<input type="hidden" id="js-dessert-id" value="${dessert.id}">
+				<input type="hidden" id="js-dessert-type" value="${dessert.type}">
 				<span class="price"><i class="fa fa-rmb"></i>${dessert.price}</span>
 				<div class="desc">${dessert.desc}</div>
 				<div class="separator"></div>
@@ -40,10 +41,11 @@
 							</c:forEach>
 						</select>
 					</div>
+					<c:if test="${dessert.type == 0||dessert.type >2 }">
 					<div class="option"><label>规格：</label>
 						<c:choose>
 						<c:when test="${dessert.type == 0}">
-							<ul class="cake-size-list">
+							<ul class="cake-size-list js-cake-size-selector">
 								<li class="size-item active">1.2磅</li>
 								<li class="size-item">2.2磅</li>
 								<li class="size-item">3.2磅</li>
@@ -51,19 +53,31 @@
 							</ul>
 						</c:when>
 						<c:when test="${dessert.type > 2}">
-							<ul class="cake-size-list">
-								<li class="size-item">大杯（800ml）</li>
+							<ul class="cake-size-list js-cup-selector">
+								<li class="size-item active">大杯（800ml）</li>
 								<li class="size-item">中杯（500ml）</li>
 							</ul>
 						</c:when>
 						</c:choose>
 					</div>
+					</c:if>
 					<c:if test="${dessert.type > 2}">
 						<div class="option"><label>温度：</label>
-							<ul class="cake-size-list">
-								<li class="size-item">热</li>
+							<ul class="cake-size-list js-temp-selector">
+								<li class="size-item active">热</li>
 								<li class="size-item">冰</li>
 								<li class="size-item">去冰</li>
+							</ul>
+						</div>
+					</c:if>
+					<c:if test="${dessert.type > 3}">
+						<div class="option"><label>甜度：</label>
+							<ul class="cake-size-list js-sweet-selector">
+								<li class="size-item active">无糖</li>
+								<li class="size-item">三分</li>
+								<li class="size-item">半糖</li>
+								<li class="size-item">七分</li>
+								<li class="size-item">十分</li>
 							</ul>
 						</div>
 					</c:if>

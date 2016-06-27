@@ -11,6 +11,7 @@ import edu.nju.dessert.model.Order;
 import edu.nju.dessert.vo.OrderItemVO;
 import edu.nju.dessert.vo.OrderVO;
 
+// 所有拿到的OrderVO中的OrderItemVO中药增加AdditionItemVO
 public class OrderServiceImpl implements OrderService {
 
     private OrderDao orderDao;

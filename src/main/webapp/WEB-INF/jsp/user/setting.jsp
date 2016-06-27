@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/plugins/jquery-modal/jquery.modal.css" type="text/css" media="screen" />
 <jsp:include page="/WEB-INF/jsp/common/header.jsp"></jsp:include>
 <title>个人设置 - 恬</title>
 </head>
@@ -82,7 +83,7 @@
 			<div class="tab-panel user-account-setting">
 				<div class="user-address-setting">
 					<label class="label left">地址列表：</label>
-					<button class="btn left">新增收货地址</button>
+					<button class="btn left js-add-address">新增收货地址</button>
 					<div class="clear-fix"></div>
 					<ul class="address-list">
 						<c:if test="${defaultAddress != null}">
@@ -163,7 +164,11 @@
 		</div>
 		<div class="clear-fix"></div>
 	</div>
+	
+	<jsp:include page="/WEB-INF/jsp/common/address_modal.jsp"></jsp:include>
+	
 	<div class="toaster" style="display:none"></div>
+	<script src="<%=request.getContextPath() %>/plugins/jquery-modal/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<%=request.getContextPath() %>/js/setting.js"></script>
 </body>
 </html>

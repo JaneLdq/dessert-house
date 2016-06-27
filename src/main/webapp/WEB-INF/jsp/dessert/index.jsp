@@ -66,7 +66,7 @@
 				+ "/cart'><i class='fa fa-shopping-cart'></i></a></li>");
 			}
 		%>
-		<li class="stack-nav-item active js-type-filter" value="0"><i class="nav-icon cake-icon"></i><span>蛋糕</span></li>
+		<li class="stack-nav-item js-type-filter" value="0"><i class="nav-icon cake-icon"></i><span>蛋糕</span></li>
 		<li class="stack-nav-item js-type-filter" value="1"><i class="nav-icon bread-icon"></i><span>面包</span></li>
 		<li class="stack-nav-item js-type-filter" value="2"><i class="nav-icon cookie-icon"></i><span>甜点</span></li>
 		<li class="stack-nav-item js-type-filter" value="3"><i class="nav-icon coffee-icon"></i><span>咖啡</span></li>

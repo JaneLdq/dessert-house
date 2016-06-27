@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.hibernate.Query;
 
+import edu.nju.dessert.model.AdditionItem;
 import edu.nju.dessert.model.Cart;
+import edu.nju.dessert.vo.AdditionItemVO;
 import edu.nju.dessert.vo.CartItemVO;
 
 public class CartDaoImpl implements CartDao {
@@ -50,6 +52,9 @@ public class CartDaoImpl implements CartDao {
 		int result =query.executeUpdate();
 		if( result <= 0)
 			return false;
+		hql = "delete AdditionItem where cart_id=" + id;
+		query = baseDao.getSession().createQuery(hql);
+		query.executeUpdate();
 		return true;
 	}
 	
@@ -76,6 +81,10 @@ public class CartDaoImpl implements CartDao {
 				}
 				this.updateDessert(c.getId(),c.getUid(), c.getDessertId(), c.getQuantity(), c.getStoreId(), date);
 			}
+			hql = "from AdditionItem where cart_id=" + c.getId();
+			query = baseDao.getSession().createQuery(hql);
+			List<AdditionItem> additions = query.list();
+			c.setAdditionList(additions);
 		}
 		return items;
 	}
@@ -154,6 +163,30 @@ public class CartDaoImpl implements CartDao {
 		int result = query.executeUpdate();
 		System.out.println(result);
 		return result;
+	}
+
+	@Override
+	public boolean addDessert(int uid, int dessertId, int quantity, int storeId, Date date,
+			List<AdditionItemVO> additions) {
+		// TODO 向购物车添加商品 需要附加条件，并且要判断在已有的购物车中是否存在附加条件一模一样的甜品，如果存在，则直接累加数量，否则创建新的购物车条目
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String dateStr = sdf.format(date);
+		String hql= "update Cart cart set quantity = quantity + " + quantity + " where user_id =" + uid 
+				+ " and dessert_id=" + dessertId + " and store_id=" + storeId + " and date='" + dateStr +"'";
+		Query query = baseDao.getSession().createQuery(hql);
+		int result = query.executeUpdate();
+		if( result <= 0){
+			Cart c = new Cart(uid, dessertId, quantity, storeId, date);
+			boolean saveResult = baseDao.save(c);
+			if(saveResult){
+				int cid = c.getId();
+				for(AdditionItemVO vo : additions){
+					baseDao.save(new AdditionItem(cid, null, vo.getKey(), vo.getValue()));
+				}
+			}
+			return saveResult;
+		}
+		return true;
 	}
 	
 }

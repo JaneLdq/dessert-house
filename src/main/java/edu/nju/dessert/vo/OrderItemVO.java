@@ -1,5 +1,7 @@
 package edu.nju.dessert.vo;
 
+import java.util.List;
+
 public class OrderItemVO {
 
     private int id;
@@ -11,6 +13,8 @@ public class OrderItemVO {
     private String name;
     
     private double price;
+    
+    private List<AdditionItemVO> additions;
     
     public OrderItemVO(){}
     
@@ -61,6 +65,14 @@ public class OrderItemVO {
     public void setPrice(double price) {
         this.price = price;
     }
+
+	public List<AdditionItemVO> getAdditions() {
+		return additions;
+	}
+
+	public void setAdditions(List<AdditionItemVO> additions) {
+		this.additions = additions;
+	}
     
     
     

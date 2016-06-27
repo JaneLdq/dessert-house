@@ -22,8 +22,12 @@ $(document).ready(function () {
 	$('.js-type-filter').on('click', function(){
 		if(!$(this).hasClass('active')){
 			$('.js-type-filter').removeClass('active');
-			$(this).addClass('active');
 			type = $(this).attr('value');
+			if(type != -1){
+				$('.js-type-filter[value="' + type + '"]').addClass('active');
+			}else{
+				$(this).addClass('active');
+			}
 			order = $('.js-order-filter.active').attr('value');
 			page = 0;
 			more = true;

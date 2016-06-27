@@ -22,17 +22,37 @@ $(document).ready(function(){
 		var storeId = $('#js-store-selector').val();
 		var date = $('#js-date').val();
 		var num = $('#js-dessert-value').val();
+		var additions = [];
+		if($('.js-cake-size-selector').length > 0){
+			var value = $('.js-cake-size-selector').children('.size-item.active').html();
+			additions.push({key: "规格", value: value});
+		}
+		if($('.js-cup-selector').length > 0){
+			var value = $('.js-cup-selector').children('.size-item.active').html();
+			additions.push({key: "规格", value: value});
+		}
+		if($('.js-temp-selector').length > 0){
+			var value = $('.js-temp-selector').children('.size-item.active').html();
+			additions.push({key: "温度", value: value});
+		}
+		if($('.js-sweet-selector').length > 0){
+			var value = $('.js-sweet-selector').children('.size-item.active').html();
+			additions.push({key: "甜度", value: value});
+		}
+		var cartItem = {
+				dessertId: id,
+				quantity: num,
+				storeId: storeId,
+				dateStr: date,
+				additions: additions
+		};
 		if(result==1){
 			if(num > 0){
 				$.ajax({
 					type: "POST",
 					url: urlPrefix + "/cart/add",
-					data: {
-						dessertId: id,
-						quantity: num,
-						storeId: storeId,
-						dateStr: date
-					},
+					contentType: "application/json",
+					data: JSON.stringify(cartItem),
 					success: function(data){
 						console.log("加入购物车" + data.result);
 						updateCartMsg();

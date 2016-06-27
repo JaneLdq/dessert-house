@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import edu.nju.dessert.service.AddressService;
 import edu.nju.dessert.service.DessertService;
 import edu.nju.dessert.service.TradeService;
 import edu.nju.dessert.util.DateTranslator;
+import edu.nju.dessert.vo.CartItemAddVO;
 import edu.nju.dessert.vo.CartItemVO;
 
 @Controller
@@ -53,6 +55,7 @@ public class CartController {
 	public String index(HttpServletRequest req, ModelMap model){
 		int uid = (int) req.getSession().getAttribute("id");
 		List<CartItemVO> items = tradeService.getCartItem(uid); 
+		System.out.println("cart items: " + items.size());
 		model.put("len", items.size());
 		model.put("items", items);
 		Date date = new Date(); 
@@ -65,12 +68,12 @@ public class CartController {
 	
 	@Auth(Role.USER)
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public @ResponseBody Map<String, Object> addToCart(HttpServletRequest req, @RequestParam int dessertId, @RequestParam int quantity,
-			@RequestParam int storeId, @ RequestParam String dateStr){
+	public @ResponseBody Map<String, Object> addToCart(HttpServletRequest req, @RequestBody CartItemAddVO cartItem){
 		HttpSession session = req.getSession();
 		int uid = (int)session.getAttribute("id");
-		Date date = DateTranslator.strToDate(dateStr);
-		boolean result = tradeService.addCartItem(uid, dessertId, quantity, storeId, date);
+		Date date = DateTranslator.strToDate(cartItem.getDateStr());
+		boolean result = tradeService.addCartItem(uid, cartItem.getDessertId(), cartItem.getQuantity(), cartItem.getStoreId(),
+				date, cartItem.getAdditions());
 		Map<String, Object> map = new HashMap<String, Object>();  
 		map.put("result", result);
 		return map;

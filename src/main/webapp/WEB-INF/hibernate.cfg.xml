@@ -19,6 +19,7 @@
         	<![CDATA[jdbc:mysql://localhost:3306/dessert?useUnicode=true&characterEncoding=utf8]]>
 		</property>
 		<mapping class="edu.nju.dessert.model.Address"/>
+		<mapping class="edu.nju.dessert.model.AdditionItem"/>
     	<mapping class="edu.nju.dessert.model.Member"/>
     	<mapping class="edu.nju.dessert.model.Store"/>
     	<mapping class="edu.nju.dessert.model.Plan"/>

@@ -55,8 +55,9 @@
 						<div class="left cart-cell-dessert-info">
 							<a class="name" href="<%=request.getContextPath() %>/dessert/d/${item.dessertId}" >${item.dessertName}</a>
 							<ul class="detail-info">
-								<li class="item">2.2磅</li>
-								<li class="item">加糖</li>
+							<c:forEach items="${item.additionList}" var="i">
+								<li class="item">${i.val}</li>
+							</c:forEach>
 							</ul>
 							<a class="store-address js-cell-dessert-store" href="<%=request.getContextPath() %>/store/${item.storeId}" cid="${item.id}" sid="${item.storeId}"><i class="fa fa-map-marker"></i>  ${item.storeName}</a>	
 						</div>

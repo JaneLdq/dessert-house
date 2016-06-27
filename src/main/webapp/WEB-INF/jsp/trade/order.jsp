@@ -23,7 +23,7 @@
 				<li><label>联系电话：</label><span>${address.tel}</span></li>
 				<li><a href="javascript:void(0)">修改本地址</a></li>
 			</ul>
-			<button class="btn btn-sm">使用新地址</button>
+			<button class="btn btn-sm js-add-address">使用新地址</button>
 		</div>
 		<div class="m-order-item">
 			<h1>确认订单信息</h1>
@@ -56,10 +56,10 @@
 		</div>
 		<div class="m-order-total">
 			<div class="cart-op js-cart-op">
-				<div class="right btn btn-submit" id="js-cart-submit">提交订单</div>
+				<div class="right btn btn-submit" id="js-order-submit">提交订单</div>
 				<div class="right tip total-tip">
-					<p>总价：<span class="sum js-sum"><i class="fa fa-rmb"></i></span></p>
-					<p>已享受会员折扣：<span id="js-discount">- <i class="fa fa-rmb"></i></span></p>
+					<p>总价：<span class="sum js-sum"><i class="fa fa-rmb"></i>${sum}</span></p>
+					<p>已享受会员折扣：<span id="js-discount">- <i class="fa fa-rmb"></i>${discount}</span></p>
 				</div>
 				<a class="back right" href="<%=request.getContextPath()%>/cart"><i class="fa fa-mail-reply"></i>返回购物车</a>
 				<div class="clear-fix"></div>
@@ -67,8 +67,9 @@
 			<div class="clear-fix"></div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/jsp/common/address_modal.jsp"></jsp:include>
 	<div class="toaster" style="display:none"></div>
 	<script src="<%=request.getContextPath() %>/plugins/jquery-modal/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="<%=request.getContextPath() %>/js/cart.js"></script>
+	<script src="<%=request.getContextPath() %>/js/order.js"></script>
 </body>
 </html>

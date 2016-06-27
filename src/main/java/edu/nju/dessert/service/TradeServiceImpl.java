@@ -21,6 +21,7 @@ import edu.nju.dessert.model.Order;
 import edu.nju.dessert.model.OrderItem;
 import edu.nju.dessert.util.DateTranslator;
 import edu.nju.dessert.util.DiscountCalculator;
+import edu.nju.dessert.vo.AdditionItemVO;
 import edu.nju.dessert.vo.CartItemVO;
 import edu.nju.dessert.vo.OrderItemVO;
 
@@ -100,14 +101,15 @@ public class TradeServiceImpl implements TradeService {
 	}
 
 	@Override
-	public boolean addCartItem(int uid, int dessertId, int quantity, int storeId, Date date) {
-		boolean result = cartDao.addDessert(uid, dessertId, quantity, storeId, date);
+	public boolean addCartItem(int uid, int dessertId, int quantity, int storeId, Date date, List<AdditionItemVO> additions) {
+		boolean result = cartDao.addDessert(uid, dessertId, quantity, storeId, date, additions);
 		return result;
 	}
 
 	@Override
 	@Transactional
 	public int book(int uid) {
+		// TODO 将购物车里的全部商品创建订单，需要处理新增的AdditionItem部分
 		int result = 1;
 		double sum = cartDao.getCartTotalSum(uid);
 		double discount = DiscountCalculator.calDiscount(sum, memberDao.getMemberLevel(uid));

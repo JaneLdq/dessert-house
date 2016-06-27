@@ -2,6 +2,9 @@ package edu.nju.dessert.vo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import edu.nju.dessert.model.AdditionItem;
 
 public class CartItemVO {
 	
@@ -26,6 +29,8 @@ public class CartItemVO {
 	private double total;
 	
 	private int max;
+	
+	private List<AdditionItem> additionList;
 	
 	public CartItemVO(){}
 	
@@ -132,5 +137,14 @@ public class CartItemVO {
 	public void setMax(int max) {
 		this.max = max;
 	}
+
+	public List<AdditionItem> getAdditionList() {
+		return additionList;
+	}
+
+	public void setAdditionList(List<AdditionItem> additionList) {
+		this.additionList = additionList;
+	}
+	
 	
 }

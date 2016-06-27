@@ -618,7 +618,6 @@ input[type="date"] {
 \*------------------------------------*/
 .btn {
 	display:block;
-	max-width: 160px;
 	width: 100px;
 	padding: 0;
 	height: 34px;
@@ -1264,12 +1263,14 @@ ul.tab-list {
 }
 
 .blocker {
-	background-color: rgba(64,32,0,0.15);
+	background-color: rgba(64,32,0,0.25);
 }
 
 .modal-title {
 	height: 22px;
-	padding: 5px 20px;
+	padding: 5px 15px;
+	font-size: 14px;
+	line-height: 22px;
 	color: #fff;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
@@ -1282,10 +1283,15 @@ ul.tab-list {
 
 .modal-close {
 	width: 32px;
-	margin: 8px 4px;
+	margin: 8px 0 8px 4px;
 	color: #fff;
 	position: absolute;
-    right: 10px;
+    right: 0;
+    opacity: 0.85;
+}
+
+a.modal-close:hover {
+	opacity: 1;
 }
 
 .msg-modal {
@@ -3078,6 +3084,47 @@ ul.cart-list-item > li {
 	line-height: 28px;
 	font-size: 12px;
 }
+
+
+
+
+
+
+/*------------------------------------*\
+    $address-modal
+\*------------------------------------*/
+.address-modal {
+	width: 440px;
+	background-color: rgba(255,255,255,1);
+}
+
+.address-modal .modal-content {
+	padding: 5px 15px 20px 15px;
+}
+
+.address-modal .address-form label {
+	width: 80px;
+}
+
+.address-modal .address-form input[name="address" ] {
+	width: 306px;
+}
+
+.address-modal .address-form input[type="checkbox"] {
+	box-sizing: border-box;
+	margin-left: 84px;
+}
+
+.address-modal .address-form .checkbox-span {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 10px;
+}
+
+.address-modal .btn {
+	margin: 0 auto;
+}
+
 
 
 
