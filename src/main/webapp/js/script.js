@@ -35,7 +35,6 @@ function updateCartMsg(){
 	var result = checkLogin();
 	console.log(window.location.href);
 	if(result == 1){
-		console.log("getTotal" + window.location.href);
 		$.ajax({
 			type: "POST",
 			url: urlPrefix + "/cart/total",

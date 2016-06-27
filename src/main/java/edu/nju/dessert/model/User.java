@@ -97,6 +97,9 @@ public class User {
 	}
 
 	public String getAvatar() {
+		if(avatar == null || avatar.length() == 0){
+			return "/Tian/img/avatar.jpg";
+		}
 		return avatar;
 	}
 

@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.nju.dessert.interceptor.Auth;
 import edu.nju.dessert.interceptor.Role;
+import edu.nju.dessert.model.Address;
+import edu.nju.dessert.service.AddressService;
 import edu.nju.dessert.service.DessertService;
 import edu.nju.dessert.service.TradeService;
 import edu.nju.dessert.util.DateTranslator;
@@ -32,12 +34,18 @@ public class CartController {
 	
 	private DessertService dessertService;
 	
+	private AddressService addressService;
+	
 	public void setDessertService(DessertService dessertService) {
 		this.dessertService = dessertService;
 	}
 	
 	public void setTradeService(TradeService tradeService) {
 		this.tradeService = tradeService;
+	}
+	
+	public void setAddressService(AddressService addressService) {
+		this.addressService = addressService;
 	}
 	
 	@Auth(Role.USER)
@@ -135,6 +143,20 @@ public class CartController {
 		int result = tradeService.book(id);
 		map.put("result", result);
 		return map;
+	}
+	
+	@Auth(Role.USER)
+	@RequestMapping(value="/order", method=RequestMethod.GET)
+	public String order(ModelMap model, HttpServletRequest req, HttpServletResponse response) {
+		int uid = (int) req.getSession().getAttribute("id");
+		List<CartItemVO> items = tradeService.getCartItem(uid); 
+		Map<String, String> sum = tradeService.getCartSum(uid);
+		Address address = addressService.getDefaultAddress(uid);
+		model.put("items", items);
+		model.put("sum", sum.get("sum"));
+		model.put("discount", sum.get("discount"));
+		model.put("address", address);
+		return "/trade/order";
 	}
 	
 	

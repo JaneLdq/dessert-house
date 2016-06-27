@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +17,12 @@
 	<div class="m-cart-title">
 		我的购物车
 	</div>
-	<div class="m-cart-panel">
+	<c:if test="${len >0 }">
+		<div class="m-cart-panel">
+	</c:if>
+	<c:if test="${len <= 0 }">
+		<div class="m-cart-panel empty">
+	</c:if>
 		<c:if test="${len > 0}">
 		<ul class="cart-thead">
 			<li class="column t-checkbox">
@@ -31,8 +39,9 @@
 		<c:choose>
 			<c:when test="${len == 0}">
 				<div class="cart-list-empty">
-					<p>肚子里空空的，伐开心，求投喂！</p>
-					<a href="<c:url value="/dessert"/>"> 去觅食~Ψ(￣∀￣)Ψ</a>
+					<img src="<%=contextPath%>/img/cart.png">
+					<p>购物车什么都没有，</p>
+					<a href="<c:url value="/dessert"/>"> 马上去逛逛！Ψ(￣∀￣)Ψ</a>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -45,6 +54,10 @@
 						<img class="left cart-cell-dessert-img" src="<%=request.getContextPath()%>/img/dessert/${item.dessertId}.jpg" alt="${item.dessertName})"/>
 						<div class="left cart-cell-dessert-info">
 							<a class="name" href="<%=request.getContextPath() %>/dessert/d/${item.dessertId}" >${item.dessertName}</a>
+							<ul class="detail-info">
+								<li class="item">2.2磅</li>
+								<li class="item">加糖</li>
+							</ul>
 							<a class="store-address js-cell-dessert-store" href="<%=request.getContextPath() %>/store/${item.storeId}" cid="${item.id}" sid="${item.storeId}"><i class="fa fa-map-marker"></i>  ${item.storeName}</a>	
 						</div>
 					</li>
@@ -80,14 +93,41 @@
 				<span class="left select-all"><input type="checkbox">全选</span>
 				<a class="left" href="javascript:void(0)">删除选中商品</a>
 			</div>
-			<div class="right btn btn-submit" id="js-cart-submit">结算</div>			
+			<!-- <div class="right btn btn-submit" id="js-cart-submit">结算</div>	-->	
+			<a class="right btn btn-submit" href="<%=contextPath%>/cart/order">结算</a>
 			<div class="right tip total-tip">
 				<p>总价：<span class="js-sum"><i class="fa fa-rmb"></i></span></p>
 				<p>已享受会员折扣：<span id="js-discount">- <i class="fa fa-rmb"></i></span></p>
 			</div>
 			<div class="right tip select-tip" style="display:none">已选择<span class="num">0</span>份甜点</div>
+			<div class="clear-fix"></div>
 		</div>
 		</c:if>
+	</div>
+	<div class="m-dessert-recommend" style="margin-top: 0">
+		<div class="title">
+			<div class="left line"></div>
+			<div class="content">猜你喜欢</div>
+			<div class="right line"></div>
+		</div>
+		<ul class="dessert-thumbnail-list">
+			<li class="dessert-thumbnail-item">
+				<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/2.jpg"></a>
+				<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
+			</li><!-- 
+			--><li class="dessert-thumbnail-item">
+				<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/11.jpg"></a>
+				<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
+			</li><!-- 
+			--><li class="dessert-thumbnail-item">
+				<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/5.jpg"></a>
+				<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
+			</li><!-- 
+			--><li class="dessert-thumbnail-item">
+				<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/8.jpg"></a>
+				<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
+			</li>
+		</ul>
 	</div>
 	</div>
 	<div class="modal common-modal cart-modal" id="confirm-modal" style="display:none">

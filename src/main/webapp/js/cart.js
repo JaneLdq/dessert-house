@@ -222,10 +222,10 @@ function checkEmpty(){
 			else{
 				$('.js-cart-msg').hide();
 				var html = '<div class="cart-list-empty">'
-					+ '<p>肚子里空空的，伐开心，求投喂！</p>'
-					+ '<a href="/' + urlPrefix + '/dessert"> 去觅食~Ψ(￣∀￣)Ψ</a>'
-					+ '</div>';
-				$('.cart-list').html(html);
+						+ '<img src="' + urlPrefix + '/img/cart.png">'
+						+ '<p>购物车什么都没有，</p><a href="' + urlPrefix + '/dessert"> 马上去逛逛！Ψ(￣∀￣)Ψ</a>'
+						+ '</div>';
+				$('.m-cart-panel').html(html);
 				$('.js-cart-op').hide();
 			}
 		}

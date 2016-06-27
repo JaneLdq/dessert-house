@@ -74,6 +74,7 @@
 	<bean id="cartController" class="edu.nju.dessert.controller.CartController">
 		<property name="tradeService" ref="tradeService"></property>
 		<property name="dessertService" ref="dessertService"></property>
+		<property name="addressService" ref="addressService"></property>
 	</bean>
 	
 	<bean id="storeController" class="edu.nju.dessert.controller.StoreController">
