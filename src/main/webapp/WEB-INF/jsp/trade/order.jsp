@@ -67,6 +67,10 @@
 			<div class="clear-fix"></div>
 		</div>
 	</div>
+	<div class="modal common-modal msg-modal" id="charge-msg-modal" style="display:none">
+		<a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
+		<div class="modal-content">订单提交成功!</div>
+	</div>
 	<jsp:include page="/WEB-INF/jsp/common/address_modal.jsp"></jsp:include>
 	<div class="toaster" style="display:none"></div>
 	<script src="<%=request.getContextPath() %>/plugins/jquery-modal/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/plugins/jquery-modal/jquery.modal.css" type="text/css" media="screen" />
 <jsp:include page="/WEB-INF/jsp/common/header.jsp"></jsp:include>
 <title>我的订单 - 恬</title>
 </head>
@@ -34,6 +35,7 @@
                             <li class="time">${o.date} </li>
                             <li class="order-number"><label>订单号：</label>${o.id}</li>
                             <li class="store"><label>店铺：</label>${o.storeId}</li>
+                            <li class="btn btn-sm js-btn-one-more" >再来一单</li>
                         </ul>
                         <div class="order-detail">
                             <div class="cell o-detail">
@@ -69,4 +71,11 @@
 		</div>
         <div class="clear-fix"></div>
 	</div>
+    <div class="modal common-modal msg-modal" id="one-more-modal" style="display:none">
+        <a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
+        <div class="modal-content">再来一单提交成功!</div>
+    </div>
+    <div class="toaster" style="display:none"></div>
+    <script src="<%=request.getContextPath() %>/plugins/jquery-modal/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="<%=request.getContextPath() %>/js/order.js"></script>
 </body>
