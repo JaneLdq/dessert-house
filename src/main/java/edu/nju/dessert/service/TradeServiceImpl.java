@@ -108,7 +108,7 @@ public class TradeServiceImpl implements TradeService {
 
 	@Override
 	@Transactional
-	public int book(int uid) {
+	public int book(int uid, String remark, int sendType, int addressId) {
 		// TODO 将购物车里的全部商品创建订单，需要处理新增的AdditionItem部分
 		int result = 1;
 		double sum = cartDao.getCartTotalSum(uid);
@@ -121,7 +121,8 @@ public class TradeServiceImpl implements TradeService {
 			while (iter.hasNext()) {
 				Entry<String, List<Cart>> order = (Entry<String, List<Cart>>) iter.next();
 				List<Cart> orderItem = order.getValue();
-				result = orderDao.saveOrder(uid, 1, orderItem.get(0).getStore_id(), orderItem.get(0).getDate(), orderItem);
+				result = orderDao.saveOrder(uid, 1, orderItem.get(0).getStore_id(), orderItem.get(0).getDate(), orderItem, 
+						sendType, remark, addressId);
 			}
 		} else{
 			result = 2;
@@ -169,7 +170,7 @@ public class TradeServiceImpl implements TradeService {
             uid = member.getUid();
             discount = DiscountCalculator.calDiscount(total, member.getLevel());
         }
-        Order order = new Order(uid, 0, date, total-discount, discount, date, storeId);
+        Order order = new Order(uid, 0, date, total-discount, discount, date, storeId, 1, "", -1);
         boolean result = orderDao.saveSaleOrder(order, list);
         return result;
     }

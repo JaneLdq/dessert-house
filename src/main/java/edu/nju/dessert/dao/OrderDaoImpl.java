@@ -51,12 +51,14 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public int saveOrder(int uid, int type,  int store_id, Date date, List<Cart> items) {
+	public int saveOrder(int uid, int type,  int store_id, Date date, List<Cart> items, 
+			int sendType, String remark, int addressId) {
 		int state = 1;
 		boolean result = true;
 		double total = cartDao.getCartTotalSum(uid);
 		double discount = DiscountCalculator.calDiscount(total, memberDao.getMemberLevel(uid));
-		Order order = new Order(uid, type, date, (total-discount), discount, new Date(), store_id);
+		Order order = new Order(uid, type, date, (total-discount), discount, new Date(), store_id,
+				sendType, remark, addressId);
 		result = baseDao.save(order);
 		if(result){
 			int orderId = order.getId();

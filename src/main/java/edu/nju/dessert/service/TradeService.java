@@ -24,7 +24,14 @@ public interface TradeService {
 	
 	public boolean addCartItem(int uid, int dessertId, int quantity, int storeId, Date date, List<AdditionItemVO> additions);
 
-	public int book(int uid);
+	/**
+	 * 创建订单
+	 * @param uid 用户ID
+	 * @param remark 备注
+	 * @param type 类型（送货=0. 自提=1）
+	 * @return
+	 */
+	public int book(int uid, String remark, int type, int addressId);
 	
 	public int checkOverdue();
 	

@@ -119,6 +119,32 @@ function navStore(){
 	
 }
 
+function addAddress(func){
+	var address = $('.address-form input[name="address"]').val();
+	var receiver = $('.address-form input[name="receiver"]').val();
+	var tel = $('.address-form input[name="tel"]').val();
+	var addrData =  {
+			receiver: receiver,
+			address: address,
+			tel: tel
+		};
+	if(tel.length == 0 || receiver.length == 0 || tel.length == 0){
+		return;
+	}
+	$.ajax({
+		type: "post",
+		url: urlPrefix + "/address/add",
+		data: addrData,
+		success: function(data){
+			addrData.id = data['result'];
+			if(func != null){
+				func(addrData);
+			}
+			console.log(data);
+		}
+	});
+}
+
 
 function toaster(msg){
 	$('.toaster').html(msg);

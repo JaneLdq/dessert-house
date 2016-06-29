@@ -349,8 +349,7 @@ public class UserCenterController {
 			map.put("result", 0);
 		}
 		return map;
-	}
-	
+	}	
 	
 	private void getBasicInfo(ModelMap model, int uid){
 		User user = userService.getUser(uid);

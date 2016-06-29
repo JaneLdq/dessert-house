@@ -16,14 +16,29 @@
 	<div class="wrapper m-order-wrapper">
 		<div class="m-order-info">
 			<h1>确认收货地址</h1>
-			<ul>
-				<li><i class="fa fa-map-marker"></i></li>
-				<li><label>收货人：</label><span>${address.receiver}</span></li>
-				<li><label>收货地址：</label><span>${address.address}</span></li>
-				<li><label>联系电话：</label><span>${address.tel}</span></li>
-				<li><a href="javascript:void(0)">修改本地址</a></li>
-			</ul>
-			<button class="btn btn-sm js-add-address">使用新地址</button>
+			<div id="js-address-list" address-id="${address.id}">
+				<ul>
+					<li><i class="fa fa-map-marker"></i></li>
+					<li><label>收货人：</label><span class="js-current-receiver">${address.receiver}</span></li>
+					<li><label>收货地址：</label><span class="js-current-address">${address.address}</span></li>
+					<li><label>联系电话：</label><span class="js-current-tel">${address.tel}</span></li>
+					<li><a href="javascript:void(0)">修改本地址</a></li>
+				</ul>
+				<button class="btn btn-sm js-add-address">使用新地址</button>
+			</div>
+			<div class="customer-pick-up">
+				<div class="type-selector js-type-selector" style="display:none">
+					<input type="radio" name="pick-type" id="js-take-out" value="0" checked><label>送货上门</label>
+				</div>
+				<div class="type-selector">
+					<input type="radio" name="pick-type" id="js-customer-pick-up" value="1"><label>我要自提</label>
+					<p class="tip js-type-selector" style="display:none">蛋糕预订请在备注中注明具体取餐时段，其他甜品可在预订日期任意时间段到店获取，谢谢您的配合！</p>
+				</div>
+			</div>
+		</div>
+		<div class="m-order-info">
+			<h1>备注</h1>
+			<textarea id="js-remark" rows="1" placeholder="如有特殊要求，请在备注中注明，我们会尽量满足您的合理需求！"></textarea>
 		</div>
 		<div class="m-order-item">
 			<h1>确认订单信息</h1>
@@ -41,8 +56,9 @@
 						<div class="left cart-cell-dessert-info">
 							<a class="name" href="<%=request.getContextPath() %>/dessert/d/${item.dessertId}" >${item.dessertName}</a>
 							<ul class="detail-info">
-								<li class="item">2.2磅</li>
-								<li class="item">加糖</li>
+								<c:forEach items="${item.additionList}" var="i">
+									<li class="item">${i.val }</li>
+								</c:forEach>
 							</ul>
 							<span class="store-address js-cell-dessert-store" cid="${item.id}" sid="${item.storeId}"><i class="fa fa-map-marker"></i>  ${item.storeName}</span>	
 						</div>
@@ -67,9 +83,20 @@
 			<div class="clear-fix"></div>
 		</div>
 	</div>
+	<div class="modal common-modal cart-modal" id="confirm-modal" style="display:none">
+		<a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
+		<div class="modal-content">
+			<p>您确定要提交订单吗？</p>
+			<p>共计<span class="highlight js-sum"><i class="fa fa-rmb"></i>${sum}</span></p>
+		</div>
+		<div class="modal-ops">
+			<a class="btn" href="#close" rel="modal:close" class="modal-close">再看一眼</a>
+			<a class="btn" id="js-order-modal-submit" href="javascript:void(0)">确定！</a>
+		</div>
+	</div>
 	<div class="modal common-modal msg-modal" id="charge-msg-modal" style="display:none">
 		<a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
-		<div class="modal-content">订单提交成功!</div>
+		<div class="modal-content"></div>
 	</div>
 	<jsp:include page="/WEB-INF/jsp/common/address_modal.jsp"></jsp:include>
 	<div class="toaster" style="display:none"></div>

@@ -15,7 +15,8 @@ public interface OrderDao {
 	/**
 	 * @return 1成功 0订单保存出错 
 	 */
-	public int saveOrder(int uid, int type, int store_id, Date date, List<Cart> items);
+	public int saveOrder(int uid, int type, int store_id, Date date, List<Cart> items, 
+			int sendType, String remark, int addressId);
 	
 	public boolean deleteOrder(int id);
 

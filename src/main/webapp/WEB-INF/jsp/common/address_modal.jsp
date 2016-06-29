@@ -21,7 +21,7 @@
 			<div class="form-group">
 				<input type="checkbox" id="set-default" name="default"><span class="checkbox-span">设为默认地址</span>
 			</div>
-			<button class="btn" type="submit" >保存地址</button>
+			<button class="btn js-address-add-btn" type="button">保存地址</button>
 		</form>
 	</div>
 </div>

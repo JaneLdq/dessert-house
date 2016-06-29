@@ -55,7 +55,6 @@ public class CartController {
 	public String index(HttpServletRequest req, ModelMap model){
 		int uid = (int) req.getSession().getAttribute("id");
 		List<CartItemVO> items = tradeService.getCartItem(uid); 
-		System.out.println("cart items: " + items.size());
 		model.put("len", items.size());
 		model.put("items", items);
 		Date date = new Date(); 
@@ -140,10 +139,11 @@ public class CartController {
 	
 	@Auth(Role.USER)
 	@RequestMapping(value="/book", method=RequestMethod.POST)
-	public @ResponseBody Map<String, Object> book(HttpServletRequest req, HttpServletResponse response){
+	public @ResponseBody Map<String, Object> book(HttpServletRequest req, HttpServletResponse response,
+			@RequestParam("remark") String remark, @RequestParam("type") int type, @RequestParam("addressId") int addressId){
 		int id = (int) req.getSession().getAttribute("id");
 		Map<String, Object> map = new HashMap<String, Object>();
-		int result = tradeService.book(id);
+		int result = tradeService.book(id, remark, type, addressId);
 		map.put("result", result);
 		return map;
 	}
@@ -154,7 +154,7 @@ public class CartController {
 		int uid = (int) req.getSession().getAttribute("id");
 		List<CartItemVO> items = tradeService.getCartItem(uid); 
 		Map<String, String> sum = tradeService.getCartSum(uid);
-		Address address = addressService.getDefaultAddress(uid);
+		Address address = addressService.getDefaultAddress(uid);		
 		model.put("items", items);
 		model.put("sum", sum.get("sum"));
 		model.put("discount", sum.get("discount"));

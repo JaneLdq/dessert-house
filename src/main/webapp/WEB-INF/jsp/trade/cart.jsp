@@ -131,21 +131,6 @@
 		</ul>
 	</div>
 	</div>
-	<div class="modal common-modal cart-modal" id="confirm-modal" style="display:none">
-		<a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
-		<div class="modal-content">
-			<p>您确定要购买全部商品吗？</p>
-			<p>共计<span class="highlight js-sum"><i class="fa fa-rmb"></i></span></p>
-		</div>
-		<div class="modal-ops">
-			<a class="btn" href="#close" rel="modal:close" class="modal-close">再看一眼~</a>
-			<a class="btn" id="js-cart-modal-submit" href="javascript:void(0)">确定！</a>
-		</div>
-	</div>
-	<div class="modal common-modal msg-modal" id="charge-msg-modal" style="display:none">
-		<a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
-		<div class="modal-content"></div>
-	</div>
 	<div class="toaster" style="display:none"></div>
 	<script src="<%=request.getContextPath() %>/plugins/jquery-modal/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<%=request.getContextPath() %>/js/cart.js"></script>

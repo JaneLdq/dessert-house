@@ -577,6 +577,18 @@ body {
 	font-size: 24px;
 }
 
+.count-down {
+	font-size: 12px; !important;
+	color: rgba(64,32,0,0.7); !important;
+}
+
+.count-down-num {
+	margin: 0 5px;  !important;
+	color: #ff7f4d;  !important;
+}
+
+
+
 
 
 
@@ -1313,7 +1325,7 @@ a.modal-close:hover {
 .msg-modal .modal-content a {
 	display: block;
 	margin-top: 10px;
-	color: rgba(64,32,0,0.6);
+	color: rgba(255,178,143,1);
 }
 
 .msg-modal .modal-ops {
@@ -2448,7 +2460,7 @@ ul.cart-thead > li {
 
 .cart-thead .t-date,
 .cart-list-item .l-date {
-	width: 12%;
+	width: 14%;
 }
 
 @Media screen and (max-width: 1024px){
@@ -2479,7 +2491,7 @@ ul.cart-thead > li {
 
 .cart-thead .t-op,
 .cart-list-item .l-op {
-	width: 9%;
+	width: 7%;
 }
 
 .cart-list-item {
@@ -2720,6 +2732,35 @@ ul.cart-list-item > li {
 .m-order-info ul > li label {
 	font-weight: bold;
 }
+
+.m-order-info .customer-pick-up {
+	margin-top: 15px;
+}
+
+.m-order-info .customer-pick-up .type-selector {
+	margin: 10px 0;
+}
+
+.m-order-info .customer-pick-up input[type="radio"] {
+	margin-right: 8px;
+}
+
+.m-order-info .customer-pick-up .tip {
+	margin: 5px 0;
+	padding-left: 21px;
+	font-size: 14px;
+	color: #ff7f4d;
+}
+
+.m-order-info textarea {
+	width: 98%;
+	padding: 8px 1%;
+	border-radius: 6px;
+	font-size: 14px;
+	line-height: 24px;
+	resize:none
+}
+
 
 .m-order-item .cart-list-item .l-dessert,
 .m-order-item .cart-thead .t-dessert {

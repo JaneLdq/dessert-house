@@ -47,6 +47,10 @@
 		<property name="planDao" ref="planDao"></property>
 	</bean>
 	
+	<bean id="addressController" class="edu.nju.dessert.controller.AddressController">
+		<property name="addressService" ref="addressService"></property>
+	</bean>
+	
 	<bean id="adminController" class="edu.nju.dessert.controller.AdminController">
 		<property name="staffService" ref="staffService"></property>
 		<property name="storeService" ref="storeService"></property>

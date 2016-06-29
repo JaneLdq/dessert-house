@@ -39,10 +39,13 @@ public class Order {
 	private int state;
 	
 	private int saleman_id;
+	
+	private String remark;
 
 	public Order(){}
 	
-	public Order(int uid, int type, Date sendDate, double total, double discount, Date created_at, int  storeId){
+	public Order(int uid, int type, Date sendDate, double total, double discount, Date created_at, int storeId, 
+			int sendType, String remark, int addressId){
 		this.uid = uid;
 		this.type = type;
 		this.send_date = sendDate;
@@ -50,6 +53,9 @@ public class Order {
 		this.discount = discount;
 		this.created_at = created_at;
 		this.store_id = storeId;
+		this.send_type = sendType;
+		this.remark = remark;
+		this.address_id = addressId;
 	}
 	
 	public int getId() {
@@ -155,6 +161,15 @@ public class Order {
 	public void setSaleman_id(int saleman_id) {
 		this.saleman_id = saleman_id;
 	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	
 	
 	
 }
