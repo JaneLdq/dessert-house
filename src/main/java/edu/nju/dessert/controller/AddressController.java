@@ -28,11 +28,44 @@ public class AddressController {
 	@Auth(Role.USER)
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> addAddress(HttpServletRequest req, @RequestParam("receiver") String receiver,
-			@RequestParam("address") String address, @RequestParam("tel") String tel){
+			@RequestParam("address") String address, @RequestParam("tel") String tel) {
 		int uid = (int) req.getSession().getAttribute("id");
 		int result = this.addressService.addAddress(uid, address, tel, receiver);
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("result", result);
 		return map;
 	}
+
+	@Auth(Role.USER)
+	@RequestMapping(value="/edit", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> editAddress(HttpServletRequest req, @RequestParam("aid") int aid,
+		@RequestParam("receiver") String receiver, @RequestParam("address") String address,
+	    @RequestParam("tel") String tel) {
+		int uid = (int) req.getSession().getAttribute("id");
+		boolean result = this.addressService.updateAddress(aid, address, tel, receiver);
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", result);
+		return map;
+	}
+
+	@Auth(Role.USER)
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> deleteAddress(HttpServletRequest req, @RequestParam("aid") int aid) {
+		int uid = (int) req.getSession().getAttribute("id");
+		boolean result = this.addressService.deleteAddress(uid, aid);
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", result); // result为false表示不允许删除默认地址
+		return map;
+	}
+
+	@Auth(Role.USER)
+	@RequestMapping(value="/setDefault", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> setDefaultAddress(HttpServletRequest req, @RequestParam("aid") int aid) {
+		int uid = (int) req.getSession().getAttribute("id");
+		boolean result = this.addressService.setDefaultAddress(uid, aid);
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", result);
+		return map;
+	}
+
 }
