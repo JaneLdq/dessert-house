@@ -8,12 +8,21 @@ $(document).ready(function(){
 	
 	initNumberPicker();
 	
+	$('.js-addition-option').click(function(){
+		var parent = $(this).parent();
+		$(parent).children().removeClass("active");
+		$(this).addClass("active");
+	});
+	
 	$('#js-date').change(function(){
 		getQuantity();
 	});
 	
 	$('#js-store-selector').change(function(){
 		getQuantity();
+		globalStoreId = $(this).val();
+		window.localStorage.setItem("storeId", $(this).val());
+		window.localStorage.setItem("storeName", $(this).children("option:selected").html());
 	});
 	
 	$('#js-add-dessert').click(function(){
@@ -126,4 +135,23 @@ function initNumberPicker(){
 			$('.js-dessert-value').val(max);
 		}
 	});
+}
+
+function jumpToNext(element){
+	var did = Number($(element).attr('did'));
+	var total = Number($('#js-total-dessert-num').val());
+	if(did < total){
+		var url = urlPrefix + "/dessert/d/" + (did+1) + "/s/" + globalStoreId;
+		window.location.href = url;
+		return false;
+	}
+}
+
+function jumpToPre(element){
+	var did = Number($(element).attr('did'));
+	if(did > 1){
+		var url = urlPrefix + "/dessert/d/" + (did-1) + "/s/" + globalStoreId;
+		window.location.href = url;
+		return false;
+	}
 }

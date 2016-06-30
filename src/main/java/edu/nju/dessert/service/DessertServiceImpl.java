@@ -62,6 +62,11 @@ public class DessertServiceImpl implements DessertService {
 		return dessertDao.getNewDessert(num);
 	}
 
+	@Override
+	public Long getTotalDessertNum() {
+		return dessertDao.getTotalDessertNum();
+	}
+
 
 	
 }

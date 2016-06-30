@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% int num = 0; %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +12,7 @@
 	<div class="wrapper">
 		<div class="m-store-detail-panel">
 			<div class="store-card">
+				<input type="hidden" id="js-store-id" value="${store.id}">
 				<a class="store-img" href="<%=request.getContextPath()%>/store/${store.id}"><img src="<%=request.getContextPath() %>/img/store/${store.id}.jpg" alt="store"></a>
 				<div class="store-desc">
 					<a class="store-name" href="<%=request.getContextPath()%>/store/${store.id}">${store.name }</a>
@@ -21,7 +21,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="m-dessert-panel">
+		<div class="m-dessert-panel js-dessert-panel">
 		<c:forEach items="${desserts}" var="d">
 			<div class="dessert">
 				<a href="<%=request.getContextPath()%>/dessert/d/${d.id}/s/${store.id}">
@@ -34,5 +34,9 @@
 		</c:forEach>
 		</div>
 	</div>
+	<div class="top js-to-top">
+		<i class="fa fa-angle-up"></i>
+	</div>
+	<script src="<%=request.getContextPath() %>/js/store.js"></script>
 </body>
 </html>

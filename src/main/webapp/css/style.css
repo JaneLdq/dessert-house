@@ -587,9 +587,33 @@ body {
 	color: #ff7f4d;  !important;
 }
 
+.top {
+	position: fixed;
+	right: 5%;
+	bottom: 30px;
+	width: 50px;
+    padding: 4px 0;
+    border-radius: 6px;
+    background-color: rgba(123,101,86,0.4);
+    font-size: 36px;
+    text-align: center;
+    line-height: 36px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
+@Media screen and (max-width: 860px) {
+	.top {
+		right: 2%;
+	}
+}
 
-
+@Media screen and (max-width: 768px) {
+	.top {
+		display: none;
+	}
+}
 
 
 /*------------------------------------*\

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2016-06-29 21:53:02
+Date: 2016-07-01 00:16:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `addition_item` (
   `keyword` varchar(255) DEFAULT NULL,
   `val` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of addition_item
@@ -44,7 +44,7 @@ CREATE TABLE `address` (
   `uid` int(11) NOT NULL,
   `receiver` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of address
@@ -69,12 +69,12 @@ CREATE TABLE `cart` (
   UNIQUE KEY `cart_item` (`user_id`,`dessert_id`,`store_id`,`date`),
   KEY `store_id` (`store_id`),
   KEY `dessert_id` (`dessert_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of cart
 -- ----------------------------
-INSERT INTO `cart` VALUES ('11', '1', '3', '1', '1', '2016-06-30');
+INSERT INTO `cart` VALUES ('14', '1', '20', '1', '1', '2016-07-02');
 
 -- ----------------------------
 -- Table structure for dessert
@@ -89,7 +89,7 @@ CREATE TABLE `dessert` (
   `type` int(11) NOT NULL DEFAULT '0' COMMENT '0蛋糕，1面包，2甜点，3咖啡，4茶饮，5果汁',
   `onshelf` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dessert
@@ -118,6 +118,10 @@ INSERT INTO `dessert` VALUES ('21', '牛角包', '牛角面包（Croissant）状
 INSERT INTO `dessert` VALUES ('22', '咖啡曲奇', '口感不干、不硬，酥松爽口，入口后，微苦清甜、香而不烈的云南小粒咖啡的味道立马弥漫舌尖，美滋滋的味蕾享受。', '28', null, '2', '2016-06-25');
 INSERT INTO `dessert` VALUES ('23', '抹茶曲奇', '雪荞抹茶曲奇精选日本优质抹茶粉，茶粉细度高达1200目，人体更易吸收，清新茶香沁入心扉，如花如蜜，口感酥松细腻，美味丝滑。', '28', null, '2', '2016-06-25');
 INSERT INTO `dessert` VALUES ('24', '雪荞芝麻曲奇', '芝麻曲奇是一款老少皆宜的糕点，清醇的芝麻香气，口感松软，入口即化，甜味适中。', '28', null, '2', '2016-06-25');
+INSERT INTO `dessert` VALUES ('25', '巧克力巴菲蛋糕', '无法形容这款蛋糕的美妙滋味，也无法言语在炎夏吃到它时的惬意感觉。浓滑的巧克力芭菲与海绵蛋糕完美结合。', '28', null, '2', '2016-06-30');
+INSERT INTO `dessert` VALUES ('26', '柠檬挞', '酸甜金黄色的挞馅，透着柠檬的清香、金黄色的挞壳被咬碎的一刹那，那满嘴的酥脆和酸甜混合的美味体验，一直让人难忘', '28', null, '2', '2016-06-30');
+INSERT INTO `dessert` VALUES ('27', '提拉米苏', '提拉米苏之所以能成为一款经典甜点，不仅仅在于它有着浪漫的传说，还因为它独特的充满魅力的味道。', '26', null, '2', '2016-06-30');
+INSERT INTO `dessert` VALUES ('28', '拿破仑', '食材组合新鲜及酥皮入口松化脆，外形设计讲究层次感及创意，令拿破仑蛋糕的形象焕然一新。', '28', null, '2', '2016-06-30');
 
 -- ----------------------------
 -- Table structure for member
@@ -138,7 +142,7 @@ CREATE TABLE `member` (
   PRIMARY KEY (`id`),
   KEY `uid_idx` (`uid`),
   CONSTRAINT `uid` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of member
@@ -698,7 +702,7 @@ CREATE TABLE `user` (
   `default_addr` int(11) DEFAULT NULL COMMENT '默认地址',
   PRIMARY KEY (`id`),
   UNIQUE KEY `tel_UNIQUE` (`tel`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user

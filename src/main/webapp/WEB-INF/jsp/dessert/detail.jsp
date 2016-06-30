@@ -22,6 +22,7 @@
 				<h2 class="name">${dessert.name}</h2>
 				<input type="hidden" id="js-dessert-id" value="${dessert.id}">
 				<input type="hidden" id="js-dessert-type" value="${dessert.type}">
+				<input type="hidden" id="js-total-dessert-num" value="${total}">
 				<span class="price"><i class="fa fa-rmb"></i>${dessert.price}</span>
 				<div class="desc">${dessert.desc}</div>
 				<div class="separator"></div>
@@ -46,16 +47,16 @@
 						<c:choose>
 						<c:when test="${dessert.type == 0}">
 							<ul class="cake-size-list js-cake-size-selector">
-								<li class="size-item active">1.2磅</li>
-								<li class="size-item">2.2磅</li>
-								<li class="size-item">3.2磅</li>
-								<li class="size-item">6磅</li>
+								<li class="size-item js-addition-option active">1.2磅</li>
+								<li class="size-item js-addition-option">2.2磅</li>
+								<li class="size-item js-addition-option">3.2磅</li>
+								<li class="size-item js-addition-option">6磅</li>
 							</ul>
 						</c:when>
 						<c:when test="${dessert.type > 2}">
 							<ul class="cake-size-list js-cup-selector">
-								<li class="size-item active">大杯（800ml）</li>
-								<li class="size-item">中杯（500ml）</li>
+								<li class="size-item js-addition-option active">大杯（800ml）</li>
+								<li class="size-item js-addition-option">中杯（500ml）</li>
 							</ul>
 						</c:when>
 						</c:choose>
@@ -64,20 +65,20 @@
 					<c:if test="${dessert.type > 2}">
 						<div class="option"><label>温度：</label>
 							<ul class="cake-size-list js-temp-selector">
-								<li class="size-item active">热</li>
-								<li class="size-item">冰</li>
-								<li class="size-item">去冰</li>
+								<li class="size-item js-addition-option active">热</li>
+								<li class="size-item js-addition-option">冰</li>
+								<li class="size-item js-addition-option">去冰</li>
 							</ul>
 						</div>
 					</c:if>
 					<c:if test="${dessert.type > 3}">
 						<div class="option"><label>甜度：</label>
 							<ul class="cake-size-list js-sweet-selector">
-								<li class="size-item active">无糖</li>
-								<li class="size-item">三分</li>
-								<li class="size-item">半糖</li>
-								<li class="size-item">七分</li>
-								<li class="size-item">十分</li>
+								<li class="size-item js-addition-option active">无糖</li>
+								<li class="size-item js-addition-option">三分</li>
+								<li class="size-item js-addition-option">半糖</li>
+								<li class="size-item js-addition-option">七分</li>
+								<li class="size-item js-addition-option">十分</li>
 							</ul>
 						</div>
 					</c:if>
@@ -93,8 +94,12 @@
 				<div class="btn btn-submit" id="js-add-dessert">加入购物车</div>
 			</div>
 			<div class="dessert-pre-next">
-				<div class="pre"><i class="fa fa-angle-left fa-lg"></i></div>
-				<div class="next"><i class="fa fa-angle-right fa-lg"></i></div>
+			<c:if test="${dessert.id > 1}">
+				<div class="pre" onclick="jumpToPre(this)" did="${dessert.id}"><i class="fa fa-angle-left fa-lg"></i></div>
+			</c:if>
+			<c:if test="${dessert.id < total}">
+				<div class="next" onclick="jumpToNext(this)" did="${dessert.id}"><i class="fa fa-angle-right fa-lg"></i></div>
+			</c:if>
 			</div>
 			<div class="clear-fix"></div>
 		</div>
@@ -114,22 +119,11 @@
 				<div class="content">你可能还会喜欢</div>
 				<div class="right line"></div></div>
 			<ul class="dessert-thumbnail-list">
-				<li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/2.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><!-- 
-				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/11.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><!-- 
-				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/5.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><!-- 
-				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/8.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li>
+			<c:forEach items="${likes}" var="l"><li class="dessert-thumbnail-item">
+					<a href="javascript:void(0)" onclick="jumpToDessertDetail(this)" did="${l.id}" >
+					<img class="img" src="<%=contextPath%>/img/dessert/${l.id}.jpg"></a>
+					<a class="name" href="javascript:void(0)" onclick="jumpToDessertDetail(this)" did="${d.id}">${l.name}</a>
+				</li></c:forEach>
 			</ul>
 		</div>
 	</div>

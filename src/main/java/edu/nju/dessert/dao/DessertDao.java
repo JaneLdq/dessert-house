@@ -49,4 +49,10 @@ public interface DessertDao {
 	 * @return
 	 */
 	public List<Dessert> getNewDessert(int num);
+
+	/**
+	 * 获取全部甜品品种个数
+	 * @return
+	 */
+	public Long getTotalDessertNum();
 }

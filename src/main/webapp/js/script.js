@@ -23,17 +23,35 @@ $(document).ready(function(){
         }
     });
 	
+	$('.js-to-top').click(function() {
+        $('body,html').animate({ scrollTop: 0 }, 500);
+    });
+	
+	initNavStore();
+	
 });
 
 var urlPrefix = "/Tian";
+var globalStoreId = 1;
 
+function initNavStore(){
+	var sid = $('.js-nav-current-store').attr('sid');
+	if( sid == "null"){
+		globalStoreId = window.localStorage.getItem("storeId");
+		var storeName = window.localStorage.getItem("storeName");
+		if(globalStoreId == null || storeName == null){
+			globalStoreId = 1;
+			storeName = $($('.js-nav-store-option').get(0)).html();
+		}
+		$('.js-nav-current-store').attr("sid", globalStoreId).html(storeName+'<i class="fa fa-caret-down"></i>').show();
+	}
+}
 
 /**
  * 更新导航购物车数量
  */
 function updateCartMsg(){
 	var result = checkLogin();
-	console.log(window.location.href);
 	if(result == 1){
 		$.ajax({
 			type: "POST",
@@ -73,7 +91,7 @@ function getDessertHtml(data){
 	if(data == null){
 		return html;
 	}
-	var sid = $('.js-nav-current-store').attr('sid');
+	var sid = globalStoreId;
 	for(var i=0; i<data.length; i++){
 		var d = data[i];
 		html += '<div class="dessert">' + 
@@ -84,6 +102,13 @@ function getDessertHtml(data){
 					'<span class="dessert-price"><i class="fa fa-rmb"></i>' + d.price + '</span></div></div>';
 	}
 	return html;
+}
+
+function jumpToDessertDetail(element){
+	var did = $(element).attr('did');
+	var url = urlPrefix + "/dessert/d/" + did + "/s/" + globalStoreId;
+	window.location.href = url;
+	return false;
 }
 
 
@@ -106,7 +131,10 @@ function navStore(){
 			data: {
 				storeId: sid
 			}
-		})
+		});
+		globalStoreId = sid;
+		window.localStorage.setItem("storeId", sid);
+		window.localStorage.setItem("storeName", sname);
 	});
 	
 	$(document).mouseup(function (e) {
@@ -114,9 +142,7 @@ function navStore(){
         if (!_con.is(e.target) && _con.has(e.target).length === 0) {
             _con.hide();
         }
-    });
-	
-	
+    });	
 }
 
 function addAddress(func){
@@ -140,10 +166,11 @@ function addAddress(func){
 			if(func != null){
 				func(addrData);
 			}
-			console.log(data);
 		}
 	});
 }
+
+
 
 
 function toaster(msg){

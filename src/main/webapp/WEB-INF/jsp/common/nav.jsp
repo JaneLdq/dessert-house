@@ -31,7 +31,7 @@
 						<div class="store-selected js-nav-current-store" sid="${defaultStore.id}">${defaultStore.name}<i class="fa fa-caret-down"></i></div>
 					</c:when>
 					<c:otherwise>
-						<div class="store-selected js-nav-current-store" sid="${navStores[0].id}">${navStores[0].name}<i class="fa fa-caret-down"></i></div>
+						<div class="store-selected js-nav-current-store" sid="null" style="display:none"><i class="fa fa-caret-down"></i></div>
 					</c:otherwise>
 				</c:choose>
 				<ul class="select js-nav-store-popup" style="display: none">

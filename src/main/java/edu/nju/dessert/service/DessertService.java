@@ -14,6 +14,12 @@ public interface DessertService {
 	
 	public int getTotalPage();
 	
+	/**
+	 * 获取全部甜品品种个数
+	 * @return
+	 */
+	public Long getTotalDessertNum();
+	
     public Dessert checkDessert(int id, int storeId);
     
     /**

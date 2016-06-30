@@ -157,5 +157,13 @@ public class DessertDaoImpl implements DessertDao {
 		return result;
 	}
 
+	@Override
+	public Long getTotalDessertNum() {
+		String hql="select count(id) from Dessert";
+		Query query = baseDao.getSession().createQuery(hql);
+		Long count=(Long)query.uniqueResult();
+		return count;
+	}
+
 }
 

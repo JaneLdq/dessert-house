@@ -113,19 +113,7 @@ public class DessertController {
 	 */
 	@RequestMapping(value="/d/{id}", method=RequestMethod.GET)
 	public String detail(@PathVariable int id, ModelMap model){
-		Dessert dessert = dessertService.getDessert(id);
-		List<Store> stores = storeService.getAllStore();
-		Date date = new Date();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
-	    String minDate = df.format(new Date(date.getTime() + 1 * 24 * 60 * 60 * 1000));
-	    String maxDate = df.format(new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000));
-		int quantity = dessertService.getDessertQuantity(id, 1, minDate);
-		model.put("quantity", quantity);
-	    model.put("minDate", minDate);
-	    model.put("maxDate", maxDate);
-		model.put("dessert", dessert);
-		model.put("stores", stores);
-		model.put("storeId", 1);
+		getDessertDetail(model, id, 1);
 		return "/dessert/detail";
 	}
 	
@@ -138,19 +126,7 @@ public class DessertController {
 	 */
 	@RequestMapping(value="/d/{id}/s/{storeId}", method=RequestMethod.GET)
 	public String detailWithStore(@PathVariable int id, @PathVariable int storeId, ModelMap model){
-		Dessert dessert = dessertService.getDessert(id);
-		List<Store> stores = storeService.getAllStore();
-		Date date = new Date();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
-	    String minDate = df.format(new Date(date.getTime() + 1 * 24 * 60 * 60 * 1000));
-	    String maxDate = df.format(new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000));
-		int quantity = dessertService.getDessertQuantity(id, storeId, minDate);
-		model.put("quantity", quantity);
-	    model.put("minDate", minDate);
-	    model.put("maxDate", maxDate);
-		model.put("dessert", dessert);
-		model.put("stores", stores);
-		model.put("storeId", storeId);
+		getDessertDetail(model, id, storeId);
 		return "/dessert/detail";
 	}
 	
@@ -172,7 +148,7 @@ public class DessertController {
 	}
 	
 	@RequestMapping(value="/search", method=RequestMethod.GET)
-	public String searchDessert(ModelMap model, @RequestParam("key") String key, 
+	public String searchDessert(HttpServletRequest req, ModelMap model, @RequestParam("key") String key, 
 			@RequestParam(value="type", defaultValue="-1", required=false) int type){
 		try {
 			String keyword = java.net.URLDecoder.decode(key,"utf-8");
@@ -182,6 +158,13 @@ public class DessertController {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		Integer uid = (Integer) req.getSession().getAttribute("id");
+		List<Store> stores = storeService.getAllStore();
+		if(uid != null){
+			Store defaultStore = userService.getDefaultStore(uid);
+			model.put("defaultStore", defaultStore);
+		}
+		model.put("navStores", stores);
 		return "/dessert/search";
 	}
 	
@@ -197,6 +180,26 @@ public class DessertController {
             map.put("result", 0);
         }
         return map;
+	}
+	
+	private void getDessertDetail(ModelMap model, int id, int storeId){
+		Dessert dessert = dessertService.getDessert(id);
+		List<Store> stores = storeService.getAllStore();
+		List<Dessert> likes = dessertService.getHotDessert(4);
+		Long total = dessertService.getTotalDessertNum();
+		Date date = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
+	    String minDate = df.format(new Date(date.getTime() + 1 * 24 * 60 * 60 * 1000));
+	    String maxDate = df.format(new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000));
+		int quantity = dessertService.getDessertQuantity(id, storeId, minDate);
+		model.put("quantity", quantity);
+	    model.put("minDate", minDate);
+	    model.put("maxDate", maxDate);
+		model.put("dessert", dessert);
+		model.put("stores", stores);
+		model.put("storeId", storeId);
+		model.put("likes", likes);
+		model.put("total", total);
 	}
 
 	

@@ -34,10 +34,10 @@
 	<div class="panel m-dessert-panel" id="js-dessert-panel">
 		<c:forEach items="${desserts}" var="d">
 			<div class="dessert">
-				<a href="<%=request.getContextPath()%>/dessert/d/${d.id}">
+				<a href="javascript:void(0)" onclick="jumpToDessertDetail(this)" did="${d.id}">
 				<img class="dessert-img" src="<%=imgPath %>/dessert/${d.id}.jpg" alt="${d.name}"></a>
 				<div class="dessert-desc">
-					<a href="<%=request.getContextPath()%>/dessert/d/${d.id}" class="dessert-name">${d.name}</a>
+					<a href="javascript:void(0)" onclick="jumpToDessertDetail(this)" did="${d.id}" class="dessert-name">${d.name}</a>
 					<span class="dessert-price"><i class="fa fa-rmb"></i>${d.price}</span>
 				</div>
 			</div>

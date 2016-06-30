@@ -59,10 +59,6 @@ $(document).ready(function () {
         }
 	});
 	
-	$('.js-to-top').click(function() {
-        $('body,html').animate({ scrollTop: 0 }, 500);
-    });
-	
 });
 
 var page = 1;
@@ -71,7 +67,6 @@ var order = 0;
 var type = -1;
 var more = true;
 var loading = false;
-var storeId = 1;
 
 
 function getDesserts(type, order){
@@ -83,7 +78,7 @@ function getDesserts(type, order){
 			num: num,
 			type: type,
 			order: order,
-			storeId: storeId
+			storeId: globalStoreId
 		},
 		success: function(data){
 			var result = data['result'];
@@ -111,7 +106,7 @@ function moreDesserts(){
 			num: num,
 			type: type,
 			order: order,
-			storeId: storeId
+			storeId: globalStoreId
 		},
 		success: function(data){
 			console.log(data);
@@ -128,14 +123,6 @@ function moreDesserts(){
 			loading = false;
 		}
 	});
-}
-
-function jumpToDessertDetail(element){
-	var did = $(element).attr('did');
-	var sid = $('.js-nav-current-store').attr('sid');
-	var url = urlPrefix + "/dessert/d/" + did + "/s/" + sid;
-	window.location.href = url;
-	return false;
 }
 
 function doSearch(){
