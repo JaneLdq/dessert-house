@@ -6,6 +6,7 @@ import java.util.List;
 import edu.nju.dessert.dao.*;
 import edu.nju.dessert.model.Member;
 import edu.nju.dessert.model.Order;
+import edu.nju.dessert.model.OrderItem;
 import edu.nju.dessert.vo.OrderItemVO;
 import edu.nju.dessert.vo.OrderVO;
 
@@ -21,6 +22,8 @@ public class OrderServiceImpl implements OrderService {
     private StoreDao storeDao;
 
     private AddressDao addressDao;
+
+    private PlanDao planDao;
     
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
@@ -40,6 +43,10 @@ public class OrderServiceImpl implements OrderService {
 
     public void setAddressDao(AddressDao addressDao) {
         this.addressDao = addressDao;
+    }
+
+    public void setPlanDao(PlanDao planDao) {
+        this.planDao = planDao;
     }
 
     @Override
@@ -100,6 +107,23 @@ public class OrderServiceImpl implements OrderService {
             vos.add(vo);
         }
         return vos;
+    }
+
+    @Override
+    public int cancelOrder(int uid, int id) {
+        Order order = orderDao.getOrderById(id);
+        if (order.getState() == 2 || order.getState() == 3) {
+            return 0; // 不可退订
+        }
+        List<OrderItemVO> list = orderDao.getOrderItemByOrderId(id);
+        for (OrderItemVO vo: list) {
+            planDao.updateDessertRemain(vo.getDessertId(), order.getStore_id(),
+                    -vo.getQuantity(), order.getSend_date());
+        }
+        memberDao.updateAccount(uid, -order.getTotal(), 0);
+        order.setState(3);
+        orderDao.saveOrder(order);
+        return 1; // 成功退订
     }
 
 }
