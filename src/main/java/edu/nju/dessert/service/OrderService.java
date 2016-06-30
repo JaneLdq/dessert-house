@@ -18,5 +18,7 @@ public interface OrderService {
     public int cancelOrder(int uid, int id);
 
     public int orderAgain(int id, String date, int type);
+
+    public int getTotalOrdersPage(int uid);
     
 }

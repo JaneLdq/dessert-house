@@ -37,5 +37,7 @@ public interface OrderDao {
     public List<Order> getOrderByUser(int uid);
 
     public List<Order> getOrderByUserPage(int uid, int page, int size);
+
+	public int getTotalOrdersPage(int uid, int size);
 	
 }

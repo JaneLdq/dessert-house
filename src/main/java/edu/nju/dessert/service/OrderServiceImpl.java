@@ -50,6 +50,8 @@ public class OrderServiceImpl implements OrderService {
         this.planDao = planDao;
     }
 
+    private int pageSize = 6;
+
     @Override
     public List<OrderVO> getOrderVO(int storeId, int type) {
         List<Order> list = orderDao.getOrderByStore(storeId, type);
@@ -97,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderVO> getOrderVOByUser(int uid, int page) {
-        List<Order> orders = orderDao.getOrderByUserPage(uid, page, 6);
+        List<Order> orders = orderDao.getOrderByUserPage(uid, page, pageSize);
         List<OrderVO> vos = new ArrayList<OrderVO>();
         for(Order o: orders){
             List<OrderItemVO> items = orderDao.getOrderItemByOrderId(o.getId());
@@ -134,6 +136,11 @@ public class OrderServiceImpl implements OrderService {
         int result = orderDao.saveAgainOrder(order.getUid(), 1, order.getStore_id(), Date.valueOf(date), list,
                 sendType, order.getRemark(), order.getAddress_id(), order.getTotal(), order.getDiscount());
         return result;
+    }
+
+    @Override
+    public int getTotalOrdersPage(int uid) {
+        return orderDao.getTotalOrdersPage(uid, pageSize);
     }
 
 }

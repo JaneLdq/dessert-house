@@ -67,6 +67,46 @@ $(document).ready(function(){
 	$('body').on('click', '.js-address-add-btn', function(){
 		addAddress(refreshAddress);
 	});
+
+	$('#js-order-pre').click(function(){
+		var current = Number($('#js-order-current').attr("page"));
+		if(current>1){
+			$.ajax({
+				type: "post",
+				url: urlPrefix + "/user/orders/" + (current-1),
+				success: function(data){
+					console.log(data);
+					var orders = data['orders'];
+					var html = getOrderHtml(orders);
+					$('#js-order-list').html(html);
+					$('#js-order-current').attr('page', (current-1)).html(current-1);
+				},
+				error: function(){
+					console.log("获取上一页订单记录失败!");
+				}
+			})
+		}
+	});
+
+	$('#js-order-next').click(function(){
+		var current = Number($('#js-order-current').attr('page'));
+		if(current < Number($('#js-order-current').attr('max'))){
+			$.ajax({
+				type: "post",
+				url: urlPrefix + "/user/orders/" + (current+1),
+				success: function(data){
+					console.log(data);
+					var orders = data['orders'];
+					var html = getOrderHtml(orders);
+					$('#js-order-list').html(html);
+					$('#js-order-current').attr('page', (current+1)).html(current+1);
+				},
+				error: function(){
+					console.log("获取下一页订单记录失败!");
+				}
+			})
+		}
+	});
 	
 });
 
@@ -92,3 +132,36 @@ var refreshAddress = function refreshAddress(data){
 	$.modal.close();
 }
 
+function getOrderHtml(orders){
+	var html = "";
+	for (var i = 0; i < orders.length; i++) {
+		var order = orders[i];
+		html += '<div class="order-item">' +
+			'<ul class="order-basic">' +
+			'<li class="time">' + order.date + ' </li>' +
+			'<li class="order-number"><label>订单号：</label>' + order.id + '</li>' +
+			'<li class="store"><label>店铺：</label>' +
+			'<a class="name" href="' + urlPrefix + '/store/' + order.id + '">' + order.store.name + '</a></li>' +
+			'<li class="btn btn-sm js-btn-one-more" >再来一单</li>' +
+			'</ul>' +
+			'<div class="order-detail">' +
+			'<div class="cell o-detail">';
+		for (var j = 0; j < order.items.length; j++) {
+			var item = order.items[j];
+			html += '<ul class="order-dessert-list">' +
+				'<li class="cell l-name"><a class="name" ' +
+				'href="' + urlPrefix + '/dessert/d/' + item.dessertId + '">' + item.name + '</a></li>' +
+				'<li class="cell l-quantity">x'+ item.quantity + '</li>' +
+				'<li class="cell l-price">' + item.price + '</li>' +
+				'<li class="clear-fix"></li>' +
+				'</ul>';
+		}
+		html += '</div>' +
+			'<div class="cell o-sum"><i class="fa fa-rmb"></i>' + order.total + '</div>' +
+			'<div class="cell o-date">' + order.sendDate + '</div>' +
+			'<div class="cell o-state">' + order.state + '</div>' +
+			'<div class="clear-fix"></div>' +
+			'</div></div>';
+	}
+	return html;
+}

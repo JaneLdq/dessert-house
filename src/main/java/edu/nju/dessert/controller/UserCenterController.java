@@ -209,10 +209,26 @@ public class UserCenterController {
 		int uid = (int) req.getSession().getAttribute("id");
 		getBasicInfo(model, uid);
 		List<OrderVO> list = orderService.getOrderVOByUser(uid, 0);
-		System.out.println(list.size());
 		model.put("orders", list);
-		model.put("page", 0);
+		model.put("current", 1);
+		model.put("max", orderService.getTotalOrdersPage(uid));
 		return "/user/orders";
+	}
+
+	@Auth(Role.USER)
+	@RequestMapping(value="/orders/{page}", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> getOrders(@PathVariable int page,
+													   HttpServletRequest req, ModelMap model){
+		Map<String, Object> map = new HashMap<>();
+		int uid = (int) req.getSession().getAttribute("id");
+		List<OrderVO> orders = orderService.getOrderVOByUser(uid, page-1);
+		if(orders.size()>0){
+			map.put("result", 1);
+		}else{
+			map.put("result", 0);
+		}
+		map.put("orders", orders);
+		return map;
 	}
 	
 	@Auth(Role.USER)

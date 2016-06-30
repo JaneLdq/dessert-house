@@ -28,7 +28,7 @@
 					<li class="cell o-state">状态</li>
 					<li class="clear-fix"></li>
 				</ul>
-				<div class="order-list">
+				<div class="order-list" id="js-order-list">
                     <c:forEach items="${orders}" var="o">
                     <div class="order-item">
                         <ul class="order-basic">
@@ -61,13 +61,12 @@
 			</div>
 			<div class="tab-panel unfinished-order">
 			</div>
-            <!-- 
-                <ul class="table-pagination">
-                    <li class="left pre" id="js-payment-pre""><i class="fa fa-angle-left"></i></li>
-                    <li class="left current" id="js-payment-current" max="${max}" page="${current}">${current}</li>  
-                    <li class="right next" id="js-payment-next"><i class="fa fa-angle-right"></i></li> 
-                    <div class="clear-fix"></div>
-                </ul>-->
+            <ul class="table-pagination">
+                <li class="left pre" id="js-order-pre"><i class="fa fa-angle-left"></i></li>
+                <li class="left current" id="js-order-current" max="${max}" page="${current}">${current}</li>
+                <li class="right next" id="js-order-next"><i class="fa fa-angle-right"></i></li>
+                <div class="clear-fix"></div>
+            </ul>
 		</div>
 		</div>
         <div class="clear-fix"></div>

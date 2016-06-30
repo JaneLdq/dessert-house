@@ -214,6 +214,22 @@ public class OrderDaoImpl implements OrderDao {
         List<Order> orders = query.list();
         return orders;
     }
-    
+
+	@Override
+	public int getTotalOrdersPage(int uid, int size) {
+		String hql = "select count(*) from Order where uid=" + uid;
+		Query query = baseDao.getSession().createQuery(hql);
+		Long count = (Long) query.uniqueResult();
+		return calPages(count, size);
+	}
+
+	private int calPages(Long count, int size) {
+		int pages = 0;
+		if (size != 0)
+			pages = (int) (count / size);
+		if (pages % size != 0)
+			pages = pages + 1;
+		return pages;
+	}
 
 }
