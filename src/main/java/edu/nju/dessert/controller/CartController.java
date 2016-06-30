@@ -153,12 +153,14 @@ public class CartController {
 	public String order(ModelMap model, HttpServletRequest req, HttpServletResponse response) {
 		int uid = (int) req.getSession().getAttribute("id");
 		List<CartItemVO> items = tradeService.getCartItem(uid); 
+		List<Address> addressList = addressService.getAddresses(uid);
 		Map<String, String> sum = tradeService.getCartSum(uid);
 		Address address = addressService.getDefaultAddress(uid);		
 		model.put("items", items);
 		model.put("sum", sum.get("sum"));
 		model.put("discount", sum.get("discount"));
 		model.put("address", address);
+		model.put("addressList", addressList);
 		return "/trade/order";
 	}
 	

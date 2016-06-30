@@ -22,7 +22,7 @@
 					<li><label>收货人：</label><span class="js-current-receiver">${address.receiver}</span></li>
 					<li><label>收货地址：</label><span class="js-current-address">${address.address}</span></li>
 					<li><label>联系电话：</label><span class="js-current-tel">${address.tel}</span></li>
-					<li><a href="javascript:void(0)">修改本地址</a></li>
+					<li class="btn btn-sm" id="js-address-selector">选择其他地址</li>
 				</ul>
 				<button class="btn btn-sm js-add-address">使用新地址</button>
 			</div>
@@ -97,6 +97,22 @@
 	<div class="modal common-modal msg-modal" id="charge-msg-modal" style="display:none">
 		<a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
 		<div class="modal-content"></div>
+	</div>
+	<div class="modal common-modal select-address-modal" id="select-address-modal" style="display:none">
+		<a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
+		<div class="modal-title">选择收货地址</div>
+		<div class="modal-content">
+			<ul class="address-list">
+			<c:forEach items="${addressList}" var="addr">
+				<li>
+					<input type="radio" name="address">
+					<label>收货人：</label><span class="">${addr.receiver}</span>
+					<label>收货地址：</label><span class="">${addr.address}</span>
+					<label>联系电话：</label><span class="">${addr.tel}</span>
+				</li>
+			</c:forEach>
+			</ul>
+		</div>
 	</div>
 	<jsp:include page="/WEB-INF/jsp/common/address_modal.jsp"></jsp:include>
 	<div class="toaster" style="display:none"></div>

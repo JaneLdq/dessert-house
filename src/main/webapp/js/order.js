@@ -8,6 +8,10 @@ $(document).ready(function(){
 		$('#confirm-modal').modal();
 	});
 	
+	$('#js-address-selector').click(function(){
+		$('#select-address-modal').modal();
+	});
+	
 	$('#js-order-modal-submit').click(function(){
 		var remark = $('#js-remark').val();
 		var type =  $('input[name="pick-type"]:checked').val();

@@ -2732,11 +2732,22 @@ ul.cart-list-item > li {
 	margin-bottom: 15px;
 }
 
+.select-address-modal {
+	min-height: 240px;
+}
+
+.select-address-modal .address-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
 .m-order-info {
 	margin-bottom: 30px;
 }
 
-.m-order-info ul {
+.m-order-info ul,
+.select-address-modal .address-list {
 	padding: 0 8px;
 	list-style: none;
 	font-size: 14px;
@@ -2754,12 +2765,14 @@ ul.cart-list-item > li {
 	color: rgba(64,32,0,0.7);
 }
 
-.m-order-info ul > li {
+.m-order-info ul > li,
+.select-address-modal .address-list > li {
 	display: inline-block;
 	margin-right: 20px;
 }
 
-.m-order-info ul > li label {
+.m-order-info ul > li label,
+.select-address-modal .address-list > li label {
 	font-weight: bold;
 }
 
@@ -3195,6 +3208,7 @@ ul.cart-list-item > li {
 .address-modal .btn {
 	margin: 0 auto;
 }
+
 
 
 
