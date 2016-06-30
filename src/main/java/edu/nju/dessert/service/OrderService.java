@@ -14,5 +14,7 @@ public interface OrderService {
     public List<Order> getOrderByUser(int uid);
 
     public List<OrderVO> getOrderVOByUser(int uid, int page);
+
+    public int cancelOrder(int uid, int id);
     
 }

@@ -3,6 +3,7 @@ package edu.nju.dessert.dao;
 import java.util.Date;
 import java.util.List;
 
+import org.aspectj.weaver.ast.Or;
 import org.hibernate.Query;
 
 import edu.nju.dessert.model.Cart;
@@ -84,6 +85,13 @@ public class OrderDaoImpl implements OrderDao {
 			state = 0;
 		}
 		return state;
+	}
+
+	@Override
+	public boolean saveOrder(Order order) {
+		boolean result = baseDao.update(order);
+		baseDao.flush();
+		return result;
 	}
 
 	@Override

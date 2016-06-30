@@ -7,6 +7,7 @@ import edu.nju.dessert.model.Cart;
 import edu.nju.dessert.model.Order;
 import edu.nju.dessert.model.OrderItem;
 import edu.nju.dessert.vo.OrderItemVO;
+import org.aspectj.weaver.ast.Or;
 
 public interface OrderDao {
 
@@ -17,6 +18,8 @@ public interface OrderDao {
 	 */
 	public int saveOrder(int uid, int type, int store_id, Date date, List<Cart> items, 
 			int sendType, String remark, int addressId);
+
+	public boolean saveOrder(Order order);
 	
 	public boolean deleteOrder(int id);
 

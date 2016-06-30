@@ -109,6 +109,10 @@
 		<property name="orderService" ref="orderService"></property>
 		<property name="userService" ref="userService"></property>
 	</bean>
+
+	<bean id="orderController" class="edu.nju.dessert.controller.OrderController">
+		<property name="orderService" ref="orderService"></property>
+	</bean>
 	
 	<bean id="userService" class="edu.nju.dessert.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
@@ -154,6 +158,7 @@
 		<property name="userDao" ref="userDao"></property>
 		<property name="storeDao" ref="storeDao"></property>
 		<property name="addressDao" ref="addressDao"></property>
+		<property name="planDao" ref="planDao"></property>
 	</bean>
 
 	<bean id="addressService" class="edu.nju.dessert.service.AddressServiceImpl">
