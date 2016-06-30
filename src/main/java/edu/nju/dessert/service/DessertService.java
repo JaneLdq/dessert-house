@@ -35,8 +35,16 @@ public interface DessertService {
     
     /**
      * 获取人气推荐甜品
+     * @Param num 数量
      * @return
      */
-    public List<Dessert> getHotDessert();
+    public List<Dessert> getHotDessert(int num);
+
+    /**
+     * 获取新品
+     * @param num 数量
+     * @return
+     */
+	public List<Dessert> getNewDessert(int num);
 	
 }

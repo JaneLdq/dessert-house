@@ -139,9 +139,22 @@ public class DessertDaoImpl implements DessertDao {
 	}
 
 	@Override
-	public List<Dessert> getHotDessert() {
-		// TODO getHotDessert
-		return null;
+	public List<Dessert> getHotDessert(int num) {
+		// TODO 按销量排
+		String hql = "from Dessert order by onshelf desc";
+		Query query = baseDao.getSession().createQuery(hql);
+		query.setMaxResults(num);
+		List<Dessert> result = query.list();
+		return result;
+	}
+
+	@Override
+	public List<Dessert> getNewDessert(int num) {
+		String hql = "from Dessert order by onshelf desc";
+		Query query = baseDao.getSession().createQuery(hql);
+		query.setMaxResults(num);
+		List<Dessert> result = query.list();
+		return result;
 	}
 
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% 	String imgPath = request.getContextPath() + "/img"; 
 	String contextPath = request.getContextPath();
 %>
@@ -42,42 +43,23 @@
 			<a class="more" href="<%=request.getContextPath()%>/desserts"><i class="fa fa-ellipsis-h"></i></a>
 		</div>
 		<div class="section-content new">
-			<div class="new-item up-item">
+		<c:forEach items="${newList}" var="newItem" varStatus="status"><c:choose><c:when test="${status.index %2 == 0}"><div class="new-item up-item">
 				<div class="new-item-content">
-					<a class="img" href="<%=request.getContextPath()%>/dessert/d/1"><img src="<%=imgPath%>/hot/1.png"></a>
+					<a class="img" href="<%=request.getContextPath()%>/dessert/d/${newItem.id}"><img src="<%=imgPath%>/dessert/${newItem.id}.jpg"></a>
 					<div class="intro">
-						<a class="name" href="<%=request.getContextPath()%>/dessert/d/1">它的名字</a>
-						<p>这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍</p>
+						<a class="name" href="<%=request.getContextPath()%>/dessert/d/${newItem.id}">${newItem.name}</a>
+						<p>${newItem.desc}</p>
 					</div>
 				</div>
-			</div><!--  
-			--><div class="new-item down-item">
+			</div></c:when><c:otherwise><div class="new-item down-item">
 				<div class="new-item-content active">
 					<div class="intro">
-						<a class="name" href="<%=request.getContextPath()%>/dessert/d/1">它的名字</a>
-						<p>这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍</p>
+						<a class="name" href="<%=request.getContextPath()%>/dessert/d/${newItem.id}">${newItem.name}</a>
+						<p>${newItem.desc}</p>
 					</div>
-					<a class="img" href="<%=request.getContextPath()%>/dessert/d/2"><img src="<%=imgPath%>/hot/2.png"></a>
+					<a class="img" href="<%=request.getContextPath()%>/dessert/d/${newItem.id}"><img src="<%=imgPath%>/dessert/${newItem.id}.jpg"></a>
 				</div>
-			</div><!--  
-			--><div class="new-item up-item">
-				<div class="new-item-content">
-					<a class="img" href="<%=request.getContextPath()%>/dessert/d/1"><img src="<%=imgPath%>/hot/4.png"></a>
-					<div class="intro">
-						<a class="name" href="<%=request.getContextPath()%>/dessert/d/1">它的名字</a>
-						<p>这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍</p>
-					</div>
-				</div>
-			</div><!--  
-			--><div class="new-item down-item">
-				<div class="new-item-content active">
-					<div class="intro">
-						<a class="name" href="<%=request.getContextPath()%>/dessert/d/1">它的名字</a>
-						<p>这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍这是一段介绍</p>
-					</div>
-					<a class="img" href="<%=request.getContextPath()%>/dessert/d/2"><img src="<%=imgPath%>/hot/3.png"></a>
-				</div>
-			</div>
+			</div></c:otherwise></c:choose></c:forEach>
 		</div>
 	</div>	
 	
@@ -90,37 +72,10 @@
 		</div>
 		<div class="section-content recommend">
 			<ul class="dessert-thumbnail-list">
-				<li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/3.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><!-- 
-				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/11.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><!-- 
-				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/7.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><!-- 
-				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/8.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/12.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><!-- 
-				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/6.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><!-- 
-				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/5.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li><!-- 
-				--><li class="dessert-thumbnail-item">
-					<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/9.jpg"></a>
-					<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-				</li>
+			<c:forEach items="${hotList}" var="hotItem"><li class="dessert-thumbnail-item"><a href="<%=contextPath%>/dessert/d/${hotItem.id}">
+					<img class="img" src="<%=contextPath%>/img/dessert/${hotItem.id}.jpg"></a>
+					<a class="name" href="<%=contextPath%>/dessert/d/1">${hotItem.name}</a>
+				</li></c:forEach>
 			</ul>
 		</div>
 	</div>	

@@ -1755,8 +1755,14 @@ a.modal-close:hover {
 	margin: 0 auto;
 }
 
+.new-item img {
+	border-radius: 50%;
+	border: 4px solid rgba(255,255,255,1);
+}
+
 .new-item.up-item img {
 	margin: 10px auto 0 auto;
+	border: 4px solid rgba(255,204,51,0.7);
 }
 
 .new-item .img {
@@ -1769,11 +1775,11 @@ a.modal-close:hover {
 }
 
 .new-item.up-item .img:hover {
-	transform:rotate(-5deg);
-		-ms-transform:rotate(-5deg); 	/* IE 9 */
-		-moz-transform:rotate(-5deg); 	/* Firefox */
-		-webkit-transform:rotate(-5deg); /* Safari 和 Chrome */
-		-o-transform:rotate(-5deg);
+	transform:rotate(-360deg);
+		-ms-transform:rotate(-360deg); 	/* IE 9 */
+		-moz-transform:rotate(-360deg); 	/* Firefox */
+		-webkit-transform:rotate(-360deg); /* Safari 和 Chrome */
+		-o-transform:rotate(-360deg);
 }
 
 .new-item.down-item .img {
@@ -1781,11 +1787,11 @@ a.modal-close:hover {
 }
 
 .new-item.down-item .img:hover {
-	transform:rotate(5deg);
-		-ms-transform:rotate(5deg); 	/* IE 9 */
-		-moz-transform:rotate(5deg); 	/* Firefox */
-		-webkit-transform:rotate(5deg); /* Safari 和 Chrome */
-		-o-transform:rotate(5deg);	
+	transform:rotate(360deg);
+		-ms-transform:rotate(360deg); 	/* IE 9 */
+		-moz-transform:rotate(360deg); 	/* Firefox */
+		-webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+		-o-transform:rotate(360deg);	
 }
 
 

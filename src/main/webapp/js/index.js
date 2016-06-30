@@ -17,4 +17,14 @@ $(document).ready(function () {
         autoplayDisableOnInteraction: false
 	  }); 
 	
+	$(".new-item-content p").each(function(i){
+		var str = $(this).text();
+		var len = str.length;
+		console.log(len);
+		if(len > 42){
+			str = str.substring(0,41);
+			$(this).html(str + "...");
+		}
+	});
+	
 });

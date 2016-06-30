@@ -53,8 +53,13 @@ public class DessertServiceImpl implements DessertService {
 	}
 
 	@Override
-	public List<Dessert> getHotDessert() {
-		return dessertDao.getHotDessert();
+	public List<Dessert> getHotDessert(int num) {
+		return dessertDao.getHotDessert(num);
+	}
+
+	@Override
+	public List<Dessert> getNewDessert(int num) {
+		return dessertDao.getNewDessert(num);
 	}
 
 
