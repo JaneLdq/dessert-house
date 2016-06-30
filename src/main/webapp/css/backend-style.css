@@ -822,6 +822,9 @@ ul.tab-panes {
 	margin: 0 auto;
 }
 
+.login-form input {
+	padding: 10px 18px;
+}
 
 
 /*------------------------*\
@@ -910,6 +913,7 @@ ul.tab-panes {
 
 .create-plan-panel .tab-content {
 	min-height: 300px;
+	margin-bottom: 50px;
 }
 
 .create-plan-title {
@@ -1097,4 +1101,8 @@ ul.tab-panes {
 
 .stat-panel {
 	width: 83%;
+}
+
+.view-plan-panel {
+	margin-bottom: 15px;
 }
