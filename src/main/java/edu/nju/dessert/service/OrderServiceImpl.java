@@ -3,9 +3,7 @@ package edu.nju.dessert.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.nju.dessert.dao.MemberDao;
-import edu.nju.dessert.dao.OrderDao;
-import edu.nju.dessert.dao.UserDao;
+import edu.nju.dessert.dao.*;
 import edu.nju.dessert.model.Member;
 import edu.nju.dessert.model.Order;
 import edu.nju.dessert.vo.OrderItemVO;
@@ -19,6 +17,10 @@ public class OrderServiceImpl implements OrderService {
     private MemberDao memberDao;
     
     private UserDao userDao;
+
+    private StoreDao storeDao;
+
+    private AddressDao addressDao;
     
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
@@ -31,7 +33,15 @@ public class OrderServiceImpl implements OrderService {
     public void setOrderDao(OrderDao orderDao) {
         this.orderDao = orderDao;
     }
-    
+
+    public void setStoreDao(StoreDao storeDao) {
+        this.storeDao = storeDao;
+    }
+
+    public void setAddressDao(AddressDao addressDao) {
+        this.addressDao = addressDao;
+    }
+
     @Override
     public List<OrderVO> getOrderVO(int storeId, int type) {
         List<Order> list = orderDao.getOrderByStore(storeId, type);
@@ -63,8 +73,10 @@ public class OrderServiceImpl implements OrderService {
                 mid = member.getMid();
                 memberName = userDao.getUser(order.getUid()).getName();
             }
-            OrderVO vo = new OrderVO(order.getId(), order.getStore_id(), order.getCreated_at(),
-                    order.getSend_date(), mid, memberName, order.getTotal(), order.getDiscount(), items);
+            OrderVO vo = new OrderVO(order.getId(), order.getCreated_at(),
+                    order.getSend_date(), mid, memberName, order.getTotal(), order.getDiscount(), order.getSend_type(),
+                    order.getState(), storeDao.getStore(order.getStore_id()),
+                    addressDao.getAddress(order.getAddress_id()), items);
             return vo;
         }
         return null;
@@ -81,8 +93,10 @@ public class OrderServiceImpl implements OrderService {
         List<OrderVO> vos = new ArrayList<OrderVO>();
         for(Order o: orders){
             List<OrderItemVO> items = orderDao.getOrderItemByOrderId(o.getId());
-            OrderVO vo = new OrderVO(o.getId(), o.getStore_id(), o.getCreated_at(), o.getSend_date(),
-                    "", "", o.getTotal(), o.getDiscount(), items);
+            OrderVO vo = new OrderVO(o.getId(), o.getCreated_at(), o.getSend_date(),
+                    "", "", o.getTotal(), o.getDiscount(), o.getSend_type(),
+                    o.getState(), storeDao.getStore(o.getStore_id()),
+                    addressDao.getAddress(o.getAddress_id()), items);
             vos.add(vo);
         }
         return vos;

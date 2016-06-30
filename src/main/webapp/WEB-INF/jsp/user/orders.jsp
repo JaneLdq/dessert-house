@@ -34,7 +34,8 @@
                         <ul class="order-basic">
                             <li class="time">${o.date} </li>
                             <li class="order-number"><label>订单号：</label>${o.id}</li>
-                            <li class="store"><label>店铺：</label>${o.storeId}</li>
+                            <li class="store"><label>店铺：</label>
+                                <a class="name" href="<%=request.getContextPath() %>/store/${o.store.id}">${o.store.name}</a></li>
                             <li class="btn btn-sm js-btn-one-more" >再来一单</li>
                         </ul>
                         <div class="order-detail">
@@ -51,7 +52,7 @@
                             </div>
                             <div class="cell o-sum"><i class="fa fa-rmb"></i>${o.total}</div>
                             <div class="cell o-date">${o.sendDate}</div>
-                            <div class="cell o-state">-</div>
+                            <div class="cell o-state">${o.state}</div>
                             <div class="clear-fix"></div>
                         </div>
                     </div>
