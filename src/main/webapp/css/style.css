@@ -2732,28 +2732,22 @@ ul.cart-list-item > li {
 	margin-bottom: 15px;
 }
 
-.select-address-modal {
-	min-height: 240px;
-}
-
-.select-address-modal .address-list {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
 .m-order-info {
 	margin-bottom: 30px;
 }
 
 .m-order-info ul,
 .select-address-modal .address-list {
-	padding: 0 8px;
+	padding: 6px 15px;
 	list-style: none;
 	font-size: 14px;
-	line-height: 36px;
+	line-height: 26px;
 	color: #666;
 	background-color: rgba(64,32,0,0.05);
+}
+
+.m-order-info .address-info button {
+	margin-right: 15px;
 }
 
 .m-order-info a {
@@ -2765,15 +2759,15 @@ ul.cart-list-item > li {
 	color: rgba(64,32,0,0.7);
 }
 
-.m-order-info ul > li,
-.select-address-modal .address-list > li {
-	display: inline-block;
+.m-order-info ul > li {
+	display: block;
 	margin-right: 20px;
 }
 
 .m-order-info ul > li label,
 .select-address-modal .address-list > li label {
 	font-weight: bold;
+	margin-right: 10px;
 }
 
 .m-order-info .customer-pick-up {
@@ -2882,6 +2876,53 @@ ul.cart-list-item > li {
 }
 
 
+
+.select-address-modal {
+	width: 560px;
+	min-height: 240px;
+	background-color: rgba(255,255,255,1);
+}
+
+.select-address-modal .modal-content {
+	padding: 15px;
+}
+
+.select-address-modal .address-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	background-color: transparent;
+}
+
+.select-address-modal .address-list li {
+	display: block;
+	padding: 6px;
+	margin: 0 0 5px 0;
+	background-color: rgba(64,32,0,0.05);
+}
+
+.select-address-modal .address-list li.active {
+	color: #fff;
+	background-color: rgba(64,32,0,0.5);
+}
+
+.select-address-modal .address-list li input {
+	margin-right: 8px;
+}
+
+.select-address-modal .address-list li p {
+	margin:0 0 0 25px;
+}
+
+.select-address-modal .address-list li label {
+	display: inline-block;
+	width: 70px;
+	margin: 0 5px 0 0;
+}
+
+.select-address-modal .address-list li span {
+	margin-right: 15px;
+}
 
 
 
