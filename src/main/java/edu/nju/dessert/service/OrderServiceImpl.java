@@ -1,5 +1,6 @@
 package edu.nju.dessert.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,6 +125,15 @@ public class OrderServiceImpl implements OrderService {
         order.setState(3);
         orderDao.saveOrder(order);
         return 1; // 成功退订
+    }
+
+    @Override
+    public int orderAgain(int id, String date, int sendType) {
+        Order order = orderDao.getOrderById(id);
+        List<OrderItemVO> list = orderDao.getOrderItemByOrderId(id);
+        int result = orderDao.saveAgainOrder(order.getUid(), 1, order.getStore_id(), Date.valueOf(date), list,
+                sendType, order.getRemark(), order.getAddress_id(), order.getTotal(), order.getDiscount());
+        return result;
     }
 
 }

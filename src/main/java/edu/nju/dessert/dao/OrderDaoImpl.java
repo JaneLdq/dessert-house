@@ -54,7 +54,12 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public int saveOrder(int uid, int type,  int store_id, Date date, List<Cart> items, 
 			int sendType, String remark, int addressId) {
-		int state = 1;
+		int state;
+		if (sendType == 0) {
+			state = 1;
+		} else {
+			state = 0;
+		}
 		boolean result = true;
 		double total = cartDao.getCartTotalSum(uid);
 		double discount = DiscountCalculator.calDiscount(total, memberDao.getMemberLevel(uid));
@@ -82,7 +87,45 @@ public class OrderDaoImpl implements OrderDao {
 				memberDao.updateAccount(uid, total, discount);
 			}
 		} else {
+			state = -1;
+		}
+		return state;
+	}
+
+	@Override
+	public int saveAgainOrder(int uid, int type, int store_id, Date date, List<OrderItemVO> items,
+							  int sendType, String remark, int addressId, double total, double discount) {
+		int state;
+		if (sendType == 0) {
+			state = 1;
+		} else {
 			state = 0;
+		}
+		boolean result = true;
+		Order order = new Order(uid, type, date, total, discount, new Date(), store_id,
+				sendType, remark, addressId);
+		order.setState(state);
+		result = baseDao.save(order);
+		if(result){
+			int orderId = order.getId();
+			for(OrderItemVO vo: items){
+				OrderItem orderItem = new OrderItem();
+				orderItem.setOrder_id(orderId);
+				orderItem.setDessert_id(vo.getDessertId());
+				orderItem.setQuantity(vo.getQuantity());
+				orderItem.setPrice(vo.getPrice());
+				result = baseDao.save(orderItem);
+				if(result){
+					planDao.updateDessertRemain(vo.getDessertId(), store_id, vo.getQuantity(), date);
+				}
+			}
+			if(!result) {
+				this.deleteOrder(orderId);
+			}else{
+				memberDao.updateAccount(uid, total+discount, discount);
+			}
+		} else {
+			state = -1;
 		}
 		return state;
 	}
