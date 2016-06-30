@@ -19,6 +19,9 @@ public interface OrderDao {
 	public int saveOrder(int uid, int type, int store_id, Date date, List<Cart> items, 
 			int sendType, String remark, int addressId);
 
+	public int saveAgainOrder(int uid, int type, int store_id, Date date, List<OrderItemVO> items,
+							  int sendType, String remark, int addressId, double total, double discount);
+
 	public boolean saveOrder(Order order);
 	
 	public boolean deleteOrder(int id);

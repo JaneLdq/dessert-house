@@ -8,10 +8,6 @@ $(document).ready(function(){
 		$('#confirm-modal').modal();
 	});
 	
-	$('#js-address-selector').click(function(){
-		$('#select-address-modal').modal();
-	});
-	
 	$('#js-order-modal-submit').click(function(){
 		var remark = $('#js-remark').val();
 		var type =  $('input[name="pick-type"]:checked').val();
@@ -44,7 +40,18 @@ $(document).ready(function(){
 	});
 
 	$('.js-btn-one-more').click(function(){
-		$('#one-more-modal').modal();
+		$.ajax({
+			method: "post",
+			url: "/Tian/order/again",
+			data: {
+				id: 6,
+				date: "2016-07-02",
+				type: 0
+			},
+			success: function (data) {
+
+			}
+		});
 	});
 	
 	$('#js-take-out').click(function(){
