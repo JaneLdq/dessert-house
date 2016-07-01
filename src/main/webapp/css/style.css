@@ -1521,6 +1521,10 @@ a.modal-close:hover {
 	background-color: rgba(255,255,255,0.7);
 }
 
+.reg-panel * {
+	transition: 0s;
+}
+
 .reg-panel.panel-lg {
 	width: 600px;
 }
@@ -3278,6 +3282,13 @@ ul.cart-list-item > li {
 	margin-top: 6px;
 }
 
+.vip-panel a.vip-btn {
+	position: relative; 
+	top: -2px;
+	width: 70px; 
+	border-radius: 30px; 
+}
+
 
 
 .charge-panel ul.charge-info {
@@ -3305,17 +3316,56 @@ ul.cart-list-item > li {
 
 .order-item .order-basic li {
 	display: inline-block;
-	margin-right: 30px;
+	margin-right: 20px;
 	color: #666;
 }
 
 .order-item .order-basic {
-	padding: 5px;
-	background-color: rgba(64,32,0,0.03);
+	padding: 1.2%;
+	background-color: rgba(64,32,0,0.05);
 	font-size: 14px;
+	position: relative;
 }
 
+.order-item .order-basic a {
+	color: #666;
+}
+
+.order-item .order-basic a:hover {
+	color: rgba(255,127,77,0.8);
+}
+
+.order-item .order-ops {
+	position: relative;
+	width: 97.6%;
+	padding: 0 1.2%;
+	min-height: 36px;
+	line-height: 36px;
+}
+
+.order-item .order-ops .time {
+	color: #999;
+	font-size: 12px;
+}
+
+.order-item .order-ops a {
+	margin-left: 15px;
+	color: #666;
+}
+
+.order-item .order-ops a.highlight {
+	margin-right: 0;
+	font-weight: normal;
+	color: rgba(255,204,51,1);
+}
+
+.order-item .order-ops a:hover {
+	color: rgba(255,127,77,0.8);
+}
+
+
 .order-item .order-detail {
+	margin-top: 4px;
 	display: flex;
 	align-items: stretch;
 	justify-content: space-between;
@@ -3374,7 +3424,7 @@ ul.cart-list-item > li {
 }
 
 .order-dessert-list .cell {
-	height: 32px;
+	height: 28px;
 	justify-content: center;
 	border: none;
 }

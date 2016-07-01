@@ -22,7 +22,7 @@
 			<div class="separator"></div>
 			<div class="tab-panel finished-order">
 				<ul class="order-list-head">
-					<li class="cell o-detail">订单详情</li>
+					<li class="cell o-detail">订单列表</li>
 					<li class="cell o-sum">金额</li>
 					<li class="cell o-date">预定日期</li>
 					<li class="cell o-state">状态</li>
@@ -32,11 +32,10 @@
                     <c:forEach items="${orders}" var="o">
                     <div class="order-item">
                         <ul class="order-basic">
-                            <li class="time">${o.date} </li>
                             <li class="order-number"><label>订单号：</label>${o.id}</li>
                             <li class="store"><label>店铺：</label>
                                 <a class="name" href="<%=request.getContextPath() %>/store/${o.store.id}">${o.store.name}</a></li>
-                            <li class="btn btn-sm js-btn-one-more" >再来一单</li>
+                            <li><a href="javascript:void(0)">订单详情</a></li>
                         </ul>
                         <div class="order-detail">
                             <div class="cell o-detail">
@@ -54,6 +53,13 @@
                             <div class="cell o-date">${o.sendDate}</div>
                             <div class="cell o-state">${o.state}</div>
                             <div class="clear-fix"></div>
+                        </div>
+                        <div class="order-ops">
+                            <span class="time">${o.date} </span>
+                            <c:if test="${o.state == '未派送' }">
+                            	<a class="right" href="javascript:void(0)">退订</a>
+                            </c:if>
+                        	<a class="right highlight js-btn-one-more" href="javascript:void(0)">再来一单</a>
                         </div>
                     </div>
                     </c:forEach>

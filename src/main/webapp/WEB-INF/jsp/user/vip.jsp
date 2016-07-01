@@ -29,7 +29,7 @@
 							</c:choose></span>
 							<c:choose>
 								<c:when test="${member.state==0 }">
-							 		<a href="<%=request.getContextPath()%>/user/charge">立即激活</a>
+							 		<a class="btn btn-sm vip-btn" href="<%=request.getContextPath()%>/user/charge">立即激活</a>
 							 	</c:when>
 								<c:when test="${member.state==2 }">
 									<a href="<%=request.getContextPath()%>/user/charge">充值恢复</a>
@@ -40,7 +40,7 @@
 						<li><label>等级：</label><span class="value"> ${member.level}</span></li>
 						<li><label>余额：</label><span class="value"> ${member.balance}</span>
                             <c:if test="${member.state != 3}">
-							     <a href="<%=request.getContextPath()%>/user/charge">充值</a>
+							     <a class="btn btn-sm vip-btn" href="<%=request.getContextPath()%>/user/charge">充  值</a>
                             </c:if>
                             </li>
 						<li><label>积分：</label><span class="value"> ${member.point}</span></li>
