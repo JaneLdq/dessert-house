@@ -24,7 +24,7 @@
 				</div>
 				<div class="separator"></div>
 				<c:if test="${member.state==0}">
-					<span class="highlight">您的会员卡${member.mid}尚未激活，激活后才可以享受在线购买便利哦~</span>
+					<span class="highlight tip">您的会员卡${member.mid}尚未激活，激活后才可以享受在线购买便利与优惠!</span>
 				</c:if>
 				<div class="tips">
 					<c:choose>

@@ -3294,6 +3294,11 @@ ul.cart-list-item > li {
 }
 
 
+.charge-panel .highlight.tip {
+	display: block;
+	margin: 15px 0 ;
+	text-align: center;
+}
 
 .charge-panel ul.charge-info {
 	margin-top: 10px;
@@ -3301,7 +3306,7 @@ ul.cart-list-item > li {
 
 .charge-panel .sub-content .btn {
 	margin-top: 15px;
-	margin-left: 100px;
+	margin-left: 105px;
 }
 
 

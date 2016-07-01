@@ -69,7 +69,8 @@
                             <c:if test="${o.state!='已完成' && o.state!='已退订'}">
                                 <button class="btn btn-sm btn-cancel right" onclick="showCancelModal(this)" oid="${o.id}">退订</button>
                             </c:if>
-                            <button class="btn btn-sm right js-btn-one-more" onclick="showOneMoreModal(this)" oid="${o.id}">再来一单</button>
+                            <button class="btn btn-sm right js-btn-one-more" onclick="showOneMoreModal(this)" oid="${o.id}"
+                            	price="${o.total}">再来一单</button>
                         </div>
                         </c:if>
                         	<div class="clear-fix"></div>
@@ -96,19 +97,19 @@
         <div class="modal-content">
         	<div>请选择预定日期和取货方式：</div>
         	<div class="option"><label>日 期：</label>
-				<input id="js-date" type="date" required min="${minDate}" max="${maxDate}" value="${minDate}">
+				<input id="js-date" type="date">
 			</div>
 			<div class="option"><label>取货方式：</label>
-				<input type="radio" name="pick-type" checked><label class="radio-label">送货上门</label>
-				<input type="radio" name="pick-type"><label class="radio-label">自提</label>
+				<input type="radio" name="pick-type" value="0" checked><label class="radio-label">送货上门</label>
+				<input type="radio" name="pick-type" value="1"><label class="radio-label">自提</label>
 			</div>
 			<div class="option">
-				<label>支付总额：</label><span><i class="fa fa-rmb"></i>32.0</span>
+				<label>支付总额：</label><span id="js-one-more-price"></span>
 			</div>
         </div>
         <div class="modal-ops">
 			<a class="btn" href="#close" rel="modal:close" class="modal-close">取消</a>
-			<a class="btn" id="js-order-again-submit" href="javascript:void(0)" onclick="cancelOrder(this)">确定</a>
+			<a class="btn" id="js-order-one-more-submit" href="javascript:void(0)" onclick="oneMoreOrder(this)">确定</a>
 		</div>
     </div>
     <div class="modal common-modal cart-modal" id="cancel-modal" style="display:none">

@@ -127,8 +127,26 @@ function showCancelModal(element){
 }
 
 function showOneMoreModal(element){
+	var min = new Date();
+	min.setDate(min.getDate()+1);
+	var max = new Date();
+	max.setDate(max.getDate()+7);
+	var minD = formatNum(min.getDate());
+	var minM = formatNum(min.getMonth()+1);
+	var maxD = formatNum(max.getDate());
+	var maxM = formatNum(max.getMonth()+1);
+	$('#js-date').attr("min", min.getFullYear()+"-"+minM+"-"+minD).attr("max", 
+			max.getFullYear()+"-"+maxM+"-"+maxD).attr("value", min.getFullYear()+"-"+minM+"-"+minD);
 	var oid = $(element).attr('oid');
+	$('#js-order-one-more-submit').attr("oid", oid);
+	$('#js-one-more-price').html('<i class="fa fa-rmb"></i>'+ $(element).attr("price"));
 	$('#one-more-modal').modal();
+}
+
+function formatNum(num){
+	if(num<10)
+		return "0" + num;
+	return num;
 }
 
 function cancelOrder(element){
@@ -145,6 +163,30 @@ function cancelOrder(element){
 				location.reload();
 			}else{
 				toaster("订单取消失败！");
+			}
+			$.modal.close();
+		}
+	});
+}
+
+function oneMoreOrder(element){
+	var oid = $(element).attr("oid");
+	var type = $('.one-more-modal input[name="pick-type"]:checked').val();
+	var date = $('#js-date').val();
+	$.ajax({
+		type: "post",
+		url: urlPrefix + "/order/again",
+		data:{
+			id: oid,
+			type: type,
+			date: date
+		},
+		success: function(data){
+			if(data['result']==1){
+				toaster("订单已提交！");
+				location.reload();
+			}else{
+				toaster("再来一单操作失败");
 			}
 			$.modal.close();
 		}
