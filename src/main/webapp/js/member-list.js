@@ -12,8 +12,8 @@ function sexFormatter(value, row, index) {
 
 function detailFormatter(value, row, index) {
 	return [
-	        '<a class="payment" href="javascript:void(0)" title="Payment"><span class="glyphicon glyphicon-plus"></span></a>',
-	        '<a class="order" href="javascript:void(0)" title="Order"><span class="glyphicon glyphicon-minus"></span></a>'
+	        '<a class="payment" href="javascript:void(0)" title="缴费清单"><span class="glyphicon glyphicon-plus"></span></a>',
+	        '<a class="order" href="javascript:void(0)" title="消费记录"><span class="glyphicon glyphicon-minus"></span></a>'
 	].join(' ');   
 }
 

@@ -26,7 +26,6 @@
                     <th data-field="sex"
                         data-formatter="sexFormatter">性别</th>
                     <th data-field="birth">生日</th>
-                    <th data-field="address">地址</th>
                     <th data-field="charge">充值总额</th>
                     <th data-field="consumption">消费总额</th>
                     <th data-field="point">积分</th>

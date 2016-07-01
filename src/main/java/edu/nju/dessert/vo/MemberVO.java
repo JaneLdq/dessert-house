@@ -20,8 +20,6 @@ public class MemberVO {
     
     private int sex;
     
-    private String address;
-    
     private Double charge;
     
     private Double consumption;
@@ -32,7 +30,7 @@ public class MemberVO {
     
     public MemberVO(){}
     
-    public MemberVO(int id, int uid, int level, String mid, String name, Date birth, int sex, String address, int point, int state){
+    public MemberVO(int id, int uid, int level, String mid, String name, Date birth, int sex, int point, int state){
         this.id = id;
         this.uid = uid;
         this.level = level;
@@ -40,7 +38,6 @@ public class MemberVO {
         this.name = name;
         this.birth = birth;
         this.sex = sex;
-        this.address = address;
         this.point = point;
         this.state = state;
     }
@@ -83,14 +80,6 @@ public class MemberVO {
 
     public void setSex(int sex) {
         this.sex = sex;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public Double getCharge() {
