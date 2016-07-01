@@ -70,10 +70,9 @@
                                 <button class="btn btn-sm btn-cancel right" onclick="showCancelModal(this)" oid="${o.id}">退订</button>
                             </c:if>
                             <button class="btn btn-sm right js-btn-one-more" onclick="showOneMoreModal(this)" oid="${o.id}">再来一单</button>
+                        </div><div class="clear-fix"></div>
                         </div>
                         </c:if>
-                        	<div class="clear-fix"></div>
-                        </div>
                     </div>
                     </c:forEach>
 				</div>
@@ -94,7 +93,7 @@
         <a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
         <div class="modal-title">再来一单</div>
         <div class="modal-content">
-        	<div>请选择预定日期和取货方式：</div>
+        	<div>请选择预订日期和取货方式：</div>
         	<div class="option"><label>日 期：</label>
 				<input id="js-date" type="date" required min="${minDate}" max="${maxDate}" value="${minDate}">
 			</div>

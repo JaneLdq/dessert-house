@@ -112,10 +112,11 @@ function getOrderHtml(orders){
 				html += '<button class="btn btn-sm btn-cancel right" onclick="showCancelModal(this)" oid="' + order.id + '">退订</button>';
 			}
 			html += '<button class="btn btn-sm right js-btn-one-more" ' +
-				'onclick="showOneMoreModal(this)" oid="' + order.id + '">再来一单</button></div>';
+				'onclick="showOneMoreModal(this)" oid="' + order.id + '">再来一单</button></div>' +
+				'<div class="clear-fix"></div></div>';
 		}
 
-		html += '<div class="clear-fix"></div></div></div>';
+		html += '</div>';
 	}
 	return html;
 }

@@ -59,12 +59,14 @@ public class OrderDaoImpl implements OrderDao {
 			state = 0;
 		} else {
 			state = 1;
+			addressId = -1;
 		}
 		boolean result = true;
 		double total = cartDao.getCartTotalSum(uid);
 		double discount = DiscountCalculator.calDiscount(total, memberDao.getMemberLevel(uid));
 		Order order = new Order(uid, type, date, (total-discount), discount, new Date(), store_id,
 				sendType, remark, addressId);
+		order.setState(state);
 		result = baseDao.save(order);
 		if(result){
 			int orderId = order.getId();
