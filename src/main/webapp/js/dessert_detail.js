@@ -12,6 +12,17 @@ $(document).ready(function(){
 		var parent = $(this).parent();
 		$(parent).children().removeClass("active");
 		$(this).addClass("active");
+		var cartItem = getCartItem();
+		$.ajax({
+			type: "post",
+			url: urlPrefix + "/dessert/price",
+			contentType: "application/json",
+			data: JSON.stringify(cartItem),
+			success: function(data){
+				var price = data['price'];
+				$('.js-dessert-price').html('<i class="fa fa-rmb"></i>' + price);
+			}
+		});
 	});
 	
 	$('#js-date').change(function(){
@@ -27,34 +38,8 @@ $(document).ready(function(){
 	
 	$('#js-add-dessert').click(function(){
 		var result = checkLogin();
-		var id = $('#js-dessert-id').val();
-		var storeId = $('#js-store-selector').val();
-		var date = $('#js-date').val();
+		var cartItem = getCartItem();
 		var num = $('#js-dessert-value').val();
-		var additions = [];
-		if($('.js-cake-size-selector').length > 0){
-			var value = $('.js-cake-size-selector').children('.size-item.active').html();
-			additions.push({key: "规格", value: value});
-		}
-		if($('.js-cup-selector').length > 0){
-			var value = $('.js-cup-selector').children('.size-item.active').html();
-			additions.push({key: "规格", value: value});
-		}
-		if($('.js-temp-selector').length > 0){
-			var value = $('.js-temp-selector').children('.size-item.active').html();
-			additions.push({key: "温度", value: value});
-		}
-		if($('.js-sweet-selector').length > 0){
-			var value = $('.js-sweet-selector').children('.size-item.active').html();
-			additions.push({key: "甜度", value: value});
-		}
-		var cartItem = {
-				dessertId: id,
-				quantity: num,
-				storeId: storeId,
-				dateStr: date,
-				additions: additions
-		};
 		if(result==1){
 			if(num > 0){
 				$.ajax({
@@ -75,6 +60,38 @@ $(document).ready(function(){
 	});
 	
 });
+
+function getCartItem(){
+	var id = $('#js-dessert-id').val();
+	var storeId = $('#js-store-selector').val();
+	var date = $('#js-date').val();
+	var num = $('#js-dessert-value').val();
+	var additions = [];
+	if($('.js-cake-size-selector').length > 0){
+		var value = $('.js-cake-size-selector').children('.size-item.active').html();
+		additions.push({key: "规格", value: value});
+	}
+	if($('.js-cup-selector').length > 0){
+		var value = $('.js-cup-selector').children('.size-item.active').html();
+		additions.push({key: "规格", value: value});
+	}
+	if($('.js-temp-selector').length > 0){
+		var value = $('.js-temp-selector').children('.size-item.active').html();
+		additions.push({key: "温度", value: value});
+	}
+	if($('.js-sweet-selector').length > 0){
+		var value = $('.js-sweet-selector').children('.size-item.active').html();
+		additions.push({key: "甜度", value: value});
+	}
+	var cartItem = {
+			dessertId: id,
+			quantity: num,
+			storeId: storeId,
+			dateStr: date,
+			additions: additions
+	};
+	return cartItem;
+}
 
 function getQuantity(){
 	var did = $('#js-dessert-id').val();

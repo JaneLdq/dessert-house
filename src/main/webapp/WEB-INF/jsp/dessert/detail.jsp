@@ -23,7 +23,7 @@
 				<input type="hidden" id="js-dessert-id" value="${dessert.id}">
 				<input type="hidden" id="js-dessert-type" value="${dessert.type}">
 				<input type="hidden" id="js-total-dessert-num" value="${total}">
-				<span class="price"><i class="fa fa-rmb"></i>${dessert.price}</span>
+				<span class="price js-dessert-price"><i class="fa fa-rmb"></i>${dessert.price}</span>
 				<div class="desc">${dessert.desc}</div>
 				<div class="separator"></div>
 				<div class="options">

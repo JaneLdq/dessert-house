@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +24,9 @@ import edu.nju.dessert.model.Dessert;
 import edu.nju.dessert.model.Store;
 import edu.nju.dessert.service.DessertService;
 import edu.nju.dessert.service.StoreService;
+import edu.nju.dessert.service.TradeService;
 import edu.nju.dessert.service.UserService;
+import edu.nju.dessert.vo.CartItemAddVO;
 
 @Controller
 @RequestMapping(value={"/dessert","/desserts"})
@@ -34,6 +37,12 @@ public class DessertController {
 	private StoreService storeService;
 	
 	private UserService userService;
+	
+	private TradeService tradeService;
+	
+	public void setTradeService(TradeService tradeService){
+		this.tradeService = tradeService;
+	}
 	
 	public void setDessertService(DessertService dessertService) {
 		this.dessertService = dessertService;
@@ -168,6 +177,14 @@ public class DessertController {
 		return "/dessert/search";
 	}
 	
+	@RequestMapping(value="/price", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> getDessertPrice(@RequestBody CartItemAddVO reqItem){
+		Map<String, Object> map = new HashMap<String, Object>();
+		double price = tradeService.getPrice(reqItem.getDessertId(), reqItem.getAdditions());
+		map.put("price", price);
+		return map;
+	}
+	
 	@Auth(Role.SALESMAN)
 	@RequestMapping(value="/check")
 	public @ResponseBody Map<String, Object> checkRightId(@RequestParam int id, @RequestParam int storeId){
@@ -203,5 +220,4 @@ public class DessertController {
 		model.put("total", total);
 	}
 
-	
 }

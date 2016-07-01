@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2016-07-01 00:16:07
+Date: 2016-07-02 00:47:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,12 +26,13 @@ CREATE TABLE `addition_item` (
   `keyword` varchar(255) DEFAULT NULL,
   `val` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of addition_item
 -- ----------------------------
 INSERT INTO `addition_item` VALUES ('8', '11', null, '规格', '1.2磅');
+INSERT INTO `addition_item` VALUES ('25', '27', null, '规格', '2.2磅');
 
 -- ----------------------------
 -- Table structure for address
@@ -39,20 +40,24 @@ INSERT INTO `addition_item` VALUES ('8', '11', null, '规格', '1.2磅');
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `address` varchar(45) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `tel` varchar(45) NOT NULL,
   `uid` int(11) NOT NULL,
   `receiver` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of address
 -- ----------------------------
-INSERT INTO `address` VALUES ('1', '南京大学', '18066083162', '1', '哈哈哈');
 INSERT INTO `address` VALUES ('2', '南京大学', '18066080000', '2', '廖丹琪');
 INSERT INTO `address` VALUES ('3', 'NJU', '18066080000', '3', 'Jane');
 INSERT INTO `address` VALUES ('4', 'NJU', '18066080000', '4', 'Jane');
+INSERT INTO `address` VALUES ('19', 'NJU', '18066083162', '1', 'Jane');
+INSERT INTO `address` VALUES ('22', '南京大学', '18066083162', '1', '廖丹琪');
+INSERT INTO `address` VALUES ('23', '南京大学', '18066083122', '5', 'Jane');
+INSERT INTO `address` VALUES ('24', '1234567', '18066084444', '7', 'Jane');
+INSERT INTO `address` VALUES ('25', 'NJU', '18066081212', '8', 'Jane');
 
 -- ----------------------------
 -- Table structure for cart
@@ -65,16 +70,16 @@ CREATE TABLE `cart` (
   `quantity` int(11) DEFAULT NULL,
   `store_id` int(11) DEFAULT NULL,
   `date` date NOT NULL,
+  `price` double DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cart_item` (`user_id`,`dessert_id`,`store_id`,`date`),
   KEY `store_id` (`store_id`),
   KEY `dessert_id` (`dessert_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of cart
 -- ----------------------------
-INSERT INTO `cart` VALUES ('14', '1', '20', '1', '1', '2016-07-02');
 
 -- ----------------------------
 -- Table structure for dessert
@@ -142,13 +147,12 @@ CREATE TABLE `member` (
   PRIMARY KEY (`id`),
   KEY `uid_idx` (`uid`),
   CONSTRAINT `uid` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of member
 -- ----------------------------
-INSERT INTO `member` VALUES ('1', 'V000001', '1', '3', '86', '1', '123456', '1234567822345678123', '18621.5', null, '2016-06-22 15:48:28');
-INSERT INTO `member` VALUES ('4', 'V000002', '4', '0', '0', '0', '123456', '1234567822345678123', '0.0', null, null);
+INSERT INTO `member` VALUES ('1', 'V000001', '1', '3', '344', '1', '123456', '1234567822345678123', '14766.5', null, '2016-06-22 15:48:28');
 
 -- ----------------------------
 -- Table structure for order_item
@@ -163,7 +167,7 @@ CREATE TABLE `order_item` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `sorder` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of order_item
@@ -315,7 +319,7 @@ INSERT INTO `plan_item` VALUES ('69', '3', '1', '21', '30', '32.00', '30');
 INSERT INTO `plan_item` VALUES ('70', '3', '1', '22', '30', '28.00', '30');
 INSERT INTO `plan_item` VALUES ('71', '3', '1', '23', '30', '28.00', '30');
 INSERT INTO `plan_item` VALUES ('72', '3', '1', '24', '30', '28.00', '30');
-INSERT INTO `plan_item` VALUES ('73', '4', '1', '1', '30', '188.00', '30');
+INSERT INTO `plan_item` VALUES ('73', '4', '1', '1', '30', '188.00', '28');
 INSERT INTO `plan_item` VALUES ('74', '4', '1', '2', '30', '218.00', '30');
 INSERT INTO `plan_item` VALUES ('75', '4', '1', '3', '30', '128.00', '30');
 INSERT INTO `plan_item` VALUES ('76', '4', '1', '4', '30', '188.00', '30');
@@ -339,7 +343,7 @@ INSERT INTO `plan_item` VALUES ('93', '4', '1', '21', '30', '32.00', '30');
 INSERT INTO `plan_item` VALUES ('94', '4', '1', '22', '30', '28.00', '30');
 INSERT INTO `plan_item` VALUES ('95', '4', '1', '23', '30', '28.00', '30');
 INSERT INTO `plan_item` VALUES ('96', '4', '1', '24', '30', '28.00', '30');
-INSERT INTO `plan_item` VALUES ('97', '5', '1', '1', '30', '188.00', '30');
+INSERT INTO `plan_item` VALUES ('97', '5', '1', '1', '30', '188.00', '13');
 INSERT INTO `plan_item` VALUES ('98', '5', '1', '2', '30', '218.00', '30');
 INSERT INTO `plan_item` VALUES ('99', '5', '1', '3', '30', '128.00', '30');
 INSERT INTO `plan_item` VALUES ('100', '5', '1', '4', '30', '188.00', '30');
@@ -364,8 +368,8 @@ INSERT INTO `plan_item` VALUES ('118', '5', '1', '22', '30', '28.00', '30');
 INSERT INTO `plan_item` VALUES ('119', '5', '1', '23', '30', '28.00', '30');
 INSERT INTO `plan_item` VALUES ('120', '5', '1', '24', '30', '28.00', '30');
 INSERT INTO `plan_item` VALUES ('121', '6', '1', '1', '30', '188.00', '30');
-INSERT INTO `plan_item` VALUES ('122', '6', '1', '2', '30', '218.00', '30');
-INSERT INTO `plan_item` VALUES ('123', '6', '1', '3', '30', '128.00', '30');
+INSERT INTO `plan_item` VALUES ('122', '6', '1', '2', '30', '218.00', '29');
+INSERT INTO `plan_item` VALUES ('123', '6', '1', '3', '30', '128.00', '29');
 INSERT INTO `plan_item` VALUES ('124', '6', '1', '4', '30', '188.00', '30');
 INSERT INTO `plan_item` VALUES ('125', '6', '1', '5', '30', '188.00', '30');
 INSERT INTO `plan_item` VALUES ('126', '6', '1', '6', '30', '188.00', '30');
@@ -593,7 +597,7 @@ CREATE TABLE `point` (
   PRIMARY KEY (`id`),
   KEY `user` (`uid`),
   CONSTRAINT `user` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of point
@@ -610,6 +614,39 @@ INSERT INTO `point` VALUES ('9', '1', '10.0', '0', '2016-06-29 20:09:37');
 INSERT INTO `point` VALUES ('10', '1', '9.0', '0', '2016-06-29 20:10:19');
 INSERT INTO `point` VALUES ('11', '1', '4.0', '0', '2016-06-29 20:57:53');
 INSERT INTO `point` VALUES ('12', '1', '10.0', '0', '2016-06-29 21:43:45');
+INSERT INTO `point` VALUES ('13', '1', '1.0', '0', '2016-07-01 00:28:13');
+INSERT INTO `point` VALUES ('14', '1', '9.0', '0', '2016-07-01 14:31:50');
+INSERT INTO `point` VALUES ('15', '1', '20.0', '0', '2016-07-01 19:25:58');
+INSERT INTO `point` VALUES ('16', '1', '-15.0', '0', '2016-07-01 21:01:04');
+INSERT INTO `point` VALUES ('17', '1', '-7.0', '0', '2016-07-01 21:06:41');
+INSERT INTO `point` VALUES ('18', '1', '-1.0', '0', '2016-07-01 21:08:59');
+INSERT INTO `point` VALUES ('19', '1', '10.0', '0', '2016-07-01 21:12:06');
+INSERT INTO `point` VALUES ('20', '1', '15.0', '0', '2016-07-01 21:46:28');
+INSERT INTO `point` VALUES ('21', '1', '9.0', '0', '2016-07-01 21:46:28');
+INSERT INTO `point` VALUES ('22', '1', '-7.0', '0', '2016-07-01 21:48:14');
+INSERT INTO `point` VALUES ('23', '1', '9.0', '0', '2016-07-01 23:25:47');
+INSERT INTO `point` VALUES ('24', '1', '9.0', '0', '2016-07-01 23:29:42');
+INSERT INTO `point` VALUES ('25', '1', '-7.0', '0', '2016-07-01 23:29:46');
+INSERT INTO `point` VALUES ('26', '1', '9.0', '0', '2016-07-01 23:29:53');
+INSERT INTO `point` VALUES ('27', '1', '9.0', '0', '2016-07-01 23:29:56');
+INSERT INTO `point` VALUES ('28', '1', '9.0', '0', '2016-07-01 23:30:01');
+INSERT INTO `point` VALUES ('29', '1', '9.0', '0', '2016-07-01 23:32:41');
+INSERT INTO `point` VALUES ('30', '1', '9.0', '0', '2016-07-01 23:32:45');
+INSERT INTO `point` VALUES ('31', '1', '9.0', '0', '2016-07-01 23:32:49');
+INSERT INTO `point` VALUES ('32', '1', '9.0', '0', '2016-07-01 23:33:04');
+INSERT INTO `point` VALUES ('33', '1', '9.0', '0', '2016-07-01 23:33:31');
+INSERT INTO `point` VALUES ('34', '1', '9.0', '0', '2016-07-01 23:33:45');
+INSERT INTO `point` VALUES ('35', '1', '9.0', '0', '2016-07-01 23:35:59');
+INSERT INTO `point` VALUES ('36', '1', '9.0', '0', '2016-07-01 23:36:37');
+INSERT INTO `point` VALUES ('37', '1', '9.0', '0', '2016-07-01 23:37:37');
+INSERT INTO `point` VALUES ('38', '1', '9.0', '0', '2016-07-01 23:40:00');
+INSERT INTO `point` VALUES ('39', '1', '9.0', '0', '2016-07-01 23:40:14');
+INSERT INTO `point` VALUES ('40', '1', '9.0', '0', '2016-07-01 23:40:25');
+INSERT INTO `point` VALUES ('41', '1', '9.0', '0', '2016-07-01 23:45:06');
+INSERT INTO `point` VALUES ('42', '1', '9.0', '0', '2016-07-01 23:45:12');
+INSERT INTO `point` VALUES ('43', '1', '9.0', '0', '2016-07-01 23:45:18');
+INSERT INTO `point` VALUES ('44', '1', '9.0', '0', '2016-07-01 23:45:39');
+INSERT INTO `point` VALUES ('45', '1', '42.0', '0', '2016-07-02 00:36:42');
 
 -- ----------------------------
 -- Table structure for sorder
@@ -630,7 +667,7 @@ CREATE TABLE `sorder` (
   `saleman_id` int(11) DEFAULT NULL COMMENT '销售员id',
   `remark` varchar(512) CHARACTER SET utf8 DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of sorder
@@ -702,10 +739,9 @@ CREATE TABLE `user` (
   `default_addr` int(11) DEFAULT NULL COMMENT '默认地址',
   PRIMARY KEY (`id`),
   UNIQUE KEY `tel_UNIQUE` (`tel`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '18066083162', 'LDQ', 'Jane', '1970-01-01', '0', '123456', '/Tian/upload/1.jpg', null, '4', '1');
-INSERT INTO `user` VALUES ('4', '18066080000', 'Jane', 'JaneL', '1970-01-01', '1', '123456', null, null, '3', '4');
+INSERT INTO `user` VALUES ('1', '18066083162', 'LDQ', 'Jane', '1970-01-01', '0', '123456', '/Tian/upload/1.jpg', null, '2', '19');

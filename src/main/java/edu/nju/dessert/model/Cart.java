@@ -22,16 +22,19 @@ public class Cart {
 	
 	private int store_id;
 	
+	private double price;
+	
 	private Date date;
 
 	public Cart(){}
 	
-	public Cart(int uid, int dessertId, int quantity, int storeId, Date date){
+	public Cart(int uid, int dessertId, int quantity, int storeId, Date date, double price){
 		this.user_id = uid;
 		this.dessert_id = dessertId;
 		this.quantity = quantity;
 		this.store_id = storeId;
 		this.date = date;
+		this.price = price;
 	}
 	
 	public int getId() {
@@ -80,6 +83,14 @@ public class Cart {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	
 }

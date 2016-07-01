@@ -23,7 +23,7 @@ public interface CartDao {
 	
 	public Double getCartItemSum(int id);
 	
-	public boolean addDessert(int uid, int dessertId, int quantity, int storeId, Date date);
+	public boolean addDessert(int uid, int dessertId, int quantity, int storeId, Date date, double price);
 
 	/**
 	 * 向购物车添加商品
@@ -35,7 +35,7 @@ public interface CartDao {
 	 * @param additions 附加条件
 	 * @return
 	 */
-	public boolean addDessert(int uid, int dessertId, int quantity, int storeId, Date date, List<AdditionItemVO> additions);
+	public boolean addDessert(int uid, int dessertId, int quantity, int storeId, Date date, double price, List<AdditionItemVO> additions);
 
 	public boolean updateDessert(int cid, int uid, int dessertId, int quantity, int storeId, Date date);
 	

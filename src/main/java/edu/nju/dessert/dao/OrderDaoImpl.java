@@ -72,11 +72,10 @@ public class OrderDaoImpl implements OrderDao {
 			int orderId = order.getId();
 			for(Cart c: items){
 				OrderItem orderItem = new OrderItem();
-				double price = dessertDao.getDessertPrice(c.getDessert_id(), store_id, DateTranslator.dateToStr(date));
 				orderItem.setOrder_id(orderId);
 				orderItem.setDessert_id(c.getDessert_id());
 				orderItem.setQuantity(c.getQuantity());
-				orderItem.setPrice(price);
+				orderItem.setPrice(c.getPrice());
 				result = baseDao.save(orderItem);
 				if(result){
 					cartDao.deleteDessert(c.getId());

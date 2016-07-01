@@ -37,4 +37,5 @@ public interface TradeService {
 	
 	public boolean sale(Integer storeId, String mid, List<OrderItemVO> items);
 	
+	public double getPrice(int dessertId, List<AdditionItemVO> additions);
 }

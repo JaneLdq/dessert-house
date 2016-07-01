@@ -16,6 +16,7 @@ import edu.nju.dessert.dao.DessertDao;
 import edu.nju.dessert.dao.MemberDao;
 import edu.nju.dessert.dao.OrderDao;
 import edu.nju.dessert.model.Cart;
+import edu.nju.dessert.model.Dessert;
 import edu.nju.dessert.model.Member;
 import edu.nju.dessert.model.Order;
 import edu.nju.dessert.model.OrderItem;
@@ -34,6 +35,9 @@ public class TradeServiceImpl implements TradeService {
 	private OrderDao orderDao;
 	
 	private DessertDao dessertDao;
+	
+	private String[] size = {"1.2磅", "2.2磅", "3.2磅","6磅"};
+	private double[] per = {1, 1.4, 2.2, 4.2};
 	
 	public void setDessertDao(DessertDao dessertDao) {
         this.dessertDao = dessertDao;
@@ -102,7 +106,8 @@ public class TradeServiceImpl implements TradeService {
 
 	@Override
 	public boolean addCartItem(int uid, int dessertId, int quantity, int storeId, Date date, List<AdditionItemVO> additions) {
-		boolean result = cartDao.addDessert(uid, dessertId, quantity, storeId, date, additions);
+		double price = getPrice(dessertId, additions);
+		boolean result = cartDao.addDessert(uid, dessertId, quantity, storeId, date, price, additions);
 		return result;
 	}
 
@@ -176,4 +181,39 @@ public class TradeServiceImpl implements TradeService {
         return result;
     }
 
+    public double getPrice(int dessertId, List<AdditionItemVO> additions){
+    	Dessert dessert = dessertDao.getDessert(dessertId);
+    	double price = dessert.getPrice();
+    	switch(dessert.getType()){
+    	case 0:
+    		AdditionItemVO vo = additions.get(0);
+    		for(int i=0; i<size.length; i++){
+    			if(size[i].equals(vo.getValue())){
+    				price =  per[i] * dessert.getPrice();
+    				break;
+    			}
+    		}
+    		break;
+    	case 3:
+    	case 4:
+    	case 5:
+    		for(int i=0; i<additions.size(); i++){
+    			if(additions.get(i).getKey().equals("规格")){
+    				String val = additions.get(i).getValue();
+    				if(val.equals("大杯（800ml）")){
+    					price = dessert.getPrice();
+    					break;
+    				}else{
+    					price = dessert.getPrice() * 0.8;
+    					break;
+    				}
+    			}
+    		}
+    	default: 
+    		price = dessert.getPrice();
+    	}
+    	DecimalFormat df = new DecimalFormat("#.00");  
+    	return Double.valueOf(df.format(price));
+    }
+   
 }
