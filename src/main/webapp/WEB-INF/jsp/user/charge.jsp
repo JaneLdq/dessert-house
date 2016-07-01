@@ -74,7 +74,7 @@
 					<div class="sub-content">
 						<form method="POST" id="js-charge-form">
 							<ul class="info-list">
-								<li><label>银行卡号：</label><span class="value">
+								<li><label>银行卡号：</label><span class="value" id="js-bank-id">
 									${member.bank_card}</span></li>
 								<li><label>支付密码：</label><span class="value">
 									<input type="password" name="password" required></span></li>

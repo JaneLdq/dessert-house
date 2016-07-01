@@ -27,7 +27,7 @@
 				<div class="desc">${dessert.desc}</div>
 				<div class="separator"></div>
 				<div class="options">
-					<span class="tip"><i class="fa fa-calendar"></i>所有商品需提前<span class="highlight">1-7</span>天预订</span>
+					<span class="tip"><i class="fa fa-calendar"></i>所有商品需提前<span class="highlight">0-7</span>天预订</span>
 					<div class="option"><label>日期：</label>
 						<input id="js-date" type="date" required min="${minDate}" max="${maxDate}" value="${minDate}">
 					</div>

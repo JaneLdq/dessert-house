@@ -32,11 +32,13 @@ public class OrderVO {
     private Store store;
 
     private Address address;
+
+    private int type;
     
     public OrderVO(){}
     
     public OrderVO(int id, Date date, Date sendDate, String mid, String memberName, double total, double discount,
-            int sendType, int state, Store store, Address address, List<OrderItemVO> items){
+            int sendType, int state, Store store, Address address, int type, List<OrderItemVO> items){
         this.id = id;
         this.date = date;
         this.sendDate = sendDate;
@@ -49,6 +51,7 @@ public class OrderVO {
         this.state = state;
         this.store = store;
         this.address = address;
+        this.type = type;
     }
 
     public int getId() {
@@ -153,4 +156,11 @@ public class OrderVO {
         this.address = address;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 }

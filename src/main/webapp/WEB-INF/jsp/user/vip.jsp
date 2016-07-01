@@ -54,7 +54,7 @@
 				<div class="sub-title">银行账号</div>
 				<div class="sub-content">
 					<ul class="info-list">
-						<li><label>银行卡号：</label><span class="value">${member.bank_card}</span></li>
+						<li><label>银行卡号：</label><span class="value" id="js-bank-id">${member.bank_card}</span></li>
 					</ul>
 				</div>
 				<div class="clear-fix"></div>

@@ -45,7 +45,9 @@
 					<p class="form-tip">6位数字，会员卡激活或充值前需进行支付验证</p>
 				</div>
 				<button class="btn" type="button" id="js-submit">完善会员信息</button>
+				<!--
 				<button class="jump-link" type="submit">跳过，以后再说</button>
+				-->
 			</form>
 		</div>
 	</div>

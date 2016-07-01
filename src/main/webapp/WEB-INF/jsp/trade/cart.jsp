@@ -112,22 +112,11 @@
 			<div class="right line"></div>
 		</div>
 		<ul class="dessert-thumbnail-list">
-			<li class="dessert-thumbnail-item">
-				<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/2.jpg"></a>
-				<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-			</li><!-- 
-			--><li class="dessert-thumbnail-item">
-				<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/11.jpg"></a>
-				<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-			</li><!-- 
-			--><li class="dessert-thumbnail-item">
-				<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/5.jpg"></a>
-				<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-			</li><!-- 
-			--><li class="dessert-thumbnail-item">
-				<a href="<%=contextPath%>/dessert/d/1"><img class="img" src="<%=contextPath%>/img/dessert/8.jpg"></a>
-				<a class="name" href="<%=contextPath%>/dessert/d/1">黑森林蛋糕</a>
-			</li>
+			<c:forEach items="${likes}" var="l"><li class="dessert-thumbnail-item">
+				<a href="javascript:void(0)" onclick="jumpToDessertDetail(this)" did="${l.id}" >
+					<img class="img" src="<%=contextPath%>/img/dessert/${l.id}.jpg"></a>
+				<a class="name" href="javascript:void(0)" onclick="jumpToDessertDetail(this)" did="${d.id}">${l.name}</a>
+			</li></c:forEach>
 		</ul>
 	</div>
 	</div>

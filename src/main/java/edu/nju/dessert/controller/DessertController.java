@@ -189,8 +189,9 @@ public class DessertController {
 		Long total = dessertService.getTotalDessertNum();
 		Date date = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
-	    String minDate = df.format(new Date(date.getTime() + 1 * 24 * 60 * 60 * 1000));
-	    String maxDate = df.format(new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000));
+//	    String minDate = df.format(new Date(date.getTime() + 1 * 24 * 60 * 60 * 1000));
+	    String minDate = df.format(new Date(date.getTime() + 0 * 24 * 60 * 60 * 1000));
+	    String maxDate = df.format(new Date(date.getTime() + 6 * 24 * 60 * 60 * 1000));
 		int quantity = dessertService.getDessertQuantity(id, storeId, minDate);
 		model.put("quantity", quantity);
 	    model.put("minDate", minDate);

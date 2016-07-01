@@ -76,9 +76,14 @@ function getOrderHtml(orders){
 			'<li class="time">' + order.date + ' </li>' +
 			'<li class="order-number"><label>订单号：</label>' + order.id + '</li>' +
 			'<li class="store"><label>店铺：</label>' +
-			'<a class="name" href="' + urlPrefix + '/store/' + order.id + '">' + order.store.name + '</a></li>' +
-			'<li class="btn btn-sm js-btn-one-more" >再来一单</li>' +
-			'</ul>' +
+			'<a class="name" href="' + urlPrefix + '/store/' + order.id + '">' + order.store.name + '</a></li>';
+		if (order.type == 1) {
+			html += '<li class="btn btn-sm js-btn-one-more" >再来一单</li>';
+		}
+		if (order.type ==1 && order.state != '已完成' && order.state != '已退订') {
+			html += '<li class="btn btn-sm js-btn-cancel" >退订</li>';
+		}
+		html += '</ul>' +
 			'<div class="order-detail">' +
 			'<div class="cell o-detail">';
 		for (var j = 0; j < order.items.length; j++) {

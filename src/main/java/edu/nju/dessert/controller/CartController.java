@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.nju.dessert.model.Dessert;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -62,6 +63,8 @@ public class CartController {
 	    String maxDate = DateTranslator.dateToStr(new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000));
 	    model.put("minDate", minDate);
 	    model.put("maxDate", maxDate);
+		List<Dessert> likes = dessertService.getHotDessert(4);
+		model.put("likes", likes);
 		return "/trade/cart";
 	}
 	

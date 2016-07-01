@@ -24,7 +24,7 @@
 				<ul class="order-list-head">
 					<li class="cell o-detail">订单列表</li>
 					<li class="cell o-sum">金额</li>
-					<li class="cell o-date">预定日期</li>
+					<li class="cell o-date">预订日期</li>
 					<li class="cell o-state">状态</li>
 					<li class="clear-fix"></li>
 				</ul>
@@ -36,6 +36,12 @@
                             <li class="order-number"><label>订单号：</label>${o.id}</li>
                             <li class="store"><label>店铺：</label>
                                 <a class="name" href="<%=request.getContextPath() %>/store/${o.store.id}">${o.store.name}</a></li>
+                            <c:if test="${o.type==1}">
+                                <li class="btn btn-sm js-btn-one-more" >再来一单</li>
+                            </c:if>
+                            <c:if test="${o.type==1 && o.state!='已完成' && o.state!='已退订'}">
+                                <li class="btn btn-sm js-btn-cancel" >退订</li>
+                            </c:if>
                         </ul>
                         <div class="order-detail">
                             <div class="cell o-detail">
