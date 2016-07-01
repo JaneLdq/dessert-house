@@ -158,7 +158,7 @@ public class TradeServiceImpl implements TradeService {
         Date date = new Date();
         List<OrderItem> list = new ArrayList<OrderItem>();
         for(OrderItemVO item: items){
-            double price = dessertDao.getDessertPrice(item.getId(), storeId, DateTranslator.dateToStr(date));
+            double price = dessertDao.getDessertPrice(item.getDessertId(), storeId, DateTranslator.dateToStr(date));
             OrderItem oItem = new OrderItem();
             oItem.setDessert_id(item.getDessertId());
             oItem.setQuantity(item.getQuantity());
