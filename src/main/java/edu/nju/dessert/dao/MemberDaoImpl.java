@@ -172,7 +172,7 @@ public class MemberDaoImpl implements MemberDao{
 
     @Override
     public List<MemberVO> getAllMember() {
-        String hql = "select new edu.nju.dessert.vo.MemberVO(m.id,m.uid, m.level, m.mid, u.name, u.birth, u.sex, u.address,m.point, m.state) from Member m, User u where "
+        String hql = "select new edu.nju.dessert.vo.MemberVO(m.id,m.uid, m.level, m.mid, u.name, u.birth, u.sex, m.point, m.state) from Member m, User u where "
                 + " m.uid=u.id and m.state!=3";
         Query query = baseDao.getSession().createQuery(hql);
         List<MemberVO> list = query.list();

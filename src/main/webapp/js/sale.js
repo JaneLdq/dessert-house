@@ -53,13 +53,21 @@ $(document).ready(function(){
 	});
 	
 	$('#js-sale-submit').click(function(){
-		var order = getOrderJson();
+		var order = getOrder();
 		console.log(order);
+		if (order.mid == null) {
+			toaster("请输入正确的会员编号！");
+			return;
+		}
+		if (isNaN(order.items[0].dessertId)) {
+			toaster("请选择要销售的商品！");
+			return;
+		}
 		$.ajax({
 			type: "post",
 			url: urlPrefix + "/sale/create",
 			datatype: "json",
-			data: order,
+			data: JSON.stringify(order),
 			contentType: "application/json; charset=utf-8",
 			success: function(data){
 				if(data['result']==1){
@@ -105,7 +113,7 @@ function removeFormatter(value, row) {
     return '<a class="remove" href="javascript:void(0)" title="Remove"><i class="glyphicon glyphicon-remove"></i></a> ';
 }
 
-function getOrderJson(){
+function getOrder(){
 	var mid = $('#js-member-id').attr('mid');
 	if(typeof(mid) == "undefined"){
 		mid = null;
@@ -119,12 +127,18 @@ function getOrderJson(){
 		items.push(new orderItem(dessertId, quantity));
 	}
 	var order = new orderCreator(mid,items);
-	return JSON.stringify(order);
+	return order;
 }
 
 function orderCreator(mid,items){
 	this.mid = mid;
 	this.items = items;
+	this.getMid = function() {
+		return mid;
+	};
+	this.getItems = function() {
+		return items;
+	};
 }
 
 function orderItem(dessertId, quantity){

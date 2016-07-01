@@ -34,3 +34,7 @@ function getOrderDetail(id){
     	}
     });
 }
+
+function detailFormatter(value, row, index) {
+	return row.id;
+}
