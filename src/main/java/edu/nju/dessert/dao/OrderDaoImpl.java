@@ -56,9 +56,9 @@ public class OrderDaoImpl implements OrderDao {
 			int sendType, String remark, int addressId) {
 		int state;
 		if (sendType == 0) {
-			state = 1;
-		} else {
 			state = 0;
+		} else {
+			state = 1;
 		}
 		boolean result = true;
 		double total = cartDao.getCartTotalSum(uid);
@@ -87,9 +87,9 @@ public class OrderDaoImpl implements OrderDao {
 				memberDao.updateAccount(uid, total, discount);
 			}
 		} else {
-			state = -1;
+			return 0;
 		}
-		return state;
+		return 1;
 	}
 
 	@Override
@@ -97,9 +97,9 @@ public class OrderDaoImpl implements OrderDao {
 							  int sendType, String remark, int addressId, double total, double discount) {
 		int state;
 		if (sendType == 0) {
-			state = 1;
-		} else {
 			state = 0;
+		} else {
+			state = 1;
 		}
 		boolean result = true;
 		Order order = new Order(uid, type, date, total, discount, new Date(), store_id,
@@ -125,9 +125,9 @@ public class OrderDaoImpl implements OrderDao {
 				memberDao.updateAccount(uid, total+discount, discount);
 			}
 		} else {
-			state = -1;
+			return 0;
 		}
-		return state;
+		return 1;
 	}
 
 	@Override

@@ -36,12 +36,6 @@
                             <li class="order-number"><label>订单号：</label>${o.id}</li>
                             <li class="store"><label>店铺：</label>
                                 <a class="name" href="<%=request.getContextPath() %>/store/${o.store.id}">${o.store.name}</a></li>
-                            <c:if test="${o.type==1}">
-                                <li class="btn btn-sm js-btn-one-more" >再来一单</li>
-                            </c:if>
-                            <c:if test="${o.type==1 && o.state!='已完成' && o.state!='已退订'}">
-                                <li class="btn btn-sm js-btn-cancel" >退订</li>
-                            </c:if>
                         </ul>
                         <div class="order-detail">
                             <div class="cell o-detail">
@@ -60,17 +54,24 @@
                             <div class="cell o-state">${o.state}</div>
                             <div class="clear-fix"></div>
                         </div>
+                        <c:if test="${o.type==1}">
                         <div class="order-bottom">
-                        	<div class="address left">
-		                        <span><label>收货人：</label>${o.address.receiver}</span>
-		                        <span><label>联系电话：</label>${o.address.tel}</span>
-		                        <span class="addr"><label>收货地址：</label>${o.address.address}</span>
-	                        </div><div class="ops right">
-	                            <c:if test="${o.state == '未派送' }">
-	                            	<button class="btn btn-sm btn-cancel right" onclick="showCancelModal(this)" oid="${o.id}">退订</button>
-	                            </c:if>
-	                        	<button class="btn btn-sm right js-btn-one-more" onclick="showOneMoreModal(this)" oid="${o.id}">再来一单</button>
-                        	</div>
+                            <div class="address left">
+                                <c:if test="${o.sendType==0}">
+                                    <span><label>收货人：</label>${o.address.receiver}</span>
+                                    <span><label>联系电话：</label>${o.address.tel}</span>
+                                    <span class="addr"><label>收货地址：</label>${o.address.address}</span>
+                                </c:if>
+                                <c:if test="${o.sendType==1}">
+                                    <span><label>自提</label></span><br/><br/>
+                                </c:if>
+                            </div><div class="ops right">
+                            <c:if test="${o.state!='已完成' && o.state!='已退订'}">
+                                <button class="btn btn-sm btn-cancel right" onclick="showCancelModal(this)" oid="${o.id}">退订</button>
+                            </c:if>
+                            <button class="btn btn-sm right js-btn-one-more" onclick="showOneMoreModal(this)" oid="${o.id}">再来一单</button>
+                        </div>
+                        </c:if>
                         	<div class="clear-fix"></div>
                         </div>
                     </div>

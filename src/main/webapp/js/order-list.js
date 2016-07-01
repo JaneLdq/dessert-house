@@ -73,17 +73,11 @@ function getOrderHtml(orders){
 		var order = orders[i];
 		html += '<div class="order-item">' +
 			'<ul class="order-basic">' +
-			'<li class="time">' + order.date + ' </li>' +
+			'<li class="time">' + order.date + '</li>' +
 			'<li class="order-number"><label>订单号：</label>' + order.id + '</li>' +
 			'<li class="store"><label>店铺：</label>' +
-			'<a class="name" href="' + urlPrefix + '/store/' + order.id + '">' + order.store.name + '</a></li>';
-		if (order.type == 1) {
-			html += '<li class="btn btn-sm js-btn-one-more" >再来一单</li>';
-		}
-		if (order.type ==1 && order.state != '已完成' && order.state != '已退订') {
-			html += '<li class="btn btn-sm js-btn-cancel" >退订</li>';
-		}
-		html += '</ul>' +
+			'<a class="name" href="' + urlPrefix + '/store/' + order.id + '">' + order.store.name + '</a></li>' +
+			'</ul>' +
 			'<div class="order-detail">' +
 			'<div class="cell o-detail">';
 		for (var j = 0; j < order.items.length; j++) {
@@ -92,16 +86,36 @@ function getOrderHtml(orders){
 				'<li class="cell l-name"><a class="name" ' +
 				'href="' + urlPrefix + '/dessert/d/' + item.dessertId + '">' + item.name + '</a></li>' +
 				'<li class="cell l-quantity">x'+ item.quantity + '</li>' +
-				'<li class="cell l-price">' + item.price + '</li>' +
+				'<li class="cell l-price">' + item.price.toFixed(1) + '</li>' +
 				'<li class="clear-fix"></li>' +
 				'</ul>';
 		}
 		html += '</div>' +
-			'<div class="cell o-sum"><i class="fa fa-rmb"></i>' + order.total + '</div>' +
+			'<div class="cell o-sum"><i class="fa fa-rmb"></i>' + order.total.toFixed(1) + '</div>' +
 			'<div class="cell o-date">' + order.sendDate + '</div>' +
 			'<div class="cell o-state">' + order.state + '</div>' +
 			'<div class="clear-fix"></div>' +
-			'</div></div>';
+			'</div>';
+
+		if (order.type == 1) {
+			html += '<div class="order-bottom">' +
+				'<div class="address left">';
+			if (order.sendType == 0) {
+				html += '<span><label>收货人：</label>' + order.address.receiver + '</span>' +
+					'<span><label>联系电话：</label>' + order.address.tel + '</span>' +
+					'<span class="addr"><label>收货地址：</label>' + order.address.address + '</span>';
+			} else {
+				html += '<span><label>自提</label></span><br/><br/>';
+			}
+			html += '</div><div class="ops right">';
+			if (order.state != '已完成' && order.state != '已退订') {
+				html += '<button class="btn btn-sm btn-cancel right" onclick="showCancelModal(this)" oid="' + order.id + '">退订</button>';
+			}
+			html += '<button class="btn btn-sm right js-btn-one-more" ' +
+				'onclick="showOneMoreModal(this)" oid="' + order.id + '">再来一单</button></div>';
+		}
+
+		html += '<div class="clear-fix"></div></div></div>';
 	}
 	return html;
 }
