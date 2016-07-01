@@ -677,7 +677,6 @@ input[type="date"] {
 }
 
 .btn.btn-sm {
-	min-width: 80px;
 	height: 28px;
 	line-height: 28px;
 	font-size: 12px;
@@ -1370,7 +1369,7 @@ a.modal-close:hover {
 .toaster {
 	position: fixed;
 	top: 260px;
-	width: 36%;
+	width: 20%;
 	margin: 0 32%;
 	border-radiu: 6px;
 	font-size: 16px;
@@ -3322,7 +3321,7 @@ ul.cart-list-item > li {
 
 .order-item .order-basic {
 	padding: 1.2%;
-	background-color: rgba(64,32,0,0.05);
+	background-color: rgba(64,32,0,0.1);
 	font-size: 14px;
 	position: relative;
 }
@@ -3335,31 +3334,67 @@ ul.cart-list-item > li {
 	color: rgba(255,127,77,0.8);
 }
 
-.order-item .order-ops {
+.order-item .order-bottom {
 	position: relative;
-	width: 97.6%;
-	padding: 0 1.2%;
+	width: 100%;
 	min-height: 36px;
 	line-height: 36px;
+	background-color: rgba(64,32,0,0.03);
 }
 
-.order-item .order-ops .time {
-	color: #999;
-	font-size: 12px;
+.order-item .order-bottom .address {
+	margin: 6px 1.2%;
+	width: 72.6%;
+	line-height: 24px;
 }
 
-.order-item .order-ops a {
+.order-item .order-bottom .ops {
+	position: absolute;
+	right: 0;
+	bottom: 13px;
+	width: 23.8%;
+	margin-right: 1.2%;	
+}
+
+.order-item .order-bottom .ops .btn {
+	margin: 10px 0 0 10px;
+	color: #fff;
+	width: 76px;
+}
+
+.order-item .order-bottom .ops .btn-cancel {
+	width: 56px;
+	min-width:　50px;
+	background-color: rgba(64,32,0,0.3);
+}
+
+.order-item .order-bottom .ops .btn-cancel:hover {
+	background-color: rgba(64,32,0,0.4);
+}
+
+.order-item .order-bottom .address  span {
+	margin-right: 15px;
+	color: #666;
+	font-size: 13px;
+}
+
+.order-item .order-bottom .address span.addr {
+	display: block;
+}
+
+
+.order-item .order-bottom a {
 	margin-left: 15px;
 	color: #666;
 }
 
-.order-item .order-ops a.highlight {
+.order-item .order-bottom a.highlight {
 	margin-right: 0;
 	font-weight: normal;
 	color: rgba(255,204,51,1);
 }
 
-.order-item .order-ops a:hover {
+.order-item .order-bottom a:hover {
 	color: rgba(255,127,77,0.8);
 }
 
@@ -3419,12 +3454,11 @@ ul.cart-list-item > li {
 }
 
 .order-detail .cell {
-	border-bottom: 1px solid rgba(64,32,0,0.05);
 	border-right: 1px solid rgba(64,32,0,0.05);
 }
 
 .order-dessert-list .cell {
-	height: 28px;
+	height: 32px;
 	justify-content: center;
 	border: none;
 }
@@ -3451,6 +3485,52 @@ ul.cart-list-item > li {
 	display: inline-block;
 	margin-right: 3px;
 }
+
+
+
+.one-more-modal {
+	color: #666;
+	background-color: rgba(255,255,255,1);
+}
+
+.one-more-modal .option label {
+	display: inline-block;
+	margin-right: 10px;
+	width: 85px;
+	text-align: right;
+}
+
+.one-more-modal .option label.radio-label {
+	margin-left: 6px;
+	text-align: left;
+}
+
+.one-more-modal .option span {
+	color: rgba(255,204,51,0.75);
+	font-size: 24px;
+	margin-left: 4px;
+}
+
+.one-more-modal .option span i {
+	margin-right: 5px;
+}
+
+.one-more-modal .modal-ops {
+	display: flex;
+	justify-content: center;
+	margin: 15px 0 20px 0;
+}
+
+.one-more-modal .modal-ops .btn {
+	margin: 0 15px;
+}
+
+.one-more-modal .option {
+	margin: 10px 0;
+}
+
+
+
 
 
 

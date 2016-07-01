@@ -32,10 +32,10 @@
                     <c:forEach items="${orders}" var="o">
                     <div class="order-item">
                         <ul class="order-basic">
+                        	<li class="date">${o.date}</li>
                             <li class="order-number"><label>订单号：</label>${o.id}</li>
                             <li class="store"><label>店铺：</label>
                                 <a class="name" href="<%=request.getContextPath() %>/store/${o.store.id}">${o.store.name}</a></li>
-                            <li><a href="javascript:void(0)">订单详情</a></li>
                         </ul>
                         <div class="order-detail">
                             <div class="cell o-detail">
@@ -54,12 +54,18 @@
                             <div class="cell o-state">${o.state}</div>
                             <div class="clear-fix"></div>
                         </div>
-                        <div class="order-ops">
-                            <span class="time">${o.date} </span>
-                            <c:if test="${o.state == '未派送' }">
-                            	<a class="right" href="javascript:void(0)">退订</a>
-                            </c:if>
-                        	<a class="right highlight js-btn-one-more" href="javascript:void(0)">再来一单</a>
+                        <div class="order-bottom">
+                        	<div class="address left">
+		                        <span><label>收货人：</label>${o.address.receiver}</span>
+		                        <span><label>联系电话：</label>${o.address.tel}</span>
+		                        <span class="addr"><label>收货地址：</label>${o.address.address}</span>
+	                        </div><div class="ops right">
+	                            <c:if test="${o.state == '未派送' }">
+	                            	<button class="btn btn-sm btn-cancel right" onclick="showCancelModal(this)" oid="${o.id}">退订</button>
+	                            </c:if>
+	                        	<button class="btn btn-sm right js-btn-one-more" onclick="showOneMoreModal(this)" oid="${o.id}">再来一单</button>
+                        	</div>
+                        	<div class="clear-fix"></div>
                         </div>
                     </div>
                     </c:forEach>
@@ -77,9 +83,34 @@
 		</div>
         <div class="clear-fix"></div>
 	</div>
-    <div class="modal common-modal msg-modal" id="one-more-modal" style="display:none">
+    <div class="modal common-modal one-more-modal" id="one-more-modal" style="display:none">
         <a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
-        <div class="modal-content">再来一单提交成功!</div>
+        <div class="modal-title">再来一单</div>
+        <div class="modal-content">
+        	<div>请选择预定日期和取货方式：</div>
+        	<div class="option"><label>日 期：</label>
+				<input id="js-date" type="date" required min="${minDate}" max="${maxDate}" value="${minDate}">
+			</div>
+			<div class="option"><label>取货方式：</label>
+				<input type="radio" name="pick-type" checked><label class="radio-label">送货上门</label>
+				<input type="radio" name="pick-type"><label class="radio-label">自提</label>
+			</div>
+			<div class="option">
+				<label>支付总额：</label><span><i class="fa fa-rmb"></i>32.0</span>
+			</div>
+        </div>
+        <div class="modal-ops">
+			<a class="btn" href="#close" rel="modal:close" class="modal-close">取消</a>
+			<a class="btn" id="js-order-again-submit" href="javascript:void(0)" onclick="cancelOrder(this)">确定</a>
+		</div>
+    </div>
+    <div class="modal common-modal cart-modal" id="cancel-modal" style="display:none">
+        <a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
+        <div class="modal-content">您确定要退订吗？</div>
+        <div class="modal-ops">
+			<a class="btn" href="#close" rel="modal:close" class="modal-close">取消</a>
+			<a class="btn" id="js-order-cancel-submit" href="javascript:void(0)" onclick="cancelOrder(this)">确定</a>
+		</div>
     </div>
     <div class="toaster" style="display:none"></div>
     <script src="<%=request.getContextPath() %>/plugins/jquery-modal/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>

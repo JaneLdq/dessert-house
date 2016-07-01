@@ -1,18 +1,18 @@
 $(document).ready(function(){
 	
 	$('.js-btn-one-more').click(function(){
-		$.ajax({
-			method: "post",
-			url: "/Tian/order/again",
-			data: {
-				id: 6,
-				date: "2016-07-02",
-				type: 0
-			},
-			success: function (data) {
-
-			}
-		});
+//		$.ajax({
+//			method: "post",
+//			url: "/Tian/order/again",
+//			data: {
+//				id: 6,
+//				date: "2016-07-02",
+//				type: 0
+//			},
+//			success: function (data) {
+//
+//			}
+//		});
 	});
 	
 	$('#js-take-out').click(function(){
@@ -99,4 +99,35 @@ function getOrderHtml(orders){
 			'</div></div>';
 	}
 	return html;
+}
+
+function showCancelModal(element){
+	var oid = $(element).attr('oid');
+	$('#js-order-cancel-submit').attr('oid', oid);
+	$('#cancel-modal').modal();
+}
+
+function showOneMoreModal(element){
+	var oid = $(element).attr('oid');
+	$('#one-more-modal').modal();
+}
+
+function cancelOrder(element){
+	var oid = $(element).attr("oid");
+	$.ajax({
+		type: "get",
+		url: urlPrefix + "/order/cancel",
+		data: {
+			id: oid
+		},
+		success: function(data){
+			if(data['result'] == 1){
+				toaster("订单取消成功！");
+				location.reload();
+			}else{
+				toaster("订单取消失败！");
+			}
+			$.modal.close();
+		}
+	});
 }
