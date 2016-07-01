@@ -16,7 +16,7 @@
 	<div class="wrapper m-order-wrapper">
 		<div class="m-order-info">
 			<h1>确认收货地址</h1>
-			<div class="address-info" id="js-address-list" address-id="${address.id}">
+			<div class="address-info" id="js-current-address" address-id="${address.id}">
 				<ul>
 					<li><label>收货人：</label><span class="js-current-receiver">${address.receiver}</span></li>
 					<li><label>收货地址：</label><span class="js-current-address">${address.address}</span></li>
@@ -102,22 +102,7 @@
 		<a href="#close" rel="modal:close" class="modal-close"><i class="fa fa-close fa-fw"></i></a>
 		<div class="modal-title">选择收货地址</div>
 		<div class="modal-content">
-			<ul class="address-list">
-			<c:forEach items="${addressList}" var="addr" varStatus="s">
-			<c:if test="${addr.id == address.id}">
-				<li class="active">
-					<input type="radio" name="address" checked>
-			</c:if>
-			<c:if test="${addr.id != address.id}">
-				<li>
-					<input type="radio" name="address">
-			</c:if>
-					<label>收货人：</label><span class="">${addr.receiver}</span>
-					<label>联系电话：</label><span class="">${addr.tel}</span>
-					<p><label>收货地址：</label><span class="">${addr.address}</span></p>
-				</li>
-			</c:forEach>
-			</ul>
+			<ul class="address-list" id="js-address-selector-list"></ul>
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/jsp/common/address_modal.jsp"></jsp:include>

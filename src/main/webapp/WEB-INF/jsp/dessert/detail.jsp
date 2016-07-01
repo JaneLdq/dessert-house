@@ -132,7 +132,7 @@
 			甜品已加入购物车!
 		</div>
 		<div class="modal-ops">
-			<a class="btn" href="<%= request.getContextPath()%>/desserts">再看看其他的~</a>
+			<a class="btn" rel="modal:close" class="modal-close">再看看其他的~</a>
 			<a class="btn" href="<%= request.getContextPath()%>/cart">结账！</a>
 		</div>
 	</div>

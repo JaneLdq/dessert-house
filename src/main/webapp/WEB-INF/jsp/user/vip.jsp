@@ -59,6 +59,7 @@
 				</div>
 				<div class="clear-fix"></div>
 			</div>
+			<!-- 
 			<div class="section">
 				<div class="sub-title">其他操作</div>
 				<div class="sub-content">
@@ -75,6 +76,7 @@
 				</div>
 				<div class="clear-fix"></div>
 			</div>
+			-->
 		</div>
 		</div>
 		<div class="clear-fix"></div>

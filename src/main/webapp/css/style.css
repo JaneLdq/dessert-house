@@ -2878,13 +2878,15 @@ ul.cart-list-item > li {
 
 
 .select-address-modal {
-	width: 560px;
+	width: 700px;
 	min-height: 240px;
 	background-color: rgba(255,255,255,1);
 }
 
 .select-address-modal .modal-content {
 	padding: 15px;
+	max-height: 320px;
+	overflow: auto;
 }
 
 .select-address-modal .address-list {
@@ -2899,11 +2901,25 @@ ul.cart-list-item > li {
 	padding: 6px;
 	margin: 0 0 5px 0;
 	background-color: rgba(64,32,0,0.05);
+	cursor: pointer;
+	transition: 0s;
+}
+
+.select-address-modal .address-list li * {
+	transition: 0s;
 }
 
 .select-address-modal .address-list li.active {
 	color: #fff;
-	background-color: rgba(64,32,0,0.5);
+	background-color: rgba(255,204,51,0.9);
+}
+
+.select-address-modal .address-list li:hover {
+	background-color: rgba(64,32,0,0.1);
+}
+
+.select-address-modal .address-list li.active:hover {
+	background-color: rgba(255,204,51,0.9);
 }
 
 .select-address-modal .address-list li input {
@@ -2911,7 +2927,7 @@ ul.cart-list-item > li {
 }
 
 .select-address-modal .address-list li p {
-	margin:0 0 0 25px;
+	margin:0 0 0 21px;
 }
 
 .select-address-modal .address-list li label {

@@ -72,31 +72,6 @@ $(document).ready(function(){
 		}
 	});
 	
-//	$('#js-avatar-submit').click(function(){
-//		var formData = new FormData(document.getElementById("js-avatar-form"));
-//		var avatar = document.getElementById('js-avatar-upload').files[0];
-//	    console.log(avatar);
-//		$.ajax({
-//			type: "post",
-//			url: urlPrefix + "/user/uploadAvatar",
-//			data: formData,
-//			processData : false,
-//			contentType: false,
-//			success: function(data){
-//				console.log(data);
-//				if(data['result']==1){
-//					toaster("头像修改成功~");
-//					var random = parseInt(100*Math.random());
-//					$('.js-left-info-avatar').attr('src', data['url']+"?" + random);
-//				}
-//			},
-//			error: function(){
-//				console.log("上传头像AJAX错误！");
-//			}
-//		});
-//		
-//	});
-	
 	$('#js-password-submit').click(function(){
 		var psw = $('input[name="password"]').val();
 		var newpwd = $('input[name="newpwd"').val();
@@ -133,11 +108,145 @@ $(document).ready(function(){
 	});
 	
 	$('.js-add-address').click(function(){
+		$('.js-address-add-btn').removeAttr("modify");
+		$('#address-modal .js-set-default-group').show();
 		$('#address-modal').modal();
+	});
+	
+	$('body').on('click', '.js-address-add-btn', function(){
+		if($(this).attr("modify")){
+			modifyAddressSubmit();
+		}else{
+			addAddress(refreshAddressList);	
+			$('.address-form')[0].reset();
+		}
+		$.modal.close();
+	});
+	
+	$('#address-modal').on($.modal.AFTER_CLOSE, function(event, modal) {
+		$('.address-form')[0].reset();
 	});
 	
 });
 
+
+function setDefault(element){
+	var aid = $(element).attr('aid');
+	$.ajax({
+		type: "post",
+		url: urlPrefix + "/address/setDefault",
+		data: {
+			aid: aid
+		},
+		success: function(data){
+			if(data['result']){
+				refreshAddressList();
+			}
+		}
+	});
+}
+
+function deleteAddress(element){
+	var aid = $(element).attr('aid');
+	$.ajax({
+		type: "post",
+		url: urlPrefix + "/address/delete",
+		data: {
+			aid: aid
+		},
+		success: function(data){
+			if(data['result']){
+				refreshAddressList();
+			}
+		}
+	});
+}
+
+function modifyAddress(element){
+	var aid = $(element).attr("aid");
+	$.ajax({
+		type: "get",
+		url: urlPrefix + "/address/get",
+		data: {
+			aid: aid
+		},
+		success: function(data){
+			var addr = data['address'];
+			$('.address-form input[name="receiver"]').val(addr.receiver);
+			$('.address-form input[name="tel"]').val(addr.tel);
+			$('.address-form input[name="address"]').val(addr.address);
+			$('.address-form input[name="id"]').val(addr.id);
+			$('.js-address-add-btn').attr("modify", true);
+			$('#address-modal .js-set-default-group').hide();
+			$('#address-modal').modal();
+		}
+	});
+}
+
+function modifyAddressSubmit(){
+	var addr = {
+		receiver: $('.address-form input[name="receiver"]').val(),
+		tel: $('.address-form input[name="tel"]').val(),
+		address: $('.address-form input[name="address"]').val(),
+		aid: $('.address-form input[name="id"]').val()
+	};
+	$.ajax({
+		type: "post",
+		url: urlPrefix + "/address/edit",
+		data: addr,
+		success: function(data){
+			if(data['result']){
+				refreshAddressList();
+			}
+		}
+	});
+}
+
+
+function refreshAddressList(){
+	$.ajax({
+		type: "get",
+		url: urlPrefix + "/address/getAll",
+		success: function(data){
+			var list = data['addrList'];
+			var defaultAddress = data['defaultAddress'];
+			var html = '<li class="address-item default" aid="' + defaultAddress.id + '">'
+				+ '<a class="right operation" href="javascript:void(0)" onclick="modifyAddress(this)" aid="' + defaultAddress.id
+				+ '"><i class="fa fa-pencil"></i>修改</a>'
+				+ '<div class="address-detail">'
+					+ '<div class="address-detail-item">'
+						+ '<label class="label">收货人：</label><div class="left">' + defaultAddress.receiver + '</div>'
+						+ '<div class="clear-fix"></div></div>'
+					+ '<div class="address-detail-item">'
+						+ '<label class="label">地址：</label><div class="left">' + defaultAddress.address + '</div>'
+						+ '<div class="clear-fix"></div></div>'
+					+ '<div class="address-detail-item">'
+						+ '<label class="label">电话：</label>	<div class="left">' + defaultAddress.tel + '</div>'
+						+ '<div class="clear-fix"></div></div>'
+					+ '</div><div class="default-tag">默认地址</div><div class="clear-fix"></div></li>';
+			for(var i=0; i<list.length; i++){
+				var addr = list[i];
+				html +=  '<li class="address-item default" aid="' + addr.id + '">'
+					+ '<a class="right operation" href="javascript:void(0)" onclick="deleteAddress(this)" aid="' + addr.id + '"><i class="fa fa-close"></i>删除</a>'
+					+ '<a class="right operation" href="javascript:void(0)" onclick="modifyAddress(this)" aid="' + addr.id + '"><i class="fa fa-pencil"></i>修改</a>'
+					+ '<a class="right operation" href="javascript:void(0)" onclick="setDefault(this)" aid="' + addr.id
+					+ '"><i class="fa fa-pencil"></i>设为默认地址</a>'
+					+ '<div class="address-detail">'
+						+ '<div class="address-detail-item">'
+							+ '<label class="label">收货人：</label><div class="left">' + addr.receiver + '</div>'
+							+ '<div class="clear-fix"></div></div>'
+						+ '<div class="address-detail-item">'
+							+ '<label class="label">地址：</label><div class="left">' + addr.address + '</div>'
+							+ '<div class="clear-fix"></div></div>'
+						+ '<div class="address-detail-item">'
+							+ '<label class="label">电话：</label>	<div class="left">' + addr.tel + '</div>'
+							+ '<div class="clear-fix"></div></div>'
+					+ '</div><div class="clear-fix"></div></li>';
+			}
+			$('.js-address-list').html(html);
+		}
+	});
+}
 
 function reLogin(){
 	window.location.href= urlPrefix + '/auth';
@@ -146,7 +255,6 @@ function reLogin(){
 function showAvatar(){
     //利用files获得被上传附件(图片)信息
     var avatar = document.getElementById('js-avatar-upload').files[0];
-    console.log(avatar);
     //利用cover获得图像的url地址(二进制源码)
     if(avatar != null) {
         document.getElementById('js-avatar').src = window.URL.createObjectURL(avatar);

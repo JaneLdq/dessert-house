@@ -77,5 +77,5 @@
     </div>
     <div class="toaster" style="display:none"></div>
     <script src="<%=request.getContextPath() %>/plugins/jquery-modal/jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="<%=request.getContextPath() %>/js/order.js"></script>
+    <script src="<%=request.getContextPath() %>/js/order-list.js"></script>
 </body>

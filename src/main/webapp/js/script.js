@@ -36,7 +36,7 @@ var globalStoreId = 1;
 
 function initNavStore(){
 	var sid = $('.js-nav-current-store').attr('sid');
-	if( sid == "null"){
+	if( sid == null ){
 		globalStoreId = window.localStorage.getItem("storeId");
 		var storeName = window.localStorage.getItem("storeName");
 		if(globalStoreId == null || storeName == null){
@@ -44,6 +44,8 @@ function initNavStore(){
 			storeName = $($('.js-nav-store-option').get(0)).html();
 		}
 		$('.js-nav-current-store').attr("sid", globalStoreId).html(storeName+'<i class="fa fa-caret-down"></i>').show();
+	}else{
+		globalStoreId = sid;
 	}
 }
 
@@ -157,6 +159,13 @@ function addAddress(func){
 	if(tel.length == 0 || receiver.length == 0 || tel.length == 0){
 		return;
 	}
+	var def = $('#set-default').prop('checked');
+	if(def){
+		def = 1;
+	}else{
+		def = 0;
+	}
+	addrData.setDefault = def;
 	$.ajax({
 		type: "post",
 		url: urlPrefix + "/address/add",

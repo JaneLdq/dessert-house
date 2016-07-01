@@ -80,6 +80,10 @@
 		</div>
 	</div>	
 	
+	<div class="top js-to-top">
+		<i class="fa fa-angle-up"></i>
+	</div>
+	
 	</div>
 	<script src="//cdn.bootcss.com/Swiper/3.3.0/js/swiper.jquery.min.js"></script>
 	<script src="<%=request.getContextPath() %>/js/index.js"></script>

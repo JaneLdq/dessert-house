@@ -8,10 +8,52 @@ $(document).ready(function(){
 		$('#confirm-modal').modal();
 	});
 	
+	$('#js-address-selector').click(function(){
+		$.ajax({
+			type: "get",
+			url: urlPrefix + "/address/getAll",
+			success: function(data){
+				var list = data['addrList'];
+				var def = data['defaultAddress'];
+				list.push(def);
+				var current = $('#js-current-address').attr("address-id");
+				var html = "";
+				for(var i=0; i<list.length; i++){
+					var addr = list[i];
+					if(addr.id == current){
+						html += '<li class="active js-address-selector-item" aid="'
+							+ addr.id + '"><input type="radio" name="address" checked>';
+					}else{
+						html += '<li class="js-address-selector-item" aid="' 
+							+ addr.id + '"><input type="radio" name="address">';
+					}
+					html += '<label>收货人：</label><span class="receiver">'
+						+ addr.receiver + '</span><label>联系电话：</label><span class="tel">' + addr.tel 
+						+ '</span><p><label>收货地址：</label><span class="address">' + addr.address + '</span></p></li>';
+				}
+				$('#js-address-selector-list').html(html);
+				$('#select-address-modal').modal();
+			}
+		});
+	});
+	
+	$('#js-address-selector-list').on('click', '.js-address-selector-item', function(){
+		$('#js-address-selector-list').children('input[type="radio"]').prop("checked",false);
+		$('#js-address-selector-list').children('.js-address-selector-item').removeClass("active");
+		$(this).addClass('active').children('input[type="radio"]').prop("checked", true);
+		var data = {
+			address: $(this).children('.address').html(),
+			tel: $(this).children('.tel').html(),
+			receiver: $(this).children('.receiver').html(),
+			id: $(this).attr('id')
+		};
+		refreshAddress(data);
+	});
+	
 	$('#js-order-modal-submit').click(function(){
 		var remark = $('#js-remark').val();
 		var type =  $('input[name="pick-type"]:checked').val();
-		var addressId = $('#js-address-list').attr("address-id");
+		var addressId = $('#js-current-address').attr("address-id");
 		$.ajax({
 			type: "post",
 			url: urlPrefix + "/cart/book",
@@ -38,76 +80,23 @@ $(document).ready(function(){
 			}
 		});
 	});
-
-	$('.js-btn-one-more').click(function(){
-		$.ajax({
-			method: "post",
-			url: "/Tian/order/again",
-			data: {
-				id: 6,
-				date: "2016-07-02",
-				type: 0
-			},
-			success: function (data) {
-
-			}
-		});
-	});
 	
 	$('#js-take-out').click(function(){
-		$('#js-address-list').show();
+		$('#js-current-address').show();
 		$('.js-type-selector').hide();
 	});
 	
 	$('#js-customer-pick-up').click(function(){
-		$('#js-address-list').hide();
+		$('#js-current-address').hide();
 		$('.js-type-selector').show();
 	});
 	
 	$('body').on('click', '.js-address-add-btn', function(){
-		addAddress(refreshAddress);
+		addAddress(refreshAddress);	
+		$('.address-form')[0].reset();
+		$.modal.close();
 	});
 
-	$('#js-order-pre').click(function(){
-		var current = Number($('#js-order-current').attr("page"));
-		if(current>1){
-			$.ajax({
-				type: "post",
-				url: urlPrefix + "/user/orders/" + (current-1),
-				success: function(data){
-					console.log(data);
-					var orders = data['orders'];
-					var html = getOrderHtml(orders);
-					$('#js-order-list').html(html);
-					$('#js-order-current').attr('page', (current-1)).html(current-1);
-				},
-				error: function(){
-					console.log("获取上一页订单记录失败!");
-				}
-			})
-		}
-	});
-
-	$('#js-order-next').click(function(){
-		var current = Number($('#js-order-current').attr('page'));
-		if(current < Number($('#js-order-current').attr('max'))){
-			$.ajax({
-				type: "post",
-				url: urlPrefix + "/user/orders/" + (current+1),
-				success: function(data){
-					console.log(data);
-					var orders = data['orders'];
-					var html = getOrderHtml(orders);
-					$('#js-order-list').html(html);
-					$('#js-order-current').attr('page', (current+1)).html(current+1);
-				},
-				error: function(){
-					console.log("获取下一页订单记录失败!");
-				}
-			})
-		}
-	});
-	
 });
 
 var i = 3; 
@@ -127,41 +116,5 @@ var refreshAddress = function refreshAddress(data){
 	$('.js-current-receiver').html(data.receiver);
 	$('.js-current-address').html(data.address);
 	$('.js-current-tel').html(data.tel);
-	$('#js-address-list').attr("address-id", data.id);
-	$('.address-form')[0].reset();
-	$.modal.close();
-}
-
-function getOrderHtml(orders){
-	var html = "";
-	for (var i = 0; i < orders.length; i++) {
-		var order = orders[i];
-		html += '<div class="order-item">' +
-			'<ul class="order-basic">' +
-			'<li class="time">' + order.date + ' </li>' +
-			'<li class="order-number"><label>订单号：</label>' + order.id + '</li>' +
-			'<li class="store"><label>店铺：</label>' +
-			'<a class="name" href="' + urlPrefix + '/store/' + order.id + '">' + order.store.name + '</a></li>' +
-			'<li class="btn btn-sm js-btn-one-more" >再来一单</li>' +
-			'</ul>' +
-			'<div class="order-detail">' +
-			'<div class="cell o-detail">';
-		for (var j = 0; j < order.items.length; j++) {
-			var item = order.items[j];
-			html += '<ul class="order-dessert-list">' +
-				'<li class="cell l-name"><a class="name" ' +
-				'href="' + urlPrefix + '/dessert/d/' + item.dessertId + '">' + item.name + '</a></li>' +
-				'<li class="cell l-quantity">x'+ item.quantity + '</li>' +
-				'<li class="cell l-price">' + item.price + '</li>' +
-				'<li class="clear-fix"></li>' +
-				'</ul>';
-		}
-		html += '</div>' +
-			'<div class="cell o-sum"><i class="fa fa-rmb"></i>' + order.total + '</div>' +
-			'<div class="cell o-date">' + order.sendDate + '</div>' +
-			'<div class="cell o-state">' + order.state + '</div>' +
-			'<div class="clear-fix"></div>' +
-			'</div></div>';
-	}
-	return html;
+	$('#js-current-address').attr("address-id", data.id);
 }

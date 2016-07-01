@@ -85,11 +85,10 @@
 					<label class="label left">地址列表：</label>
 					<button class="btn left js-add-address">新增收货地址</button>
 					<div class="clear-fix"></div>
-					<ul class="address-list">
+					<ul class="address-list js-address-list">
 						<c:if test="${defaultAddress != null}">
 							<li class="address-item default" aid="${defaultAddress.id}">
-								<a class="right operation" href="javascript:void(0)"><i class="fa fa-close"></i>删除</a>
-								<a class="right operation" href="javascript:void(0)"><i class="fa fa-pencil"></i>修改</a>
+								<a class="right operation" href="javascript:void(0)" onclick="modifyAddress(this)" aid="${defaultAddress.id}"><i class="fa fa-pencil"></i>修改</a>
 								<div class="address-detail">
 									<div class="address-detail-item">
 										<label class="label">收货人：</label>
@@ -113,8 +112,9 @@
 						</c:if>
 						<c:forEach items="${addrList}" var="addr">
 						<li class="address-item" aid="${addr.id}">
-							<a class="right operation" href="javascript:void(0)"><i class="fa fa-close"></i>删除</a>
-							<a class="right operation" href="javascript:void(0)"><i class="fa fa-pencil"></i>修改</a>
+							<a class="right operation" href="javascript:void(0)" onclick="deleteAddress(this)" aid="${addr.id}"><i class="fa fa-close"></i>删除</a>
+							<a class="right operation" href="javascript:void(0)" onclick="modifyAddress(this)" aid="${addr.id}"><i class="fa fa-pencil"></i>修改</a>
+							<a class="right operation" href="javascript:void(0)" onclick="setDefault(this)" aid="${addr.id}"><i class="fa fa-pencil"></i>设为默认地址</a>
 							<div class="address-detail">
 								<div class="address-detail-item">
 									<label class="label">收货人：</label>
