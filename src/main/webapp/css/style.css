@@ -1475,6 +1475,9 @@ a.modal-close:hover {
 
 .login-form .form-group .label {
 	color: #ffa67f;
+	text-align: right;
+	padding-right: 10px;
+	box-sizing: border-box;
 }
 
 .login-form .form-group input {
@@ -1556,7 +1559,7 @@ a.modal-close:hover {
 
 .reg-panel .form-group .label {
 	width: 80px;
-	text-align: left;
+	text-align: right;
 }
 
 .reg-panel .form-tip {
@@ -3246,6 +3249,7 @@ ul.cart-list-item > li {
 
 .address-modal .address-form label {
 	width: 80px;
+	text-align: right;
 }
 
 .address-modal .address-form input[name="address" ] {

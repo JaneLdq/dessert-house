@@ -1,4 +1,8 @@
 $(document).ready(function(){
+
+	var bankId = $("#js-bank-id").html();
+	bankId = bankId.replace(/(\d{4})/g,'$1 ').replace(/\s*$/,'');
+	$("#js-bank-id").html(bankId);
 	
 	$('#js-submit').click(function(){
 		var password = $('input[name="password"]').val();

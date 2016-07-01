@@ -28,7 +28,7 @@
 			</div>
 			<button class="btn" type="submit" >登录</button>
 		</form>
-		<a class="reg-link" href="<%=request.getContextPath()%>/auth/reg">木有账号，我要注册！</a>
+		<a class="reg-link" href="<%=request.getContextPath()%>/auth/reg">没有账号，我要注册！</a>
 	</div>
 	
 	<script>
