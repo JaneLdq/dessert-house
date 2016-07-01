@@ -2984,6 +2984,7 @@ ul.cart-list-item > li {
 	display: inline-block;
 	width: 85px;
 	margin-right: 15px;
+	text-align: right;
 }
 
 .m-user-panel .tips {
@@ -3394,6 +3395,10 @@ ul.cart-list-item > li {
 }
 
 .order-dessert-list .l-name .name {
+	color: rgba(64,32,0,0.6);
+}
+
+.order-list .store .name {
 	color: rgba(64,32,0,0.6);
 }
 

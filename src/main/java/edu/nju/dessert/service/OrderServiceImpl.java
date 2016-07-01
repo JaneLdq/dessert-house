@@ -86,7 +86,7 @@ public class OrderServiceImpl implements OrderService {
             OrderVO vo = new OrderVO(order.getId(), order.getCreated_at(),
                     order.getSend_date(), mid, memberName, order.getTotal(), order.getDiscount(), order.getSend_type(),
                     order.getState(), storeDao.getStore(order.getStore_id()),
-                    addressDao.getAddress(order.getAddress_id()), items);
+                    addressDao.getAddress(order.getAddress_id()), order.getType(), items);
             return vo;
         }
         return null;
@@ -106,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
             OrderVO vo = new OrderVO(o.getId(), o.getCreated_at(), o.getSend_date(),
                     "", "", o.getTotal(), o.getDiscount(), o.getSend_type(),
                     o.getState(), storeDao.getStore(o.getStore_id()),
-                    addressDao.getAddress(o.getAddress_id()), items);
+                    addressDao.getAddress(o.getAddress_id()), o.getType(), items);
             vos.add(vo);
         }
         return vos;

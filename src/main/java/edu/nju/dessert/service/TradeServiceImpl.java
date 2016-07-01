@@ -171,6 +171,7 @@ public class TradeServiceImpl implements TradeService {
             discount = DiscountCalculator.calDiscount(total, member.getLevel());
         }
         Order order = new Order(uid, 0, date, total-discount, discount, date, storeId, 1, "", -1);
+		order.setState(2);
         boolean result = orderDao.saveSaleOrder(order, list);
         return result;
     }
