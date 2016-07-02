@@ -209,6 +209,7 @@ public class TradeServiceImpl implements TradeService {
     				}
     			}
     		}
+    		break;
     	default: 
     		price = dessert.getPrice();
     	}

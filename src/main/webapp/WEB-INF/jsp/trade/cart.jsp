@@ -41,7 +41,7 @@
 				<div class="cart-list-empty">
 					<img src="<%=contextPath%>/img/cart.png">
 					<p>购物车什么都没有，</p>
-					<a href="<c:url value="/dessert"/>"> 马上去逛逛！Ψ(￣∀￣)Ψ</a>
+					<a href="<c:url value="/dessert"/>"> 马上去逛逛！</a>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -108,7 +108,7 @@
 	<div class="m-dessert-recommend" style="margin-top: 0">
 		<div class="title">
 			<div class="left line"></div>
-			<div class="content">猜你喜欢</div>
+			<div class="content">你可能还会喜欢</div>
 			<div class="right line"></div>
 		</div>
 		<ul class="dessert-thumbnail-list">

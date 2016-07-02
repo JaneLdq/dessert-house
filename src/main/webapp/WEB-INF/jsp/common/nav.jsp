@@ -42,24 +42,28 @@
 			</div>
 		</c:if>
 		<%
-			if(request.getSession().getAttribute("isUser") != null){
-				out.print("<a class='nav-item nav-item-cart' href='" + path + "/cart'>"
-						+ "<i class='cart-msg js-cart-msg'></i>"
-						+ "<i class='fa fa-shopping-cart'></i></a>");
-				out.print("<a class='nav-item' id='js-user' href='javascript:void(0)'><i class='fa fa-user'></i></a>"
-				+ 	"<div class='popup' id='js-user-popup' style='display:none'>"
-	        	+	"<a class='item' href='" + path + "/user'><i class='fa fa-user fa-fw'></i> 个人中心</a>"
-	            +	"<a class='item' href='" + path + "/user/setting'><i class='fa fa-cog fa-fw'></i> 个人设置</a>"
-	    	    +	"<a class='item' href='" + path + "/auth/logout'><i class='fa fa-sign-out fa-fw'>"
-	            + 	"</i> 退出账号</a></div>");
-				
-			}else{
-				if(url.contains("login_internal")){
-					out.print("<a class='nav-item' href='" + path + "/auth'>用户登录</a>");
-				}else if(url.contains("login")){
-					out.print("<a class='nav-item' href='" + path + "/auth/internal'>员工登录</a>");
+			if(!url.contains("/jsp/member")){
+				if(request.getSession().getAttribute("isUser") != null){
+					out.print("<a class='nav-item nav-item-cart' href='" + path + "/cart'>"
+							+ "<i class='cart-msg js-cart-msg'></i>"
+							+ "<i class='fa fa-shopping-cart'></i></a>");
+					out.print("<a class='nav-item' href='" + path + "/user/orders'>"
+							+ "<i class='fa fa-list-ul'></i></a>");
+					out.print("<a class='nav-item' id='js-user' href='javascript:void(0)'><i class='fa fa-user'></i></a>"
+					+ 	"<div class='popup' id='js-user-popup' style='display:none'>"
+		        	+	"<a class='item' href='" + path + "/user'><i class='fa fa-user fa-fw'></i> 个人中心</a>"
+		            +	"<a class='item' href='" + path + "/user/setting'><i class='fa fa-cog fa-fw'></i> 个人设置</a>"
+		    	    +	"<a class='item' href='" + path + "/auth/logout'><i class='fa fa-sign-out fa-fw'>"
+		            + 	"</i> 退出账号</a></div>");
+					
 				}else{
-					out.print("<a class='nav-item' href='" + path + "/auth'>登录 · 注册</a>");
+					if(url.contains("login_internal")){
+						out.print("<a class='nav-item' href='" + path + "/auth'>用户登录</a>");
+					}else if(url.contains("login")){
+						out.print("<a class='nav-item' href='" + path + "/auth/internal'>员工登录</a>");
+					}else{
+						out.print("<a class='nav-item' href='" + path + "/auth'>登录 · 注册</a>");
+					}
 				}
 			}
 		%>			

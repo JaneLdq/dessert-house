@@ -37,8 +37,12 @@ $(document).ready(function(){
 	});
 	
 	$('#js-add-dessert').click(function(){
+		if($(this).attr("disabled") == "disabled"){
+			return;
+		}
 		var result = checkLogin();
 		var cartItem = getCartItem();
+		var id = $('#js-dessert-id').val();
 		var num = $('#js-dessert-value').val();
 		if(result==1){
 			if(num > 0){

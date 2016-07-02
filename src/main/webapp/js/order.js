@@ -5,6 +5,9 @@ $(document).ready(function(){
 	});
 
 	$('#js-order-submit').click(function(){
+		if($(this).attr("disabled") == "disabled"){
+			return;
+		}
 		$('#confirm-modal').modal();
 	});
 	
@@ -49,8 +52,9 @@ $(document).ready(function(){
 		};
 		refreshAddress(data);
 	});
-	
+
 	$('#js-order-modal-submit').click(function(){
+		$('#js-order-submit').attr("disabled", true);
 		var remark = $('#js-remark').val();
 		var type =  $('input[name="pick-type"]:checked').val();
 		var addressId = $('#js-current-address').attr("address-id");

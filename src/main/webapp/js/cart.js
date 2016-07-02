@@ -198,7 +198,7 @@ function checkEmpty(){
 				$('.js-cart-msg').hide();
 				var html = '<div class="cart-list-empty">'
 						+ '<img src="' + urlPrefix + '/img/cart.png">'
-						+ '<p>购物车什么都没有，</p><a href="' + urlPrefix + '/dessert"> 马上去逛逛！Ψ(￣∀￣)Ψ</a>'
+						+ '<p>购物车什么都没有，</p><a href="' + urlPrefix + '/dessert"> 马上去逛逛！</a>'
 						+ '</div>';
 				$('.m-cart-panel').html(html);
 				$('.js-cart-op').hide();
