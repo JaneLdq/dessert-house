@@ -130,3 +130,5 @@ hs_err_pid*
 
 src/test/
 **/*.properties
+
+*.jpg
