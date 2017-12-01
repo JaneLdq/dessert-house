@@ -3,6 +3,15 @@ Tian 恬 - 甜品店会员在线购物平台及后台管理（J2EE课程项目�
 
 基于Spring实现，MVC架构，数据库MySQL，前端除了后台管理部分用了bootstrap框架，其他基本上是freestyle~
 
+开发团队：Deworm
+
+团队成员：
+
+- [tomato990(队座)](https://github.com/tomato990)
+- [vboar](https://github.com/vboar)
+- [JaneLdq](https://github.com/JaneLdq)
+- [oneoneO1](https://github.com/oneoneO1)
+
 
 ## 主要功能
 
