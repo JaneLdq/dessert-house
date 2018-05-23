@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,35 +35,20 @@ import edu.nju.dessert.vo.StaffVO;
 @RequestMapping(value="/sale")
 public class SaleController {
 
+	@Autowired
     private StaffService staffService;
-    
+
+	@Autowired
     private MemberService memberService;
-    
+
+	@Autowired
     private TradeService tradeService;
-    
+
+	@Autowired
     private OrderService orderService;
-    
+
+	@Autowired
     private UserService userService;
-    
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-    
-    public void setOrderService(OrderService orderService) {
-        this.orderService = orderService;
-    }
-    
-    public void setMemberService(MemberService memberService) {
-        this.memberService = memberService;
-    }
-    
-    public void setStaffService(StaffService staffService) {
-        this.staffService = staffService;
-    }
-    
-    public void setTradeService(TradeService tradeService) {
-        this.tradeService = tradeService;
-    }
     
 	@Auth(Role.SALESMAN)
 	@RequestMapping(value="")

@@ -4,7 +4,9 @@ import java.util.List;
 
 import edu.nju.dessert.dao.StoreDao;
 import edu.nju.dessert.model.Store;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StoreServiceImpl implements StoreService {
 
 	private StoreDao storeDao;

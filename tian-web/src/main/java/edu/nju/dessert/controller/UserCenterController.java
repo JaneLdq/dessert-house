@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.nju.dessert.service.AddressService;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,29 +39,17 @@ import edu.nju.dessert.vo.OrderVO;
 @RequestMapping(value="/user")
 public class UserCenterController {
 
+	@Autowired
 	private UserService userService;
-	
+
+	@Autowired
 	private MemberService memberService;
-	
+
+	@Autowired
 	private OrderService orderService;
 
+	@Autowired
 	private AddressService addressService;
-	
-	public void setOrderService(OrderService orderService) {
-        this.orderService = orderService;
-    }
-	
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}
-	
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	public void setAddressService(AddressService addressService) {
-		this.addressService = addressService;
-	}
 
 	@Auth(Role.USER)
 	@RequestMapping(value="/setting")
@@ -319,21 +308,6 @@ public class UserCenterController {
 		}
 		map.put("points", points);
 		return map;
-	}
-	
-	
-	@Auth(Role.SALESMAN)
-	@RequestMapping(value="/getMember")
-	public @ResponseBody Map<String, Object> getMember(@RequestParam String id){
-	    Map<String, Object> map = new HashMap<String, Object>();
-        Member member = memberService.getMemberByMid(id);
-        if(member != null){
-            map.put("result", 1);
-            map.put("member", member);
-        }else{
-            map.put("result", 0);
-        }
-        return map;
 	}
 		
 	@Auth(Role.USER)

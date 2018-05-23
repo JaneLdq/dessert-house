@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.nju.dessert.dao.CartDao;
@@ -26,6 +27,7 @@ import edu.nju.dessert.vo.AdditionItemVO;
 import edu.nju.dessert.vo.CartItemVO;
 import edu.nju.dessert.vo.OrderItemVO;
 
+@Service
 public class TradeServiceImpl implements TradeService {
 
 	private CartDao cartDao;

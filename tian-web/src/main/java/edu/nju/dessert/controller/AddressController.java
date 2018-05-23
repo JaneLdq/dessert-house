@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,16 +22,12 @@ import edu.nju.dessert.service.AddressService;
 @RequestMapping(value="/address")
 public class AddressController {
 
+	@Autowired
 	private AddressService addressService;
-	
-	public void setAddressService(AddressService addressService){
-		this.addressService = addressService;
-	}
-	
+
 	@Auth(Role.USER)
 	@RequestMapping(value="/get", method=RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getAddress(HttpServletRequest req, @RequestParam("aid") int aid) {
-		int uid = (int) req.getSession().getAttribute("id");
 		Map<String, Object> map = new HashMap<>();
 		Address address = addressService.getAddress(aid);
 		map.put("address", address);
@@ -69,7 +66,6 @@ public class AddressController {
 	public @ResponseBody Map<String, Object> editAddress(HttpServletRequest req, @RequestParam("aid") int aid,
 		@RequestParam("receiver") String receiver, @RequestParam("address") String address,
 	    @RequestParam("tel") String tel) {
-		int uid = (int) req.getSession().getAttribute("id");
 		boolean result = this.addressService.updateAddress(aid, address, tel, receiver);
 		Map<String, Object> map = new HashMap<>();
 		map.put("result", result);

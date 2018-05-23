@@ -5,11 +5,15 @@ import java.util.List;
 
 import edu.nju.dessert.dao.DessertDao;
 import edu.nju.dessert.model.Dessert;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DessertServiceImpl implements DessertService {
 
+	@Autowired
 	private DessertDao dessertDao;
-	
+
 	public void setDessertDao(DessertDao dessertDao) {
 		this.dessertDao = dessertDao;
 	}

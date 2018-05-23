@@ -5,7 +5,9 @@ import java.util.List;
 import edu.nju.dessert.dao.StaffDao;
 import edu.nju.dessert.model.Staff;
 import edu.nju.dessert.vo.StaffVO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StaffServiceImpl implements StaffService {
 	
 	private StaffDao staffDao;

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -28,24 +29,15 @@ import edu.nju.dessert.service.UserService;
 @Controller
 @RequestMapping(value="/auth")
 public class AuthController {
-	
+
+	@Autowired
 	private AuthService authService;
 
+	@Autowired
 	private UserService userService;
-	
+
+	@Autowired
 	private MemberService memberService;
-	
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}	
-	
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}	
-	
-	public void setAuthService(AuthService authService){
-		this.authService = authService;
-	}
 	
 	@RequestMapping(value="")
 	public String index(HttpServletRequest request, @RequestParam(required=false) String backurl, ModelMap model){
@@ -58,11 +50,6 @@ public class AuthController {
 			model.put("msg", msg);
 		}
 		return "login";
-	}
-	
-	@RequestMapping(value="/internal", method=RequestMethod.GET)
-	public String indexInternal() throws ServletException, IOException{
-		return "/backend/login_internal";
 	}
 
 	@RequestMapping(value="/reg", method=RequestMethod.GET)
@@ -122,39 +109,7 @@ public class AuthController {
 		memberService.addMember(id, bankcard, paypassword);
 		response.sendRedirect(req.getContextPath() + "/user");
 	}
-	
-	@RequestMapping(value="/internal", method=RequestMethod.POST)
-	public void loginInternal(HttpServletRequest request, HttpServletResponse response, Model model,
-			String id, String password) throws ServletException, IOException{
-		Staff staff = authService.loginStaff(id, password);
-		if(staff != null){
-			HttpSession session = (HttpSession) request.getSession();
-			session.setAttribute("hasLogin", true);
-			session.setAttribute("id", staff.getSid());
-			session.setAttribute("role", staff.getPosition());
-			switch (staff.getPosition()) {
-			case 0:
-				response.sendRedirect(request.getContextPath() + "/admin");
-				break;
-			case 1:
-				response.sendRedirect(request.getContextPath() + "/manage");
-				break;
-			case 2:
-				response.sendRedirect(request.getContextPath() + "/plan");
-				break;
-			case 3:
-				response.sendRedirect(request.getContextPath() + "/sale");
-				break;
-			default:
-				break;
-			}
-		} else {
-			model.addAttribute("msg", "用户名或密码错误");
-			response.sendRedirect(request.getContextPath() + "/auth/internal");
-		}
-	}
-	
-	
+
 	@RequestMapping(value="/user")
 	public void login(HttpServletRequest request, HttpServletResponse response, String id, String password) throws ServletException, IOException{
 		int loginId = authService.login(id, password);

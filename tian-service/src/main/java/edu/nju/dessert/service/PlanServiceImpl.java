@@ -3,6 +3,7 @@ package edu.nju.dessert.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.nju.dessert.dao.PlanDao;
@@ -11,6 +12,7 @@ import edu.nju.dessert.vo.PlanItemVO;
 import edu.nju.dessert.vo.PlanUpdatorVO;
 import edu.nju.dessert.vo.PlanVO;
 
+@Service
 public class PlanServiceImpl implements PlanService {
 
 	private PlanDao planDao;

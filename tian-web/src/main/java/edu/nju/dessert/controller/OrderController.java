@@ -4,6 +4,7 @@ import edu.nju.dessert.interceptor.Auth;
 import edu.nju.dessert.interceptor.Role;
 import edu.nju.dessert.service.OrderService;
 import edu.nju.dessert.vo.OrderVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,11 +21,8 @@ import java.util.Map;
 @RequestMapping(value="/order")
 public class OrderController {
 
+    @Autowired
     private OrderService orderService;
-
-    public void setOrderService(OrderService orderService) {
-        this.orderService = orderService;
-    }
 
     @Auth(Role.USER)
     @RequestMapping(value="/get", method= RequestMethod.GET)

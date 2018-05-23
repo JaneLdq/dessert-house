@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,18 +24,12 @@ import edu.nju.dessert.vo.StaffVO;
 @Controller
 @RequestMapping(value="/admin")
 public class AdminController {
-	
+
+	@Autowired
 	private StaffService staffService;
-	
+
+	@Autowired
 	private StoreService storeService;
-	
-	public void setStoreService(StoreService storeService) {
-		this.storeService = storeService;
-	}
-	
-	public void setStaffService(StaffService staffService){
-		this.staffService = staffService;
-	}
 
 	@Auth(Role.ADMIN)
 	@RequestMapping(value="")

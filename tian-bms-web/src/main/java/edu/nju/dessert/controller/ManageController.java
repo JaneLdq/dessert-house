@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,24 +29,15 @@ import edu.nju.dessert.vo.PlanVO;
 @RequestMapping(value={"/manage"})
 public class ManageController {
 
+	@Autowired
     private PlanService planService;
-    
+
+	@Autowired
     private StoreService storeService;
-    
+
+	@Autowired
     private UserService userService;
-    
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-    
-    public void setPlanService(PlanService planService) {
-        this.planService = planService;
-    }
-    
-    public void setStoreService(StoreService storeService) {
-        this.storeService = storeService;
-    }
-    
+
 	@Auth(Role.MANAGER)
 	@RequestMapping(value="")
 	public String index(HttpServletRequest req, ModelMap model){

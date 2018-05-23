@@ -44,12 +44,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd" >
     <mvc:interceptors>
     	<bean class="edu.nju.dessert.interceptor.AuthInterceptor"></bean>
 	</mvc:interceptors>
-    
-    <mvc:view-controller path="" view-name="forward:index"/>
+
     <mvc:view-controller path="/" view-name="forward:index"/>
     
 	<!--使Spring支持自动检测组件，如注解的Controller -->
-	<context:component-scan base-package="edu.nju.dessert.controller" />
+	<context:component-scan base-package="edu.nju.dessert" />
     
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
     	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>

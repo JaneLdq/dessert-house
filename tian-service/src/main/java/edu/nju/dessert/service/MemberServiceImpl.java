@@ -2,12 +2,14 @@ package edu.nju.dessert.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.nju.dessert.dao.MemberDao;
 import edu.nju.dessert.model.Member;
 import edu.nju.dessert.vo.MemberVO;
 
+@Service
 public class MemberServiceImpl implements MemberService {
 	
 	private MemberDao memberDao;

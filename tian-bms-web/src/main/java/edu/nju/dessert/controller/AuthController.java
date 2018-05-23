@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -28,100 +29,15 @@ import edu.nju.dessert.service.UserService;
 @Controller
 @RequestMapping(value="/auth")
 public class AuthController {
-	
+
+	@Autowired
 	private AuthService authService;
 
-	private UserService userService;
-	
-	private MemberService memberService;
-	
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}	
-	
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}	
-	
-	public void setAuthService(AuthService authService){
-		this.authService = authService;
-	}
-	
-	@RequestMapping(value="")
-	public String index(HttpServletRequest request, @RequestParam(required=false) String backurl, ModelMap model){
-		request.getSession().removeAttribute("id");
-		request.getSession().removeAttribute("hasLogin");
-		if(backurl != null)
-			request.getSession().setAttribute("backURL", backurl);
-		String msg = (String) request.getAttribute("msg");
-		if(msg != null){
-			model.put("msg", msg);
-		}
-		return "login";
-	}
-	
 	@RequestMapping(value="/internal", method=RequestMethod.GET)
 	public String indexInternal() throws ServletException, IOException{
 		return "/backend/login_internal";
 	}
 
-	@RequestMapping(value="/reg", method=RequestMethod.GET)
-	public String indexReg(){
-		return "register";
-	}
-	
-	@RequestMapping(value="/regform", method=RequestMethod.POST)
-	public String register(HttpServletRequest req, HttpServletResponse response, ModelMap model){
-		String tel = req.getParameter("tel");
-		String password = req.getParameter("password");
-		String nickname = req.getParameter("nickname");
-		String name = req.getParameter("name");
-		String sex = req.getParameter("sex");
-		String birth = req.getParameter("birth");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");                
-		Date birthDay = null;
-		try {
-			birthDay = sdf.parse(birth);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		User user = new User();
-		user.setTel(tel);
-		user.setName(name);
-		user.setNickname(nickname);
-		user.setSex(Integer.parseInt(sex));
-		user.setBirth(birthDay);
-		user.setPassword(password);
-		int result = authService.register(user);
-		if(result == 1){
-			int loginId = authService.login(tel, password);
-			if(loginId != -1){
-				HttpSession session = (HttpSession) req.getSession();
-				session.setAttribute("hasLogin", true);
-				session.setAttribute("id", loginId);
-				session.setAttribute("isUser", true);
-				model.put("nickname", nickname);
-				return "member";
-			}
-			return "login";
-		}else{
-			model.put("result", -1);
-			return "register";
-		}
-	}
-	
-	@Auth(Role.USER)
-	@RequestMapping(value="/regmember", method=RequestMethod.POST)
-	public void regMember(HttpServletRequest req, HttpServletResponse response) throws IOException{
-		int id = (int) req.getSession().getAttribute("id");
-		String address = req.getParameter("address");
-		String name = req.getParameter("name");
-		userService.updateUserInfo(id, name, address);
-		String bankcard = req.getParameter("bankcard");
-		String paypassword = req.getParameter("paypassword");
-		memberService.addMember(id, bankcard, paypassword);
-		response.sendRedirect(req.getContextPath() + "/user");
-	}
 	
 	@RequestMapping(value="/internal", method=RequestMethod.POST)
 	public void loginInternal(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -197,7 +113,7 @@ public class AuthController {
 		req.getSession().removeAttribute("isAdmin");
 		req.getSession().removeAttribute("backURL");
 		try {
-			response.sendRedirect(req.getContextPath() + "/index");
+			response.sendRedirect(req.getContextPath() + "/");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -10,7 +10,9 @@ import edu.nju.dessert.model.Payment;
 import edu.nju.dessert.model.Point;
 import edu.nju.dessert.model.Store;
 import edu.nju.dessert.model.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 	
 	private UserDao userDao;

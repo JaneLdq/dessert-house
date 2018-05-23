@@ -57,13 +57,7 @@
 		            + 	"</i> 退出账号</a></div>");
 					
 				}else{
-					if(url.contains("login_internal")){
-						out.print("<a class='nav-item' href='" + path + "/auth'>用户登录</a>");
-					}else if(url.contains("login")){
-						out.print("<a class='nav-item' href='" + path + "/auth/internal'>员工登录</a>");
-					}else{
-						out.print("<a class='nav-item' href='" + path + "/auth'>登录 · 注册</a>");
-					}
+					out.print("<a class='nav-item' href='" + path + "/auth'>登录 · 注册</a>");
 				}
 			}
 		%>			

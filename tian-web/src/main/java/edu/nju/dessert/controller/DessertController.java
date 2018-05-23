@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,30 +32,18 @@ import edu.nju.dessert.vo.CartItemAddVO;
 @Controller
 @RequestMapping(value={"/dessert","/desserts"})
 public class DessertController {
-	
+
+	@Autowired
 	private DessertService dessertService;
-	
+
+	@Autowired
 	private StoreService storeService;
-	
+
+	@Autowired
 	private UserService userService;
-	
+
+	@Autowired
 	private TradeService tradeService;
-	
-	public void setTradeService(TradeService tradeService){
-		this.tradeService = tradeService;
-	}
-	
-	public void setDessertService(DessertService dessertService) {
-		this.dessertService = dessertService;
-	}
-	
-	public void setStoreService(StoreService storeService) {
-		this.storeService = storeService;
-	}
-	
-	public void setUserService(UserService userService){
-		this.userService = userService;
-	}
 	
 	@RequestMapping(value="")
 	public String index(HttpServletRequest req, ModelMap model){

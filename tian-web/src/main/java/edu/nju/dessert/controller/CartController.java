@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.nju.dessert.model.Dessert;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,24 +33,15 @@ import edu.nju.dessert.vo.CartItemVO;
 @Controller
 @RequestMapping(value="/cart")
 public class CartController {
-	
+
+	@Autowired
 	private TradeService tradeService;
-	
+
+	@Autowired
 	private DessertService dessertService;
-	
+
+	@Autowired
 	private AddressService addressService;
-	
-	public void setDessertService(DessertService dessertService) {
-		this.dessertService = dessertService;
-	}
-	
-	public void setTradeService(TradeService tradeService) {
-		this.tradeService = tradeService;
-	}
-	
-	public void setAddressService(AddressService addressService) {
-		this.addressService = addressService;
-	}
 	
 	@Auth(Role.USER)
 	@RequestMapping(value="")

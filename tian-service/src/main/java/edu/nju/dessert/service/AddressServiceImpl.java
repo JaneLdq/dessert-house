@@ -4,9 +4,11 @@ import edu.nju.dessert.dao.AddressDao;
 import edu.nju.dessert.dao.UserDao;
 import edu.nju.dessert.model.Address;
 import edu.nju.dessert.model.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AddressServiceImpl implements AddressService {
 
     private UserDao userDao;

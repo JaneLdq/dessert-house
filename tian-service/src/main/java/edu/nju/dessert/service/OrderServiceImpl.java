@@ -10,8 +10,10 @@ import edu.nju.dessert.model.Order;
 import edu.nju.dessert.model.OrderItem;
 import edu.nju.dessert.vo.OrderItemVO;
 import edu.nju.dessert.vo.OrderVO;
+import org.springframework.stereotype.Service;
 
 // TODO 所有拿到的OrderVO中的OrderItemVO中药增加AdditionItemVO
+@Service
 public class OrderServiceImpl implements OrderService {
 
     private OrderDao orderDao;

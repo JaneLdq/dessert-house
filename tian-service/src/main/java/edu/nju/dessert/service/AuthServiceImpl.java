@@ -4,7 +4,9 @@ import edu.nju.dessert.dao.StaffDao;
 import edu.nju.dessert.dao.UserDao;
 import edu.nju.dessert.model.Staff;
 import edu.nju.dessert.model.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthServiceImpl implements AuthService {
 
 	private UserDao userDao;

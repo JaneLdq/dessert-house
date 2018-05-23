@@ -2,6 +2,7 @@ package edu.nju.dessert.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +17,11 @@ import edu.nju.dessert.service.StoreService;
 @RequestMapping(value={"/store","/stores"})
 public class StoreController {
 
+	@Autowired
 	private StoreService storeService;
-	
+
+	@Autowired
 	private DessertService dessertService;
-	
-	public void setDessertService(DessertService dessertService) {
-		this.dessertService = dessertService;
-	}
-	
-	public void setStoreService(StoreService storeService) {
-		this.storeService = storeService;
-	}
 	
 	@RequestMapping(value="")
 	public String index(ModelMap model){

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,24 +34,15 @@ import edu.nju.dessert.vo.PlanVO;
 @RequestMapping(value="/plan")
 public class PlanController {
 
+	@Autowired
 	private StoreService storeService;
-	
+
+	@Autowired
 	private PlanService planService;
-	
+
+	@Autowired
 	private DessertService dessertService;
-	
-	public void setDessertService(DessertService dessertService) {
-		this.dessertService = dessertService;
-	}
-	
-	public void setPlanService(PlanService planService) {
-		this.planService = planService;
-	}
-	
-	public void setStoreService(StoreService storeService) {
-		this.storeService = storeService;
-	}
-	
+
 	@Auth(Role.HEAD_SALESMAN)
 	@RequestMapping(value="")
 	public String index(ModelMap model){
